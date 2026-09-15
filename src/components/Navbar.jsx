@@ -41,8 +41,8 @@ export default function Navbar({
         <div className="flex-1 max-w-2xl xl:max-w-3xl ml-8 lg:ml-20 xl:ml-32 mr-4 lg:mr-8 hidden md:block">
           <div className="flex items-center border border-gray-200 rounded-lg bg-gray-50/50 hover:border-gray-300 focus-within:border-emerald-600 focus-within:bg-white transition-all overflow-hidden shadow-sm">
             {/* Magnifying Glass & Input */}
-            <div className="flex items-center flex-1 px-3 py-1.5">
-              <Search className="w-4 h-4 text-gray-400 mr-2 flex-shrink-0" />
+            <div className="flex items-center flex-1 pl-4 pr-3 py-2">
+              <Search className="w-4 h-4 text-gray-400 mr-2.5 flex-shrink-0" />
               <input
                 type="text"
                 value={searchQuery}
