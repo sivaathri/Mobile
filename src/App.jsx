@@ -15,7 +15,7 @@ import { FEATURED_PHONES, MORE_PHONES } from './data/products';
 export default function App() {
   // State management
   const [selectedBrand, setSelectedBrand] = useState('All Phones');
-  const [activeCategory, setActiveCategory] = useState('Smartphones');
+  const [activeCategory, setActiveCategory] = useState('All Categories');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCity, setSelectedCity] = useState('All India');
   

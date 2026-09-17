@@ -102,19 +102,24 @@ export default function CategoryNav({
                 onClick={() => {
                   if (timeoutRef.current) clearTimeout(timeoutRef.current);
                   setIsMegaMenuOpen((prev) => !prev);
+                  if (onSelectCategory) onSelectCategory('All Categories');
                 }}
                 className={`flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all font-bold cursor-pointer select-none border-0 outline-none focus:outline-none focus-visible:outline-none ring-0 focus:ring-0 ${
-                  isMegaMenuOpen
-                    ? 'text-[#00684a] bg-emerald-50/70'
+                  isMegaMenuOpen || activeCategory === 'All Categories'
+                    ? 'text-[#00684a] font-bold bg-emerald-50'
                     : 'text-gray-900 hover:text-[#00684a] hover:bg-gray-50'
                 }`}
               >
                 <Menu className={`w-4 h-4 transition-colors ${
-                  isMegaMenuOpen ? 'text-[#00684a]' : 'text-gray-800'
+                  isMegaMenuOpen || activeCategory === 'All Categories' ? 'text-[#00684a]' : 'text-gray-800'
                 }`} />
                 <span className="text-[13px]">All Categories</span>
                 <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                  isMegaMenuOpen ? 'rotate-180 text-[#00684a]' : 'text-gray-500'
+                  isMegaMenuOpen 
+                    ? 'rotate-180 text-[#00684a]' 
+                    : activeCategory === 'All Categories' 
+                    ? 'text-[#00684a]' 
+                    : 'text-gray-500'
                 }`} />
               </button>
 
