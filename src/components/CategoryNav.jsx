@@ -10,6 +10,7 @@ export default function CategoryNav({
 }) {
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
   const navRef = useRef(null);
+  const timeoutRef = useRef(null);
 
   const categories = [
     'Smartphones',
@@ -29,15 +30,64 @@ export default function CategoryNav({
     { name: 'Exchange', href: '#exchange' },
   ];
 
-  // Close menu on Escape key
+  // Open menu with hover
+  const handleMouseEnterTrigger = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+    setIsMegaMenuOpen(true);
+  };
+
+  // Close menu with small debounce delay so mouse can cross into the menu
+  const handleMouseLeave = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    timeoutRef.current = setTimeout(() => {
+      setIsMegaMenuOpen(false);
+    }, 250);
+  };
+
+  // Mouse enters dropdown: cancel any closing timeout
+  const handleMouseEnterMenu = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+    setIsMegaMenuOpen(true);
+  };
+
+  const closeMenuImmediately = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+    setIsMegaMenuOpen(false);
+  };
+
+  // Click outside listener & Escape key listener
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
-        setIsMegaMenuOpen(false);
+        closeMenuImmediately();
       }
     };
+
+    const handleOutsideClick = (e) => {
+      if (navRef.current && !navRef.current.contains(e.target)) {
+        closeMenuImmediately();
+      }
+    };
+
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    document.addEventListener('mousedown', handleOutsideClick);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('mousedown', handleOutsideClick);
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
   }, []);
 
   return (
@@ -47,10 +97,17 @@ export default function CategoryNav({
         {/* Left: All Categories Button + Categories Row */}
         <div className="flex items-center gap-1 overflow-x-auto no-scrollbar">
           
-          {/* All Categories Dropdown Trigger */}
-          <div className="relative py-2.5 mr-2 flex-shrink-0">
+          {/* All Categories Dropdown Trigger (hover & click) */}
+          <div 
+            onMouseEnter={handleMouseEnterTrigger}
+            onMouseLeave={handleMouseLeave}
+            className="relative py-2.5 mr-2 flex-shrink-0"
+          >
             <button
-              onClick={() => setIsMegaMenuOpen(!isMegaMenuOpen)}
+              onClick={() => {
+                if (timeoutRef.current) clearTimeout(timeoutRef.current);
+                setIsMegaMenuOpen((prev) => !prev);
+              }}
               className={`flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all font-bold cursor-pointer select-none ${
                 isMegaMenuOpen
                   ? 'text-[#00684a] bg-emerald-50/70'
@@ -79,8 +136,12 @@ export default function CategoryNav({
               return (
                 <button
                   key={cat}
+                  onMouseEnter={() => {
+                    // Close the mega menu if hovering over another category tab
+                    closeMenuImmediately();
+                  }}
                   onClick={() => {
-                    setIsMegaMenuOpen(false);
+                    closeMenuImmediately();
                     if (onSelectCategory) onSelectCategory(cat);
                   }}
                   className={`px-3 py-1.5 rounded-md whitespace-nowrap transition-colors flex-shrink-0 text-[12.5px] ${
@@ -120,20 +181,22 @@ export default function CategoryNav({
 
       </div>
 
-      {/* Mega Menu Dropdown */}
+      {/* Mega Menu Dropdown with hover persistence */}
       <MegaMenu
         isOpen={isMegaMenuOpen}
-        onClose={() => setIsMegaMenuOpen(false)}
+        onMouseEnter={handleMouseEnterMenu}
+        onMouseLeave={handleMouseLeave}
+        onClose={closeMenuImmediately}
         onSelectCategory={(cat) => {
-          setIsMegaMenuOpen(false);
+          closeMenuImmediately();
           if (onSelectCategory) onSelectCategory(cat);
         }}
         onSelectBrand={(brand) => {
-          setIsMegaMenuOpen(false);
+          closeMenuImmediately();
           if (onSelectBrand) onSelectBrand(brand);
         }}
         onSelectFilter={(filter) => {
-          setIsMegaMenuOpen(false);
+          closeMenuImmediately();
           if (onSelectFilter) onSelectFilter(filter);
         }}
       />

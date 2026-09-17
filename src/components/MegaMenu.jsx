@@ -27,7 +27,9 @@ export default function MegaMenu({
   onClose, 
   onSelectCategory, 
   onSelectBrand, 
-  onSelectFilter 
+  onSelectFilter,
+  onMouseEnter,
+  onMouseLeave,
 }) {
   const [selectedSidebarCat, setSelectedSidebarCat] = useState('Mobiles');
 
@@ -186,14 +188,18 @@ export default function MegaMenu({
 
   return (
     <>
-      {/* Backdrop overlay */}
+      {/* Backdrop overlay below header - does NOT block navbar or hover bridge */}
       <div 
         onClick={onClose}
-        className="fixed inset-0 bg-black/25 z-40 transition-opacity backdrop-blur-2xs"
+        className="fixed inset-x-0 bottom-0 top-[106px] bg-black/25 z-20 transition-opacity backdrop-blur-2xs"
       />
 
       {/* Mega Menu Dropdown Container */}
-      <div className="absolute top-full left-0 w-full bg-white z-50 border-b border-gray-200/90 shadow-2xl transition-all animate-in fade-in slide-in-from-top-1 duration-200">
+      <div 
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+        className="absolute top-full -mt-[1px] left-0 w-full bg-white z-50 border-b border-gray-200/90 shadow-2xl transition-all animate-in fade-in slide-in-from-top-1 duration-200"
+      >
         <div className="w-full px-4 lg:px-6 xl:px-8 py-5">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 xl:gap-6 items-start">
@@ -207,13 +213,14 @@ export default function MegaMenu({
                 return (
                   <button
                     key={item.id}
+                    onMouseEnter={() => setSelectedSidebarCat(item.name)}
                     onClick={() => {
                       setSelectedSidebarCat(item.name);
                       if (item.name !== 'Mobiles' && onSelectCategory) {
                         onSelectCategory(item.name);
                       }
                     }}
-                    className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium transition-all group ${
+                    className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium transition-all group cursor-pointer ${
                       isActive
                         ? 'bg-[#ecfdf5] text-[#059669] font-bold shadow-2xs'
                         : 'text-gray-700 hover:text-gray-950 hover:bg-gray-50'
