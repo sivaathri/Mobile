@@ -195,15 +195,13 @@ export default function Footer() {
             </div>
           </div>
 
-        </div>
-
-        {/* =================================================================== */}
+        </div>        {/* =================================================================== */}
         {/* 3. MAIN FOOTER CONTENT (5 Columns)                                 */}
         {/* =================================================================== */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-12 pt-10 pb-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-12 pt-8 sm:pt-10 pb-10">
           
-          {/* Col 1: Brand, Description, Socials, App Downloads (4 of 12 cols) */}
-          <div className="lg:col-span-4 pr-0 lg:pr-6">
+          {/* Col 1: Brand, Description, Socials, App Downloads */}
+          <div className="col-span-2 md:col-span-4 lg:col-span-4 xl:col-span-4 pr-0 lg:pr-6">
             
             {/* Logo & Tagline */}
             <div className="flex items-center gap-2.5 mb-3">
@@ -271,7 +269,7 @@ export default function Footer() {
                 aria-label="X (formerly Twitter)"
                 className="w-8 h-8 rounded-full bg-[#182521] hover:bg-[#0b4d3c] flex items-center justify-center transition-all duration-200 shadow-2xs group"
               >
-                <svg viewBox="0 0 24 24" className="w-3 h-3 fill-white">
+                <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 fill-white">
                   <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                 </svg>
               </a>
@@ -293,7 +291,7 @@ export default function Footer() {
               <h5 className="text-xs font-bold text-gray-900 mb-2.5">
                 Download Our App
               </h5>
-              <div className="flex items-center gap-2.5">
+              <div className="flex items-center gap-2.5 flex-wrap">
                 {/* Google Play Store Badge */}
                 <a
                   href="#playstore"
@@ -329,8 +327,8 @@ export default function Footer() {
 
           </div>
 
-          {/* Col 2: Shop (2 of 12 cols) */}
-          <div className="lg:col-span-2">
+          {/* Col 2: Shop */}
+          <div className="col-span-1 md:col-span-1 lg:col-span-2">
             <h4 className="font-bold text-gray-900 text-xs sm:text-sm tracking-wider mb-3.5">
               Shop
             </h4>
@@ -347,8 +345,8 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Col 3: Help & Support (2 of 12 cols) */}
-          <div className="lg:col-span-2">
+          {/* Col 3: Help & Support */}
+          <div className="col-span-1 md:col-span-1 lg:col-span-2">
             <h4 className="font-bold text-gray-900 text-xs sm:text-sm tracking-wider mb-3.5">
               Help & Support
             </h4>
@@ -364,8 +362,8 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Col 4: About SecondKart (2 of 12 cols) */}
-          <div className="lg:col-span-2">
+          {/* Col 4: About SecondKart */}
+          <div className="col-span-1 md:col-span-1 lg:col-span-2">
             <h4 className="font-bold text-gray-900 text-xs sm:text-sm tracking-wider mb-3.5">
               About SecondKart
             </h4>
@@ -382,8 +380,8 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Col 5: Contact Us & Support CTA (2 of 12 cols) */}
-          <div className="lg:col-span-2">
+          {/* Col 5: Contact Us & Support CTA */}
+          <div className="col-span-1 md:col-span-1 lg:col-span-2">
             <h4 className="font-bold text-gray-900 text-xs sm:text-sm tracking-wider mb-3.5">
               Contact Us
             </h4>

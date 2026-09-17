@@ -95,14 +95,14 @@ export default function Navbar({
         </div>
 
         {/* Right Actions: Sell Button, Wishlist, Cart, Account */}
-        <div className="flex items-center gap-4 lg:gap-6 flex-shrink-0">
+        <div className="flex items-center gap-2 sm:gap-4 lg:gap-6 flex-shrink-0">
           {/* Sell Your Phone CTA */}
           <button
             onClick={onOpenSellModal}
-            className="flex items-center gap-1.5 bg-[#0b4d3c] hover:bg-[#07362a] text-white text-xs lg:text-sm font-semibold px-3.5 py-2 rounded-lg shadow-sm transition-all hover:shadow"
+            className="flex items-center gap-1 sm:gap-1.5 bg-[#0b4d3c] hover:bg-[#07362a] text-white text-xs lg:text-sm font-semibold px-2.5 py-1.5 sm:px-3.5 sm:py-2 rounded-lg shadow-sm transition-all hover:shadow"
           >
-            <Plus className="w-4 h-4 stroke-[2.5]" />
-            <span>Sell Your Phone</span>
+            <Plus className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5]" />
+            <span>Sell<span className="hidden sm:inline">&nbsp;Your Phone</span></span>
           </button>
 
           {/* Wishlist */}
