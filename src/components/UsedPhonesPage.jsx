@@ -32,6 +32,7 @@ const ALL_USED_PHONES_CATALOG = [
     price: 34999,
     originalPrice: 59000,
     city: 'Chennai',
+    image: '/assets/phones/iphone14_purple.jpg',
     graphicType: 'iphone14-purple',
     tag: 'Certified',
   },
@@ -46,6 +47,7 @@ const ALL_USED_PHONES_CATALOG = [
     price: 28999,
     originalPrice: 72999,
     city: 'Bangalore',
+    image: '/assets/phones/galaxy_s23.jpg',
     graphicType: 'galaxy-s23',
     tag: 'Certified',
   },
@@ -60,6 +62,7 @@ const ALL_USED_PHONES_CATALOG = [
     price: 26499,
     originalPrice: 45999,
     city: 'Coimbatore',
+    image: '/assets/phones/oneplus_11r.jpg',
     graphicType: 'oneplus-11r',
     tag: 'Certified',
   },
@@ -74,6 +77,7 @@ const ALL_USED_PHONES_CATALOG = [
     price: 32999,
     originalPrice: 59999,
     city: 'Madurai',
+    image: '/assets/phones/xiaomi_13pro.jpg',
     graphicType: 'xiaomi-13pro',
     tag: 'Certified',
   },
@@ -88,6 +92,7 @@ const ALL_USED_PHONES_CATALOG = [
     price: 27999,
     originalPrice: 49999,
     city: 'Trichy',
+    image: '/assets/phones/pixel_7.jpg',
     graphicType: 'pixel-7',
     tag: 'Certified',
   },
@@ -102,6 +107,7 @@ const ALL_USED_PHONES_CATALOG = [
     price: 18999,
     originalPrice: 37999,
     city: 'Salem',
+    image: '/assets/phones/realme_gt2.jpg',
     graphicType: 'realme-gt2',
     tag: 'Certified',
   },
@@ -116,6 +122,7 @@ const ALL_USED_PHONES_CATALOG = [
     price: 29999,
     originalPrice: 49000,
     city: 'Chennai',
+    image: '/assets/phones/iphone13_pink.jpg',
     graphicType: 'iphone13-pink',
     tag: 'Certified',
   },
@@ -130,6 +137,7 @@ const ALL_USED_PHONES_CATALOG = [
     price: 24999,
     originalPrice: 42999,
     city: 'Bangalore',
+    image: '/assets/phones/galaxy_s22.jpg',
     graphicType: 'galaxy-s22',
     tag: 'Certified',
   },
@@ -144,6 +152,7 @@ const ALL_USED_PHONES_CATALOG = [
     price: 21999,
     originalPrice: 36999,
     city: 'Hyderabad',
+    image: '/assets/phones/nord_3.jpg',
     graphicType: 'oneplus-nord3',
     tag: 'Certified',
   },
@@ -158,6 +167,7 @@ const ALL_USED_PHONES_CATALOG = [
     price: 24999,
     originalPrice: 42999,
     city: 'Coimbatore',
+    image: '/assets/phones/vivo_v27.jpg',
     graphicType: 'vivo-v27',
     tag: 'Certified',
   },
@@ -172,6 +182,7 @@ const ALL_USED_PHONES_CATALOG = [
     price: 17499,
     originalPrice: 28999,
     city: 'Mysore',
+    image: '/assets/phones/moto_edge30.jpg',
     graphicType: 'moto-edge30',
     tag: 'Certified',
   },
@@ -186,6 +197,7 @@ const ALL_USED_PHONES_CATALOG = [
     price: 18499,
     originalPrice: 32999,
     city: 'Trichy',
+    image: '/assets/phones/nothing_1.jpg',
     graphicType: 'nothing-1',
     tag: 'Certified',
   },
@@ -202,6 +214,7 @@ const ALL_USED_PHONES_CATALOG = [
     price: 23999,
     originalPrice: 49900,
     city: 'Chennai',
+    image: '/assets/phones/iphone12_blue.jpg',
     graphicType: 'iphone14-purple',
     tag: 'Certified',
   },
@@ -216,6 +229,7 @@ const ALL_USED_PHONES_CATALOG = [
     price: 19999,
     originalPrice: 39999,
     city: 'Coimbatore',
+    image: '/assets/phones/galaxy_s22.jpg',
     graphicType: 'galaxy-s22',
     tag: 'Certified',
   },
@@ -230,6 +244,7 @@ const ALL_USED_PHONES_CATALOG = [
     price: 22499,
     originalPrice: 42999,
     city: 'Bangalore',
+    image: '/assets/phones/oneplus_11r.jpg',
     graphicType: 'oneplus-11r',
     tag: 'Certified',
   },
@@ -244,6 +259,7 @@ const ALL_USED_PHONES_CATALOG = [
     price: 15999,
     originalPrice: 31999,
     city: 'Madurai',
+    image: '/assets/phones/pixel_6a.jpg',
     graphicType: 'pixel-7',
     tag: 'Certified',
   },
@@ -258,6 +274,7 @@ const ALL_USED_PHONES_CATALOG = [
     price: 19499,
     originalPrice: 29999,
     city: 'Salem',
+    image: '/assets/phones/realme_gt2.jpg',
     graphicType: 'realme-gt2',
     tag: 'Certified',
   },
@@ -272,6 +289,7 @@ const ALL_USED_PHONES_CATALOG = [
     price: 16999,
     originalPrice: 28999,
     city: 'Trichy',
+    image: '/assets/phones/vivo_t2pro.jpg',
     graphicType: 'vivo-v27',
     tag: 'Certified',
   },
@@ -286,6 +304,7 @@ const ALL_USED_PHONES_CATALOG = [
     price: 27999,
     originalPrice: 62999,
     city: 'Bangalore',
+    image: '/assets/phones/xiaomi_12pro.jpg',
     graphicType: 'xiaomi-13pro',
     tag: 'Certified',
   },
@@ -300,6 +319,7 @@ const ALL_USED_PHONES_CATALOG = [
     price: 21999,
     originalPrice: 34999,
     city: 'Chennai',
+    image: '/assets/phones/moto_edge30.jpg',
     graphicType: 'moto-edge30',
     tag: 'Certified',
   },
@@ -314,6 +334,7 @@ const ALL_USED_PHONES_CATALOG = [
     price: 16999,
     originalPrice: 39900,
     city: 'Mysore',
+    image: '/assets/phones/iphone12_blue.jpg',
     graphicType: 'iphone13-pink',
     tag: 'Certified',
   },
@@ -328,6 +349,7 @@ const ALL_USED_PHONES_CATALOG = [
     price: 18499,
     originalPrice: 38999,
     city: 'Hyderabad',
+    image: '/assets/phones/galaxy_a54.jpg',
     graphicType: 'galaxy-s23',
     tag: 'Certified',
   },
@@ -342,6 +364,7 @@ const ALL_USED_PHONES_CATALOG = [
     price: 23999,
     originalPrice: 64999,
     city: 'Coimbatore',
+    image: '/assets/phones/oneplus_11r.jpg',
     graphicType: 'oneplus-11r',
     tag: 'Certified',
   },
@@ -356,6 +379,7 @@ const ALL_USED_PHONES_CATALOG = [
     price: 29999,
     originalPrice: 44999,
     city: 'Bangalore',
+    image: '/assets/phones/nothing_1.jpg',
     graphicType: 'nothing-1',
     tag: 'Certified',
   },
@@ -521,10 +545,10 @@ export default function UsedPhonesPage({
   const paginatedProducts = displayItems.slice(startIndex, startIndex + itemsPerPage);
 
   return (
-    <div className="min-h-screen bg-[#F8F9FA] text-gray-800 pb-16">
+    <div className="w-full bg-[#F8F9FA] text-gray-800 pb-16">
       
       {/* Container matching full width grid */}
-      <div className="max-w-[1536px] mx-auto px-3 sm:px-4 lg:px-6 pt-3 sm:pt-4">
+      <div className="w-full mx-auto px-3 sm:px-4 lg:px-6 pt-3 sm:pt-4">
 
         {/* ===================================================================
             EXACT 2-COLUMN LAYOUT: 
@@ -1200,9 +1224,18 @@ export default function UsedPhonesPage({
                       {/* Phone Image / Mockup */}
                       <div
                         onClick={() => onQuickView?.(phone)}
-                        className="w-full h-32 sm:h-36 flex items-center justify-center my-1 cursor-pointer overflow-hidden group-hover:scale-105 transition-transform duration-300"
+                        className="w-full h-32 sm:h-36 flex items-center justify-center my-1 cursor-pointer overflow-hidden"
                       >
-                        <PhoneMockup type={phone.graphicType} className="h-28 sm:h-32 w-auto object-contain" />
+                        {phone.image ? (
+                          <img
+                            src={phone.image}
+                            alt={phone.name}
+                            className="h-28 sm:h-32 w-auto max-w-full object-contain drop-shadow-sm group-hover:scale-105 transition-transform duration-200"
+                            loading="lazy"
+                          />
+                        ) : (
+                          <PhoneMockup type={phone.graphicType} className="h-28 sm:h-32 w-auto object-contain group-hover:scale-105 transition-transform duration-200" />
+                        )}
                       </div>
 
                       {/* Phone Info */}
