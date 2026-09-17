@@ -12,11 +12,12 @@ import SellPhoneModal from './components/SellPhoneModal';
 import QuickViewModal from './components/QuickViewModal';
 import OffersPopupModal from './components/OffersPopupModal';
 import NewPhonesPage from './components/NewPhonesPage';
+import UsedPhonesPage from './components/UsedPhonesPage';
 import { FEATURED_PHONES, MORE_PHONES, LATEST_NEW_PHONES, QUALITY_PREOWNED_PHONES } from './data/products';
 
 export default function App() {
   // State management
-  const [currentView, setCurrentView] = useState('home'); // 'home' | 'new-phones'
+  const [currentView, setCurrentView] = useState('home'); // 'home' | 'new-phones' | 'used-phones'
   const [selectedBrand, setSelectedBrand] = useState('All Phones');
   const [activeCategory, setActiveCategory] = useState('All Categories');
   const [searchQuery, setSearchQuery] = useState('');
