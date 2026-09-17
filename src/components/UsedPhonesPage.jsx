@@ -7,11 +7,6 @@ import {
   ChevronRight,
   SlidersHorizontal,
   X,
-  ShieldCheck,
-  RotateCcw,
-  Truck,
-  Award,
-  Leaf,
   MapPin,
   LayoutGrid,
   List,
@@ -836,89 +831,7 @@ export default function UsedPhonesPage({
               </div>
             </div>
 
-            {/* 3. 5 TRUST / VALUE PROPOSITION BADGES */}
-            <div className="bg-white rounded-xl border border-gray-200/80 p-3 sm:p-3.5 mb-4 shadow-2xs">
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 divide-y sm:divide-y-0 sm:divide-x divide-gray-100">
-                
-                {/* 1. Quality Checked */}
-                <div className="flex items-center gap-2.5 pt-2 sm:pt-0 sm:px-2">
-                  <div className="w-8 h-8 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center flex-shrink-0 text-[#00704A]">
-                    <ShieldCheck className="w-4.5 h-4.5" />
-                  </div>
-                  <div>
-                    <h4 className="text-xs sm:text-sm font-bold text-gray-900 leading-tight">
-                      Quality Checked
-                    </h4>
-                    <p className="text-[11px] text-gray-500 mt-0.5">
-                      Tested by experts
-                    </p>
-                  </div>
-                </div>
-
-                {/* 2. 7-Day Returns */}
-                <div className="flex items-center gap-2.5 pt-2 sm:pt-0 sm:px-2">
-                  <div className="w-8 h-8 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center flex-shrink-0 text-[#00704A]">
-                    <RotateCcw className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <h4 className="text-xs sm:text-sm font-bold text-gray-900 leading-tight">
-                      7-Day Returns
-                    </h4>
-                    <p className="text-[11px] text-gray-500 mt-0.5">
-                      Hassle-free returns
-                    </p>
-                  </div>
-                </div>
-
-                {/* 3. Pan India Delivery */}
-                <div className="flex items-center gap-2.5 pt-2 sm:pt-0 sm:px-2">
-                  <div className="w-8 h-8 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center flex-shrink-0 text-[#00704A]">
-                    <Truck className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <h4 className="text-xs sm:text-sm font-bold text-gray-900 leading-tight">
-                      Pan India Delivery
-                    </h4>
-                    <p className="text-[11px] text-gray-500 mt-0.5">
-                      Fast & reliable shipping
-                    </p>
-                  </div>
-                </div>
-
-                {/* 4. Best Value */}
-                <div className="flex items-center gap-2.5 pt-2 sm:pt-0 sm:px-2">
-                  <div className="w-8 h-8 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center flex-shrink-0 text-[#00704A]">
-                    <Award className="w-4.5 h-4.5" />
-                  </div>
-                  <div>
-                    <h4 className="text-xs sm:text-sm font-bold text-gray-900 leading-tight">
-                      Best Value
-                    </h4>
-                    <p className="text-[11px] text-gray-500 mt-0.5">
-                      Premium phones, lower prices
-                    </p>
-                  </div>
-                </div>
-
-                {/* 5. Sustainable Choice */}
-                <div className="flex items-center gap-2.5 pt-2 sm:pt-0 sm:px-2 col-span-2 sm:col-span-1">
-                  <div className="w-8 h-8 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center flex-shrink-0 text-[#00704A]">
-                    <Leaf className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <h4 className="text-xs sm:text-sm font-bold text-gray-900 leading-tight">
-                      Sustainable Choice
-                    </h4>
-                    <p className="text-[11px] text-gray-500 mt-0.5">
-                      Good for you, good for the planet
-                    </p>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-            {/* 4. Sub-header Controls Bar */}
+            {/* 3. Sub-header Controls Bar */}
             <div className="bg-white rounded-xl border border-gray-200/80 p-2.5 sm:p-3 mb-4 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 shadow-2xs">
               
               {/* Left: Count + Brand Quick-Pills */}
