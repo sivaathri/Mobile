@@ -85,18 +85,18 @@ export default function CategoryNav({
   }, []);
 
   return (
-    <nav ref={navRef} className="relative bg-white border-b border-gray-200/80 text-xs font-medium text-gray-700 w-full z-40">
+    <nav ref={navRef} className="relative bg-white border-b border-gray-200/80 text-xs font-medium text-gray-700 w-full z-40 py-2 sm:py-2.5">
       <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 xl:px-8 flex items-center justify-center relative">
         
         {/* Centered Categories Row */}
-        <div className="w-full overflow-x-auto no-scrollbar flex items-center justify-center py-0.5">
+        <div className="w-full overflow-x-auto no-scrollbar flex items-center justify-center">
           <div className="flex items-center gap-1 min-w-max mx-auto">
             
             {/* All Categories Dropdown Trigger (hover & click) */}
             <div 
               onMouseEnter={handleMouseEnterTrigger}
               onMouseLeave={handleMouseLeave}
-              className="relative py-2.5 mr-1.5 sm:mr-2 flex-shrink-0"
+              className="relative mr-1.5 sm:mr-2 flex-shrink-0"
             >
               <button
                 onClick={() => {
@@ -120,12 +120,12 @@ export default function CategoryNav({
 
               {/* Active Indicator Bar (Green bottom bar when open) */}
               {isMegaMenuOpen && (
-                <div className="absolute bottom-0 left-3 right-3 h-[2.5px] bg-[#00684a] rounded-t-full shadow-2xs pointer-events-none" />
+                <div className="absolute -bottom-2 left-3 right-3 h-[2.5px] bg-[#00684a] rounded-t-full shadow-2xs pointer-events-none" />
               )}
             </div>
 
             {/* Categories Horizontal Links */}
-            <div className="flex items-center gap-0.5 py-2.5">
+            <div className="flex items-center gap-0.5">
               {categories.map((cat) => {
                 const isActive = activeCategory === cat;
                 return (
