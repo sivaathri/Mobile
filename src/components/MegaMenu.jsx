@@ -200,7 +200,7 @@ export default function MegaMenu({
         onMouseLeave={onMouseLeave}
         className="absolute top-full -mt-[1px] left-0 w-full bg-white z-50 border-b border-gray-200/90 shadow-2xl transition-all duration-200 ease-out max-h-[calc(100vh-115px)] overflow-y-auto"
       >
-        <div className="w-full px-4 lg:px-6 xl:px-8 py-5">
+        <div className="w-full max-w-7xl mx-auto px-4 lg:px-6 xl:px-8 py-5">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 xl:gap-6 items-start">
 

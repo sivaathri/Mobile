@@ -92,73 +92,76 @@ export default function CategoryNav({
 
   return (
     <nav ref={navRef} className="relative bg-white border-b border-gray-200/80 text-xs font-medium text-gray-700 w-full z-40">
-      <div className="w-full px-3 sm:px-4 lg:px-6 xl:px-8 flex items-center justify-between">
+      <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 xl:px-8 flex items-center justify-center relative">
         
-        {/* Left: All Categories Button + Categories Row */}
-        <div className="flex items-center gap-1 overflow-x-auto no-scrollbar">
-          
-          {/* All Categories Dropdown Trigger (hover & click) */}
-          <div 
-            onMouseEnter={handleMouseEnterTrigger}
-            onMouseLeave={handleMouseLeave}
-            className="relative py-2.5 mr-2 flex-shrink-0"
-          >
-            <button
-              onClick={() => {
-                if (timeoutRef.current) clearTimeout(timeoutRef.current);
-                setIsMegaMenuOpen((prev) => !prev);
-              }}
-              className={`flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all font-bold cursor-pointer select-none border-0 outline-none focus:outline-none focus-visible:outline-none ring-0 focus:ring-0 ${
-                isMegaMenuOpen
-                  ? 'text-[#00684a] bg-emerald-50/70'
-                  : 'text-gray-900 hover:text-[#00684a] hover:bg-gray-50'
-              }`}
+        {/* Centered Categories Row */}
+        <div className="w-full overflow-x-auto no-scrollbar flex items-center justify-center py-0.5">
+          <div className="flex items-center gap-1 min-w-max mx-auto">
+            
+            {/* All Categories Dropdown Trigger (hover & click) */}
+            <div 
+              onMouseEnter={handleMouseEnterTrigger}
+              onMouseLeave={handleMouseLeave}
+              className="relative py-2.5 mr-1.5 sm:mr-2 flex-shrink-0"
             >
-              <Menu className={`w-4 h-4 transition-colors ${
-                isMegaMenuOpen ? 'text-[#00684a]' : 'text-gray-800'
-              }`} />
-              <span className="text-[13px]">All Categories</span>
-              <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                isMegaMenuOpen ? 'rotate-180 text-[#00684a]' : 'text-gray-500'
-              }`} />
-            </button>
+              <button
+                onClick={() => {
+                  if (timeoutRef.current) clearTimeout(timeoutRef.current);
+                  setIsMegaMenuOpen((prev) => !prev);
+                }}
+                className={`flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all font-bold cursor-pointer select-none border-0 outline-none focus:outline-none focus-visible:outline-none ring-0 focus:ring-0 ${
+                  isMegaMenuOpen
+                    ? 'text-[#00684a] bg-emerald-50/70'
+                    : 'text-gray-900 hover:text-[#00684a] hover:bg-gray-50'
+                }`}
+              >
+                <Menu className={`w-4 h-4 transition-colors ${
+                  isMegaMenuOpen ? 'text-[#00684a]' : 'text-gray-800'
+                }`} />
+                <span className="text-[13px]">All Categories</span>
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                  isMegaMenuOpen ? 'rotate-180 text-[#00684a]' : 'text-gray-500'
+                }`} />
+              </button>
 
-            {/* Active Indicator Bar (Green bottom bar when open) */}
-            {isMegaMenuOpen && (
-              <div className="absolute bottom-0 left-3 right-3 h-[2.5px] bg-[#00684a] rounded-t-full shadow-2xs pointer-events-none" />
-            )}
-          </div>
+              {/* Active Indicator Bar (Green bottom bar when open) */}
+              {isMegaMenuOpen && (
+                <div className="absolute bottom-0 left-3 right-3 h-[2.5px] bg-[#00684a] rounded-t-full shadow-2xs pointer-events-none" />
+              )}
+            </div>
 
-          {/* Categories Horizontal Links */}
-          <div className="flex items-center gap-0.5 py-2.5">
-            {categories.map((cat) => {
-              const isActive = activeCategory === cat;
-              return (
-                <button
-                  key={cat}
-                  onMouseEnter={() => {
-                    // Close the mega menu if hovering over another category tab
-                    closeMenuImmediately();
-                  }}
-                  onClick={() => {
-                    closeMenuImmediately();
-                    if (onSelectCategory) onSelectCategory(cat);
-                  }}
-                  className={`px-3 py-1.5 rounded-md whitespace-nowrap transition-colors flex-shrink-0 text-[12.5px] border-0 outline-none focus:outline-none focus-visible:outline-none ring-0 focus:ring-0 ${
-                    isActive
-                      ? 'text-[#00684a] font-bold bg-emerald-50'
-                      : 'text-gray-600 hover:text-gray-950 hover:bg-gray-50'
-                  }`}
-                >
-                  {cat}
-                </button>
-              );
-            })}
+            {/* Categories Horizontal Links */}
+            <div className="flex items-center gap-0.5 py-2.5">
+              {categories.map((cat) => {
+                const isActive = activeCategory === cat;
+                return (
+                  <button
+                    key={cat}
+                    onMouseEnter={() => {
+                      // Close the mega menu if hovering over another category tab
+                      closeMenuImmediately();
+                    }}
+                    onClick={() => {
+                      closeMenuImmediately();
+                      if (onSelectCategory) onSelectCategory(cat);
+                    }}
+                    className={`px-3 py-1.5 rounded-md whitespace-nowrap transition-colors flex-shrink-0 text-[12.5px] border-0 outline-none focus:outline-none focus-visible:outline-none ring-0 focus:ring-0 ${
+                      isActive
+                        ? 'text-[#00684a] font-bold bg-emerald-50'
+                        : 'text-gray-600 hover:text-gray-950 hover:bg-gray-50'
+                    }`}
+                  >
+                    {cat}
+                  </button>
+                );
+              })}
+            </div>
+
           </div>
         </div>
 
-        {/* Right: Buy, Sell, Exchange, Help */}
-        <div className="hidden xl:flex items-center gap-5 pl-4 border-l border-gray-200/80 flex-shrink-0 py-2.5">
+        {/* Right: Buy, Sell, Exchange, Help (cleanly positioned on the right) */}
+        <div className="hidden 2xl:flex items-center gap-5 pl-4 border-l border-gray-200/80 flex-shrink-0 py-2.5 absolute right-4 lg:right-6 xl:right-8 top-1/2 -translate-y-1/2">
           {utilityLinks.map((link) => (
             <a
               key={link.name}

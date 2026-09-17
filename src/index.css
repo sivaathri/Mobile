@@ -6,6 +6,12 @@
   body {
     @apply font-sans bg-[#fbfcfb] text-gray-800;
   }
+
+  /* Remove default browser button focus outline ring */
+  button:focus,
+  button:focus-visible {
+    outline: none !important;
+  }
 }
 
 /* Custom scrollbars for clean horizontal sliding */
