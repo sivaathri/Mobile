@@ -31,7 +31,7 @@ export default function Navbar({
             <span className="text-[22px] font-extrabold tracking-tight text-[#083e2e] leading-none block">
               Second<span className="text-[#0e5c45]">Kart</span>
             </span>
-            <span className="text-[10px] font-medium text-emerald-800 tracking-wider block mt-0.5">
+            <span className="text-[10px] font-medium text-emerald-800 tracking-wider hidden sm:block mt-0.5">
               Good Phones. Greater Tomorrows.
             </span>
           </div>

@@ -23,7 +23,7 @@ export default function SellPhoneModal({ isOpen, onClose }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       <div onClick={onClose} className="fixed inset-0 bg-black/50 backdrop-blur-xs" />
-      <div className="relative bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl z-10 overflow-hidden">
+      <div className="relative bg-white rounded-2xl max-w-lg w-full p-4 sm:p-6 shadow-2xl z-10 overflow-hidden">
         
         {/* Header */}
         <div className="flex items-center justify-between pb-4 border-b border-gray-100">
