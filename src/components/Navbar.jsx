@@ -16,19 +16,19 @@ export default function Navbar({
 
   return (
     <div className="bg-white border-b border-gray-100 w-full">
-      <div className="w-full px-4 lg:px-6 xl:px-8 py-3 flex items-center justify-between gap-4">
+      <div className="w-full px-2.5 sm:px-4 lg:px-6 xl:px-8 py-2.5 sm:py-3 flex items-center justify-between gap-2 sm:gap-4">
         
         {/* Brand Logo */}
-        <div className="flex items-center gap-2.5 cursor-pointer flex-shrink-0">
-          <div className="w-10 h-10 rounded-full bg-emerald-700 flex items-center justify-center text-white shadow-sm ring-4 ring-emerald-50">
+        <div className="flex items-center gap-1.5 sm:gap-2.5 cursor-pointer flex-shrink-0">
+          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-emerald-700 flex items-center justify-center text-white shadow-sm ring-2 sm:ring-4 ring-emerald-50">
             {/* Eco Leaf Recycled Icon */}
-            <svg viewBox="0 0 24 24" className="w-6 h-6 stroke-white fill-none stroke-2">
+            <svg viewBox="0 0 24 24" className="w-5 h-5 sm:w-6 sm:h-6 stroke-white fill-none stroke-2">
               <path strokeLinecap="round" strokeLinejoin="round" d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
               <path strokeLinecap="round" strokeLinejoin="round" d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
             </svg>
           </div>
           <div>
-            <span className="text-[22px] font-extrabold tracking-tight text-[#083e2e] leading-none block">
+            <span className="text-lg sm:text-[22px] font-extrabold tracking-tight text-[#083e2e] leading-none block">
               Second<span className="text-[#0e5c45]">Kart</span>
             </span>
             <span className="text-[10px] font-medium text-emerald-800 tracking-wider hidden sm:block mt-0.5">
@@ -95,11 +95,11 @@ export default function Navbar({
         </div>
 
         {/* Right Actions: Sell Button, Wishlist, Cart, Account */}
-        <div className="flex items-center gap-2 sm:gap-4 lg:gap-6 flex-shrink-0">
+        <div className="flex items-center gap-1.5 sm:gap-4 lg:gap-6 flex-shrink-0">
           {/* Sell Your Phone CTA */}
           <button
             onClick={onOpenSellModal}
-            className="flex items-center gap-1 sm:gap-1.5 bg-[#0b4d3c] hover:bg-[#07362a] text-white text-xs lg:text-sm font-semibold px-2.5 py-1.5 sm:px-3.5 sm:py-2 rounded-lg shadow-sm transition-all hover:shadow"
+            className="flex items-center gap-1 sm:gap-1.5 bg-[#0b4d3c] hover:bg-[#07362a] text-white text-[11px] sm:text-xs lg:text-sm font-semibold px-2 py-1.5 sm:px-3.5 sm:py-2 rounded-lg shadow-sm transition-all hover:shadow"
           >
             <Plus className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5]" />
             <span>Sell<span className="hidden sm:inline">&nbsp;Your Phone</span></span>

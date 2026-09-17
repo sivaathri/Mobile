@@ -11,12 +11,19 @@ export default function HeroSection({ onExplore, onSellClick, onViewDeals }) {
         
         {/* Left Hero Banner (8 of 12 columns) */}
         <div 
-          className="lg:col-span-8 rounded-2xl border border-emerald-100/90 p-4 sm:p-5 lg:p-5.5 relative overflow-hidden flex flex-col justify-between shadow-xs bg-[#e8f7f0] bg-cover bg-no-repeat min-h-[220px] lg:min-h-[235px]"
-          style={{ 
-            backgroundImage: `url(${heroBg})`,
-            backgroundPosition: 'right bottom',
-          }}
+          className="lg:col-span-8 rounded-2xl border border-emerald-100/90 p-4 sm:p-5 lg:p-5.5 relative overflow-hidden flex flex-col justify-between shadow-xs bg-[#e8f7f0] min-h-[240px] sm:min-h-[220px] lg:min-h-[235px]"
         >
+          {/* Background image on the right */}
+          <div 
+            className="absolute inset-0 bg-no-repeat bg-right-bottom bg-cover sm:bg-contain opacity-25 sm:opacity-100 pointer-events-none transition-opacity"
+            style={{ 
+              backgroundImage: `url(${heroBg})`,
+            }}
+          />
+
+          {/* Soft gradient mask for mobile so text has 100% crisp contrast */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#e8f7f0] via-[#e8f7f0]/90 to-transparent pointer-events-none sm:hidden z-10" />
+
           {/* Main Content (Left side) */}
           <div className="relative z-20 max-w-xs sm:max-w-sm lg:max-w-md">
             {/* Category Tag */}
@@ -25,13 +32,13 @@ export default function HeroSection({ onExplore, onSellClick, onViewDeals }) {
             </div>
 
             {/* Headline */}
-            <h1 className="text-2xl sm:text-3xl lg:text-[32px] xl:text-[35px] font-black text-[#0c1a24] tracking-tight leading-[1.06] mb-1.5 sm:mb-2">
+            <h1 className="text-xl sm:text-3xl lg:text-[32px] xl:text-[35px] font-black text-[#0c1a24] tracking-tight leading-[1.08] mb-1.5 sm:mb-2">
               Good Phones<br />
               New Opportunities
             </h1>
 
             {/* Subtitle */}
-            <p className="text-slate-600 text-[11px] sm:text-[12px] lg:text-[12.5px] leading-snug sm:leading-relaxed mb-3 sm:mb-3.5 font-medium max-w-[270px] sm:max-w-[320px]">
+            <p className="text-slate-700 sm:text-slate-600 text-[11px] sm:text-[12px] lg:text-[12.5px] leading-snug sm:leading-relaxed mb-3 sm:mb-3.5 font-medium max-w-[230px] xs:max-w-[260px] sm:max-w-[320px]">
               Buy and sell certified second-hand phones at the best prices.<br className="hidden sm:inline" /> Reliable. Affordable. Sustainable.
             </p>
 
