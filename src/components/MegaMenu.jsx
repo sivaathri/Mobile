@@ -208,17 +208,26 @@ export default function MegaMenu({
 
   return (
     <>
-      {/* Backdrop overlay below header - does NOT block navbar or hover bridge */}
+      {/* Backdrop overlay below header with smooth fade transition */}
       <div 
         onClick={onClose}
-        className="fixed inset-x-0 bottom-0 top-[106px] bg-black/25 z-20 transition-opacity backdrop-blur-2xs"
+        className={`fixed inset-x-0 bottom-0 top-[106px] bg-black/25 z-20 backdrop-blur-2xs transition-opacity duration-300 ease-out ${
+          isAnimatingIn ? 'opacity-100' : 'opacity-0'
+        }`}
       />
 
-      {/* Mega Menu Dropdown Container */}
+      {/* Mega Menu Dropdown Container with smooth slide-down and scale effect */}
       <div 
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
-        className="absolute top-full -mt-[1px] left-0 w-full bg-white z-50 border-b border-gray-200/90 shadow-2xl transition-all duration-200 ease-out max-h-[calc(100vh-115px)] overflow-y-auto"
+        className={`absolute top-full -mt-[1px] left-0 w-full bg-white z-50 border-b border-gray-200/90 shadow-2xl max-h-[calc(100vh-115px)] overflow-y-auto transform origin-top transition-all duration-300 ${
+          isAnimatingIn 
+            ? 'opacity-100 translate-y-0 scale-y-100 pointer-events-auto' 
+            : 'opacity-0 -translate-y-2.5 scale-y-[0.98] pointer-events-none'
+        }`}
+        style={{
+          transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
+        }}
       >
         <div className="w-full max-w-7xl mx-auto px-4 lg:px-6 xl:px-8 py-5">
           
