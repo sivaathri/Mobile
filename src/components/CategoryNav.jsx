@@ -13,12 +13,15 @@ export default function CategoryNav({
   const timeoutRef = useRef(null);
 
   const categories = [
+'New Phones',
+    'Used Phones',
+     'Top Deals',
     'Smartphones',
     'Tablets',
     'Smartwatches',
     'Accessories',
     'Audio',
-    'Top Deals',
+   
     'New Arrivals',
     'Brand Stores',
     'Bulk Orders',
