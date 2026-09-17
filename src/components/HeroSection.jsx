@@ -44,7 +44,7 @@ export default function HeroSection({ onExplore, onSellClick, onViewDeals }) {
           <div className="relative z-20 max-w-xs sm:max-w-sm lg:max-w-md">
             {/* Category Tag */}
             <div className="text-[10px] sm:text-[11px] font-bold tracking-[0.14em] text-[#0d3b2e] uppercase mb-1 sm:mb-1.5">
-              PRE-OWNED MOBILES
+              USED PHONES
             </div>
 
             {/* Headline */}

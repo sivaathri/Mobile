@@ -4,12 +4,13 @@ import CategoryNav from './components/CategoryNav';
 import HeroSection from './components/HeroSection';
 import BrandFilterBar from './components/BrandFilterBar';
 import ProductSection from './components/ProductSection';
+import FeaturedPhonesDual from './components/FeaturedPhonesDual';
 import PromoBanners from './components/PromoBanners';
 import Footer from './components/Footer';
 import CartDrawer from './components/CartDrawer';
 import SellPhoneModal from './components/SellPhoneModal';
 import QuickViewModal from './components/QuickViewModal';
-import { FEATURED_PHONES, MORE_PHONES } from './data/products';
+import { FEATURED_PHONES, MORE_PHONES, LATEST_NEW_PHONES, QUALITY_PREOWNED_PHONES } from './data/products';
 
 export default function App() {
   // State management
@@ -76,6 +77,18 @@ export default function App() {
       return matchBrand && matchSearch;
     });
   };
+
+  const filteredNewPhones = useMemo(() => {
+    if (selectedBrand === 'All Phones' && !searchQuery.trim()) return LATEST_NEW_PHONES;
+    const res = filterList(LATEST_NEW_PHONES);
+    return res.length > 0 ? res : LATEST_NEW_PHONES;
+  }, [selectedBrand, searchQuery]);
+
+  const filteredPreOwnedPhones = useMemo(() => {
+    if (selectedBrand === 'All Phones' && !searchQuery.trim()) return QUALITY_PREOWNED_PHONES;
+    const res = filterList(QUALITY_PREOWNED_PHONES);
+    return res.length > 0 ? res : QUALITY_PREOWNED_PHONES;
+  }, [selectedBrand, searchQuery]);
 
   const filteredFeatured = useMemo(() => filterList(FEATURED_PHONES), [selectedBrand, searchQuery]);
   const filteredMore = useMemo(() => filterList(MORE_PHONES), [selectedBrand, searchQuery]);
@@ -173,17 +186,25 @@ export default function App() {
           </div>
         )}
 
-        {/* Featured Phones Section (Row 1) */}
+        {/* Featured Phones Section - Exact Side-by-Side UI (Latest New Phones & Quality Pre-Owned Phones) */}
         <div id="featured-phones">
-          <ProductSection
-            title="Featured Phones"
-            subtitle="Handpicked deals just for you"
-            products={filteredFeatured.length > 0 ? filteredFeatured : FEATURED_PHONES}
+          <FeaturedPhonesDual
+            newPhones={filteredNewPhones}
+            preOwnedPhones={filteredPreOwnedPhones}
             wishlistIds={wishlistIds}
             onToggleWishlist={handleToggleWishlist}
             onAddToCart={handleAddToCart}
             onQuickView={(phone) => setQuickViewProduct(phone)}
-            onViewAll={() => setSelectedBrand('All Phones')}
+            onViewAllNew={() => {
+              showToast('Showing all brand-new phone offers');
+              const el = document.getElementById('more-phones');
+              el?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            onViewAllPreOwned={() => {
+              showToast('Showing all certified used phone deals');
+              const el = document.getElementById('more-phones');
+              el?.scrollIntoView({ behavior: 'smooth' });
+            }}
           />
         </div>
 
