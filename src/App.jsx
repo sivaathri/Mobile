@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import CategoryNav from './components/CategoryNav';
 import HeroSection from './components/HeroSection';
@@ -10,6 +10,7 @@ import Footer from './components/Footer';
 import CartDrawer from './components/CartDrawer';
 import SellPhoneModal from './components/SellPhoneModal';
 import QuickViewModal from './components/QuickViewModal';
+import OffersPopupModal from './components/OffersPopupModal';
 import { FEATURED_PHONES, MORE_PHONES, LATEST_NEW_PHONES, QUALITY_PREOWNED_PHONES } from './data/products';
 
 export default function App() {
@@ -29,7 +30,16 @@ export default function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isSellModalOpen, setIsSellModalOpen] = useState(false);
   const [quickViewProduct, setQuickViewProduct] = useState(null);
+  const [isOffersPopupOpen, setIsOffersPopupOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState(null);
+
+  // Show exclusive offers popup on home screen initial load
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsOffersPopupOpen(true);
+    }, 500);
+    return () => clearTimeout(timer);
+  }, []);
 
   const showToast = (msg) => {
     setToastMessage(msg);
@@ -263,6 +273,19 @@ export default function App() {
         onAddToCart={handleAddToCart}
         isWishlisted={quickViewProduct ? wishlistIds.includes(quickViewProduct.id) : false}
         onToggleWishlist={handleToggleWishlist}
+      />
+
+      {/* Initial Home Screen Exclusive Offers Popup Modal */}
+      <OffersPopupModal
+        isOpen={isOffersPopupOpen}
+        onClose={() => setIsOffersPopupOpen(false)}
+        onAddToCart={handleAddToCart}
+        onToggleWishlist={handleToggleWishlist}
+        wishlistIds={wishlistIds}
+        onQuickView={(prod) => {
+          setIsOffersPopupOpen(false);
+          setQuickViewProduct(prod);
+        }}
       />
 
     </div>
