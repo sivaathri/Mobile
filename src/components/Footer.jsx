@@ -18,12 +18,12 @@ export default function Footer() {
 
   return (
     <footer className="w-full bg-white border-t border-gray-100 mt-12 pt-8 pb-6 text-gray-600">
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
 
         {/* =================================================================== */}
         {/* 1. NEWSLETTER BANNER                                                */}
         {/* =================================================================== */}
-        <div className="bg-[#eef8f3] border border-[#d2ece0] rounded-2xl px-6 py-6 md:px-8 md:py-6 mb-10 shadow-2xs">
+        <div className="bg-[#eef8f3] border border-[#d2ece0] rounded-2xl px-6 py-6 md:px-10 md:py-7 mb-10 shadow-2xs">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
             
             {/* Left: Envelope Icon + Title & Subtitle */}
@@ -32,7 +32,7 @@ export default function Footer() {
                 <Mail className="w-6 h-6 stroke-[1.8]" />
               </div>
               <div>
-                <h3 className="text-base sm:text-lg font-bold text-gray-900 tracking-tight leading-snug">
+                <h3 className="text-base sm:text-lg lg:text-xl font-bold text-gray-900 tracking-tight leading-snug">
                   Stay Updated with the Latest Deals!
                 </h3>
                 <p className="text-xs sm:text-sm text-[#3b6051] mt-0.5">
@@ -42,8 +42,8 @@ export default function Footer() {
             </div>
 
             {/* Middle: Email Input & Subscribe Button */}
-            <form onSubmit={handleSubscribe} className="flex items-center gap-2.5 w-full sm:w-auto max-w-md">
-              <div className="relative flex-1 sm:w-80">
+            <form onSubmit={handleSubscribe} className="flex items-center gap-2.5 w-full sm:w-auto max-w-xl">
+              <div className="relative flex-1 sm:w-80 md:w-96 lg:w-[380px]">
                 <Mail className="w-4 h-4 text-[#759c8b] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                 <input
                   type="email"
@@ -105,10 +105,10 @@ export default function Footer() {
         {/* =================================================================== */}
         {/* 2. VALUE PROPOSITIONS BAR (4 Features)                             */}
         {/* =================================================================== */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 py-5 border-b border-gray-100">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 py-6 border-b border-gray-100">
           
           {/* Feature 1: Quality Checked */}
-          <div className="flex items-center gap-3.5 lg:border-r border-gray-200/70 pr-4">
+          <div className="flex items-center gap-3.5 lg:justify-center lg:border-r border-gray-200/70 lg:px-4">
             <div className="w-11 h-11 rounded-full bg-[#e2f7ed] flex items-center justify-center flex-shrink-0 text-[#0b4d3c]">
               <ShieldCheck className="w-5 h-5 stroke-[2]" />
             </div>
@@ -123,7 +123,7 @@ export default function Footer() {
           </div>
 
           {/* Feature 2: 7-Day Returns */}
-          <div className="flex items-center gap-3.5 lg:border-r border-gray-200/70 pr-4">
+          <div className="flex items-center gap-3.5 lg:justify-center lg:border-r border-gray-200/70 lg:px-4">
             <div className="w-11 h-11 rounded-full bg-[#e2f7ed] flex items-center justify-center flex-shrink-0 text-[#0b4d3c]">
               {/* Isometric box return icon */}
               <svg viewBox="0 0 24 24" className="w-5 h-5 stroke-[#0b4d3c] fill-none stroke-2">
@@ -143,7 +143,7 @@ export default function Footer() {
           </div>
 
           {/* Feature 3: Pan India Delivery */}
-          <div className="flex items-center gap-3.5 lg:border-r border-gray-200/70 pr-4">
+          <div className="flex items-center gap-3.5 lg:justify-center lg:border-r border-gray-200/70 lg:px-4">
             <div className="w-11 h-11 rounded-full bg-[#e2f7ed] flex items-center justify-center flex-shrink-0 text-[#0b4d3c]">
               <Truck className="w-5 h-5 stroke-[2]" />
             </div>
@@ -158,7 +158,7 @@ export default function Footer() {
           </div>
 
           {/* Feature 4: Eco-Friendly Choice */}
-          <div className="flex items-center gap-3.5">
+          <div className="flex items-center gap-3.5 lg:justify-center lg:px-4">
             <div className="w-11 h-11 rounded-full bg-[#e2f7ed] flex items-center justify-center flex-shrink-0 text-[#0b4d3c]">
               <Leaf className="w-5 h-5 stroke-[2]" />
             </div>
@@ -177,7 +177,7 @@ export default function Footer() {
         {/* =================================================================== */}
         {/* 3. MAIN FOOTER CONTENT (5 Columns)                                 */}
         {/* =================================================================== */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-6 pt-10 pb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-12 pt-10 pb-10">
           
           {/* Col 1: Brand, Description, Socials, App Downloads (4 of 12 cols) */}
           <div className="lg:col-span-4 pr-0 lg:pr-6">
