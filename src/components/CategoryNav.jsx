@@ -107,17 +107,17 @@ export default function CategoryNav({
                   setIsMegaMenuOpen((prev) => !prev);
                   if (onSelectCategory) onSelectCategory('All Categories');
                 }}
-                className={`flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all font-bold cursor-pointer select-none border-0 outline-none focus:outline-none focus-visible:outline-none ring-0 focus:ring-0 ${
+                className={`flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all duration-200 font-bold cursor-pointer select-none border-0 outline-none focus:outline-none focus-visible:outline-none ring-0 focus:ring-0 active:scale-[0.98] ${
                   isMegaMenuOpen || activeCategory === 'All Categories'
-                    ? 'text-[#00684a] font-bold bg-emerald-50'
+                    ? 'text-[#00684a] font-bold bg-emerald-50 shadow-2xs'
                     : 'text-gray-900 hover:text-[#00684a] hover:bg-gray-50'
                 }`}
               >
-                <Menu className={`w-4 h-4 transition-colors ${
+                <Menu className={`w-4 h-4 transition-colors duration-200 ${
                   isMegaMenuOpen || activeCategory === 'All Categories' ? 'text-[#00684a]' : 'text-gray-800'
                 }`} />
                 <span className="text-[13px]">All Categories</span>
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-300 ease-out ${
                   isMegaMenuOpen 
                     ? 'rotate-180 text-[#00684a]' 
                     : activeCategory === 'All Categories' 
@@ -126,10 +126,10 @@ export default function CategoryNav({
                 }`} />
               </button>
 
-              {/* Active Indicator Bar (Green bottom bar when open) */}
-              {isMegaMenuOpen && (
-                <div className="absolute -bottom-2 left-3 right-3 h-[2.5px] bg-[#00684a] rounded-t-full shadow-2xs pointer-events-none" />
-              )}
+              {/* Active Indicator Bar (Smooth scale and fade) */}
+              <div className={`absolute -bottom-2 left-2.5 right-2.5 h-[2.5px] bg-[#00684a] rounded-t-full shadow-2xs pointer-events-none transition-all duration-300 ease-out ${
+                isMegaMenuOpen ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'
+              }`} />
             </div>
 
             {/* Categories Horizontal Links */}
