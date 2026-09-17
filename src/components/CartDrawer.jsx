@@ -47,8 +47,12 @@ export default function CartDrawer({ isOpen, onClose, cartItems, onRemoveItem, o
             ) : (
               cartItems.map((item, index) => (
                 <div key={`${item.id}-${index}`} className="py-3 flex items-center gap-3">
-                  <div className="w-16 h-16 bg-gray-50 rounded-lg p-1 border border-gray-100 flex items-center justify-center flex-shrink-0">
-                    <PhoneMockup type={item.imageType} className="h-12 w-auto" />
+                  <div className="w-16 h-16 bg-gray-50 rounded-lg p-1 border border-gray-100 flex items-center justify-center flex-shrink-0 overflow-hidden">
+                    {item.image ? (
+                      <img src={item.image} alt={item.name} className="h-12 w-auto max-w-full object-contain" />
+                    ) : (
+                      <PhoneMockup type={item.imageType} className="h-12 w-auto" />
+                    )}
                   </div>
                   <div className="flex-1 min-w-0">
                     <h4 className="text-xs font-bold text-gray-900 truncate">{item.name}</h4>

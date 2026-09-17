@@ -9,9 +9,6 @@ export default function ProductCard({
   onAddToCart,
   onQuickView,
 }) {
-  const discountPercent = Math.round(
-    ((product.originalPrice - product.price) / product.originalPrice) * 100
-  );
 
   return (
     <div className="bg-white rounded-xl border border-gray-200/80 p-3.5 hover:shadow-card-hover hover:border-emerald-200 transition-all duration-200 flex flex-col justify-between group relative">
@@ -50,9 +47,18 @@ export default function ProductCard({
       {/* Phone Image Container / Clickable for Quick View */}
       <div 
         onClick={() => onQuickView(product)}
-        className="py-2 flex items-center justify-center cursor-pointer group-hover:scale-105 transition-transform duration-200"
+        className="py-1 h-36 flex items-center justify-center cursor-pointer overflow-hidden"
       >
-        <PhoneMockup type={product.imageType} className="h-32 w-auto object-contain" />
+        {product.image ? (
+          <img
+            src={product.image}
+            alt={product.name}
+            className="h-32 w-auto max-w-full object-contain drop-shadow-sm group-hover:scale-105 transition-transform duration-200"
+            loading="lazy"
+          />
+        ) : (
+          <PhoneMockup type={product.imageType} className="h-32 w-auto object-contain group-hover:scale-105 transition-transform duration-200" />
+        )}
       </div>
 
       {/* Product Information */}

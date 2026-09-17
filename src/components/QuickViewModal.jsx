@@ -37,7 +37,15 @@ export default function QuickViewModal({
                 {product.tag}
               </span>
             )}
-            <PhoneMockup type={product.imageType} className="h-56 w-auto object-contain my-2" />
+            {product.image ? (
+              <img
+                src={product.image}
+                alt={product.name}
+                className="h-56 w-auto max-w-full object-contain my-2 drop-shadow-md"
+              />
+            ) : (
+              <PhoneMockup type={product.imageType} className="h-56 w-auto object-contain my-2" />
+            )}
             <span className="text-[11px] text-gray-400 font-medium">
               360° Inspected & Refurbished
             </span>

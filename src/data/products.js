@@ -33,6 +33,7 @@ export const FEATURED_PHONES = [
     batteryHealth: '92%',
     warranty: '6 Months SecondKart Warranty',
     imageType: 'iphone14-purple',
+    image: '/assets/phones/iphone14_purple.jpg',
   },
   {
     id: 'feat-2',
@@ -48,6 +49,7 @@ export const FEATURED_PHONES = [
     batteryHealth: '95%',
     warranty: '6 Months SecondKart Warranty',
     imageType: 'galaxy-s23',
+    image: '/assets/phones/galaxy_s23.jpg',
   },
   {
     id: 'feat-3',
@@ -63,6 +65,7 @@ export const FEATURED_PHONES = [
     batteryHealth: '94%',
     warranty: '6 Months SecondKart Warranty',
     imageType: 'oneplus-11r',
+    image: '/assets/phones/oneplus_11r.jpg',
   },
   {
     id: 'feat-4',
@@ -78,6 +81,7 @@ export const FEATURED_PHONES = [
     batteryHealth: '89%',
     warranty: '6 Months SecondKart Warranty',
     imageType: 'xiaomi-13pro',
+    image: '/assets/phones/xiaomi_13pro.jpg',
   },
   {
     id: 'feat-5',
@@ -93,6 +97,7 @@ export const FEATURED_PHONES = [
     batteryHealth: '96%',
     warranty: '6 Months SecondKart Warranty',
     imageType: 'vivo-v27',
+    image: '/assets/phones/vivo_v27.jpg',
   },
   {
     id: 'feat-6',
@@ -107,6 +112,7 @@ export const FEATURED_PHONES = [
     batteryHealth: '93%',
     warranty: '6 Months SecondKart Warranty',
     imageType: 'pixel-7',
+    image: '/assets/phones/pixel_7.jpg',
   },
   {
     id: 'feat-7',
@@ -121,6 +127,7 @@ export const FEATURED_PHONES = [
     batteryHealth: '88%',
     warranty: '6 Months SecondKart Warranty',
     imageType: 'iphone13-pink',
+    image: '/assets/phones/iphone13_pink.jpg',
   },
   {
     id: 'feat-8',
@@ -135,6 +142,7 @@ export const FEATURED_PHONES = [
     batteryHealth: '97%',
     warranty: '6 Months SecondKart Warranty',
     imageType: 'realme-gt2',
+    image: '/assets/phones/realme_gt2.jpg',
   },
 ];
 
@@ -148,6 +156,7 @@ export const MORE_PHONES = [
     originalPrice: 39000,
     location: 'Chennai',
     imageType: 'iphone-12',
+    image: '/assets/phones/iphone12_blue.jpg',
   },
   {
     id: 'more-2',
@@ -158,6 +167,7 @@ export const MORE_PHONES = [
     originalPrice: 60999,
     location: 'Bangalore',
     imageType: 'galaxy-s22',
+    image: '/assets/phones/galaxy_s22.jpg',
   },
   {
     id: 'more-3',
@@ -168,6 +178,7 @@ export const MORE_PHONES = [
     originalPrice: 36999,
     location: 'Hyderabad',
     imageType: 'nord-3',
+    image: '/assets/phones/nord_3.jpg',
   },
   {
     id: 'more-4',
@@ -178,6 +189,7 @@ export const MORE_PHONES = [
     originalPrice: 40999,
     location: 'Coimbatore',
     imageType: 'xiaomi-12pro',
+    image: '/assets/phones/xiaomi_12pro.jpg',
   },
   {
     id: 'more-5',
@@ -188,6 +200,7 @@ export const MORE_PHONES = [
     originalPrice: 34999,
     location: 'Madurai',
     imageType: 'vivo-t2pro',
+    image: '/assets/phones/vivo_t2pro.jpg',
   },
   {
     id: 'more-6',
@@ -198,6 +211,7 @@ export const MORE_PHONES = [
     originalPrice: 32999,
     location: 'Bangalore',
     imageType: 'nothing-1',
+    image: '/assets/phones/nothing_1.jpg',
   },
   {
     id: 'more-7',
@@ -208,6 +222,7 @@ export const MORE_PHONES = [
     originalPrice: 28999,
     location: 'Salem',
     imageType: 'moto-edge30',
+    image: '/assets/phones/moto_edge30.jpg',
   },
   {
     id: 'more-8',
@@ -218,6 +233,7 @@ export const MORE_PHONES = [
     originalPrice: 29999,
     location: 'Trichy',
     imageType: 'moto-edge30-blue',
+    image: '/assets/phones/moto_edge30.jpg',
   },
   {
     id: 'more-9',
@@ -228,6 +244,7 @@ export const MORE_PHONES = [
     originalPrice: 34999,
     location: 'Chennai',
     imageType: 'iphone-se',
+    image: '/assets/phones/iphone_se.jpg',
   },
   {
     id: 'more-10',
@@ -238,6 +255,7 @@ export const MORE_PHONES = [
     originalPrice: 39999,
     location: 'Bangalore',
     imageType: 'galaxy-a54',
+    image: '/assets/phones/galaxy_a54.jpg',
   },
   {
     id: 'more-11',
@@ -248,6 +266,7 @@ export const MORE_PHONES = [
     originalPrice: 27999,
     location: 'Mysore',
     imageType: 'pixel-6a',
+    image: '/assets/phones/pixel_6a.jpg',
   },
 ];
 
