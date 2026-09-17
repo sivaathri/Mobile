@@ -1,9 +1,32 @@
-import React, { useState } from 'react';
-import { Mail, ShieldCheck, Truck, Leaf, Phone, MapPin, Headphones, ArrowRight, RotateCcw } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Mail, ShieldCheck, Truck, Leaf, Phone, MapPin, Headphones, ArrowRight, RotateCcw, ArrowUp } from 'lucide-react';
 
 export default function Footer() {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setShowScrollTop(true);
+      } else {
+        setShowScrollTop(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
 
   const handleSubscribe = (e) => {
     e.preventDefault();
@@ -206,15 +229,15 @@ export default function Footer() {
             </p>
 
             {/* Social Media Circular Buttons */}
-            <div className="flex items-center gap-2.5 text-white">
+            <div className="flex items-center gap-2.5">
               {/* Facebook */}
               <a
                 href="#facebook"
                 aria-label="Facebook"
-                className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#182320] hover:bg-[#0b4d3c] flex items-center justify-center transition-colors shadow-2xs"
+                className="w-8 h-8 rounded-full bg-[#182521] hover:bg-[#0b4d3c] flex items-center justify-center transition-all duration-200 shadow-2xs group"
               >
-                <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 fill-currentColor">
-                  <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/>
+                <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 fill-white">
+                  <path d="M13.397 20.997v-8.196h2.765l.411-3.209h-3.176V7.548c0-.926.258-1.56 1.587-1.56h1.684V3.127A22.336 22.336 0 0 0 14.201 3c-2.444 0-4.122 1.492-4.122 4.231v2.355H7.332v3.209h2.753v8.202h3.312z" />
                 </svg>
               </a>
 
@@ -222,12 +245,12 @@ export default function Footer() {
               <a
                 href="#instagram"
                 aria-label="Instagram"
-                className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#182320] hover:bg-[#0b4d3c] flex items-center justify-center transition-colors shadow-2xs"
+                className="w-8 h-8 rounded-full bg-[#182521] hover:bg-[#0b4d3c] flex items-center justify-center transition-all duration-200 shadow-2xs group"
               >
-                <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 fill-none stroke-currentColor stroke-2 stroke-linecap-round stroke-linejoin-round">
-                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 stroke-white fill-none stroke-[2] stroke-linecap-round stroke-linejoin-round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                  <circle cx="12" cy="12" r="4" />
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
                 </svg>
               </a>
 
@@ -235,10 +258,10 @@ export default function Footer() {
               <a
                 href="#youtube"
                 aria-label="YouTube"
-                className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#182320] hover:bg-[#0b4d3c] flex items-center justify-center transition-colors shadow-2xs"
+                className="w-8 h-8 rounded-full bg-[#182521] hover:bg-[#0b4d3c] flex items-center justify-center transition-all duration-200 shadow-2xs group"
               >
-                <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 fill-currentColor">
-                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 fill-white">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
                 </svg>
               </a>
 
@@ -246,10 +269,10 @@ export default function Footer() {
               <a
                 href="#twitter"
                 aria-label="X (formerly Twitter)"
-                className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#182320] hover:bg-[#0b4d3c] flex items-center justify-center transition-colors shadow-2xs"
+                className="w-8 h-8 rounded-full bg-[#182521] hover:bg-[#0b4d3c] flex items-center justify-center transition-all duration-200 shadow-2xs group"
               >
-                <svg viewBox="0 0 24 24" className="w-3 h-3 fill-currentColor">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                <svg viewBox="0 0 24 24" className="w-3 h-3 fill-white">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                 </svg>
               </a>
 
@@ -257,10 +280,10 @@ export default function Footer() {
               <a
                 href="#linkedin"
                 aria-label="LinkedIn"
-                className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#182320] hover:bg-[#0b4d3c] flex items-center justify-center transition-colors shadow-2xs"
+                className="w-8 h-8 rounded-full bg-[#182521] hover:bg-[#0b4d3c] flex items-center justify-center transition-all duration-200 shadow-2xs group"
               >
-                <svg viewBox="0 0 24 24" className="w-3 h-3 fill-currentColor">
-                  <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 fill-white">
+                  <path d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002zM7 8.48H3V21h4V8.48zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-3.95 4.77 0V21H22v-7.93c0-6.17-6.62-5.96-8.68-2.91V8.48z" />
                 </svg>
               </a>
             </div>
@@ -481,6 +504,21 @@ export default function Footer() {
         </div>
 
       </div>
+
+      {/* Back to Top Floating Button */}
+      <button
+        type="button"
+        onClick={scrollToTop}
+        aria-label="Back to top"
+        className={`fixed bottom-6 right-6 z-40 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#0b4d3c] hover:bg-[#07392c] text-white flex items-center justify-center shadow-lg hover:shadow-xl border border-emerald-500/30 hover:-translate-y-1 active:translate-y-0 transition-all duration-300 cursor-pointer group ${
+          showScrollTop
+            ? 'opacity-100 translate-y-0 pointer-events-auto'
+            : 'opacity-0 translate-y-6 pointer-events-none'
+        }`}
+        title="Back to Top"
+      >
+        <ArrowUp className="w-5 h-5 stroke-[2.5] group-hover:-translate-y-0.5 transition-transform duration-200" />
+      </button>
     </footer>
   );
 }
