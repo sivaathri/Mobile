@@ -5,8 +5,6 @@ import {
   Search,
   ChevronDown,
   ChevronRight,
-  LayoutGrid,
-  List,
   SlidersHorizontal,
   X,
 } from 'lucide-react';
@@ -240,7 +238,6 @@ export default function NewPhonesPage({
   const [selectedPriceRanges, setSelectedPriceRanges] = useState([]);
   const [sortBy, setSortBy] = useState('Popularity');
   const [currentPage, setCurrentPage] = useState(1);
-  const [viewMode, setViewMode] = useState('grid');
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
 
   // Accordion open states
@@ -812,47 +809,19 @@ export default function NewPhonesPage({
                 </button>
               </div>
 
-              {/* Right: Sort Dropdown + Grid/List View Toggles */}
-              <div className="flex items-center gap-2.5 self-end md:self-center flex-shrink-0">
-                <div className="flex items-center gap-1.5 text-xs text-gray-600">
-                  <span className="hidden sm:inline text-gray-500">Sort by:</span>
-                  <select
-                    value={sortBy}
-                    onChange={(e) => setSortBy(e.target.value)}
-                    className="bg-white hover:bg-gray-50 border border-gray-200 text-xs font-semibold text-gray-800 rounded-lg px-2.5 py-1.5 focus:border-[#00704A] cursor-pointer"
-                  >
-                    <option value="Popularity">Popularity</option>
-                    <option value="Price: Low to High">Price: Low to High</option>
-                    <option value="Price: High to Low">Price: High to Low</option>
-                    <option value="Newest First">Newest First</option>
-                  </select>
-                </div>
-
-                {/* Grid & List Toggle Icons */}
-                <div className="flex items-center border border-gray-200 rounded-lg p-0.5 bg-gray-50">
-                  <button
-                    onClick={() => setViewMode('grid')}
-                    className={`p-1 rounded-md transition-colors cursor-pointer ${
-                      viewMode === 'grid'
-                        ? 'bg-white text-[#00704A] shadow-2xs'
-                        : 'text-gray-400 hover:text-gray-700'
-                    }`}
-                    title="Grid View"
-                  >
-                    <LayoutGrid className="w-3.5 h-3.5" />
-                  </button>
-                  <button
-                    onClick={() => setViewMode('list')}
-                    className={`p-1 rounded-md transition-colors cursor-pointer ${
-                      viewMode === 'list'
-                        ? 'bg-white text-[#00704A] shadow-2xs'
-                        : 'text-gray-400 hover:text-gray-700'
-                    }`}
-                    title="List View"
-                  >
-                    <List className="w-3.5 h-3.5" />
-                  </button>
-                </div>
+              {/* Right: Sort Dropdown */}
+              <div className="flex items-center gap-1.5 self-end md:self-center flex-shrink-0 text-xs text-gray-600">
+                <span className="hidden sm:inline text-gray-500">Sort by:</span>
+                <select
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
+                  className="bg-white hover:bg-gray-50 border border-gray-200 text-xs font-semibold text-gray-800 rounded-lg px-2.5 py-1.5 focus:border-[#00704A] cursor-pointer"
+                >
+                  <option value="Popularity">Popularity</option>
+                  <option value="Price: Low to High">Price: Low to High</option>
+                  <option value="Price: High to Low">Price: High to Low</option>
+                  <option value="Newest First">Newest First</option>
+                </select>
               </div>
 
             </div>
