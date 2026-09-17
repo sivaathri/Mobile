@@ -64,6 +64,10 @@ export default function App() {
   // Scroll to top whenever switching main view
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    const timer = setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }, 15);
+    return () => clearTimeout(timer);
   }, [currentView]);
 
   // Show exclusive offers popup on home screen initial load
@@ -162,7 +166,7 @@ export default function App() {
           onGoHome={() => {
             setCurrentView('home');
             setActiveCategory('All Categories');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
           }}
         />
 
@@ -173,11 +177,11 @@ export default function App() {
             if (cat === 'New Phones') {
               setCurrentView('new-phones');
               setActiveCategory('New Phones');
-              window.scrollTo({ top: 0, behavior: 'smooth' });
+              window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
             } else if (cat === 'Used Phones') {
               setCurrentView('used-phones');
               setActiveCategory('Used Phones');
-              window.scrollTo({ top: 0, behavior: 'smooth' });
+              window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
             } else {
               setCurrentView('home');
               setActiveCategory(cat);
@@ -197,11 +201,11 @@ export default function App() {
             if (filterName === 'New Phones') {
               setCurrentView('new-phones');
               setActiveCategory('New Phones');
-              window.scrollTo({ top: 0, behavior: 'smooth' });
+              window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
             } else if (filterName === 'Used Phones' || filterName === 'Refurbished Phones') {
               setCurrentView('used-phones');
               setActiveCategory('Used Phones');
-              window.scrollTo({ top: 0, behavior: 'smooth' });
+              window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
             } else {
               setCurrentView('home');
               showToast(`Filtered by ${filterName}`);
@@ -219,7 +223,7 @@ export default function App() {
             onBackToHome={() => {
               setCurrentView('home');
               setActiveCategory('All Categories');
-              window.scrollTo({ top: 0, behavior: 'smooth' });
+              window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
             }}
             wishlistIds={wishlistIds}
             onToggleWishlist={handleToggleWishlist}
@@ -232,7 +236,7 @@ export default function App() {
             onGoHome={() => {
               setCurrentView('home');
               setActiveCategory('All Categories');
-              window.scrollTo({ top: 0, behavior: 'smooth' });
+              window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
             }}
             wishlistIds={wishlistIds}
             onToggleWishlist={handleToggleWishlist}
@@ -297,13 +301,13 @@ export default function App() {
                 onViewAllNew={() => {
                   setCurrentView('new-phones');
                   setActiveCategory('New Phones');
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                  window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
                   showToast('Viewing All New Phones');
                 }}
                 onViewAllPreOwned={() => {
                   setCurrentView('used-phones');
                   setActiveCategory('Used Phones');
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                  window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
                   showToast('Viewing All Used Phones');
                 }}
               />
@@ -379,7 +383,7 @@ export default function App() {
           setIsOffersPopupOpen(false);
           setCurrentView('new-phones');
           setActiveCategory('New Phones');
-          window.scrollTo({ top: 0, behavior: 'smooth' });
+          window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
         }}
         onQuickView={(prod) => {
           setIsOffersPopupOpen(false);

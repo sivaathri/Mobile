@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import {
   Heart,
   ShoppingCart,
@@ -240,6 +240,20 @@ export default function NewPhonesPage({
   const [currentPage, setCurrentPage] = useState(1);
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
 
+  // Always ensure this screen opens directly from the top with smooth presentation
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    const timer = setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }, 15);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // When switching page number, smoothly scroll back to top
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [currentPage]);
+
   // Accordion open states
   const [isCategoryOpen, setIsCategoryOpen] = useState(true);
   const [isBrandOpen, setIsBrandOpen] = useState(true);
@@ -328,11 +342,11 @@ export default function NewPhonesPage({
   );
 
   return (
-    <div className="w-full bg-[#f8faf8] min-h-screen py-3 sm:py-5">
+    <div className="w-full bg-[#f8faf8] min-h-screen py-3 sm:py-5 animate-fadeIn">
       <div className="w-full px-2.5 sm:px-4 lg:px-6 xl:px-8">
 
         {/* Mobile Filter Trigger Button */}
-        <div className="lg:hidden flex items-center justify-between pb-3 mb-3 border-b border-gray-200">
+        <div className="lg:hidden flex items-center justify-between pb-3 mb-3 border-b border-gray-200 animate-fadeInUp">
           <button
             onClick={() => setIsMobileFilterOpen(true)}
             className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-gray-300 rounded-lg text-xs font-semibold text-gray-700 shadow-2xs cursor-pointer"
@@ -357,8 +371,9 @@ export default function NewPhonesPage({
             className={`
               fixed inset-0 z-50 bg-black/50 p-4 lg:p-0 lg:static lg:z-0 lg:bg-transparent
               ${isMobileFilterOpen ? 'flex' : 'hidden lg:block'}
-              w-full lg:w-60 xl:w-64 flex-shrink-0
+              w-full lg:w-60 xl:w-64 flex-shrink-0 animate-fadeInUp
             `}
+            style={{ animationDelay: '40ms' }}
           >
             <div className="bg-white rounded-2xl border border-gray-200/80 p-4 shadow-2xs w-full max-w-xs lg:max-w-none max-h-[90vh] lg:max-h-none overflow-y-auto m-auto lg:m-0">
               
@@ -579,7 +594,7 @@ export default function NewPhonesPage({
           <main className="flex-1 min-w-0 w-full">
             
             {/* ROW 1: Breadcrumbs/Title on Left + Exact Panoramic Mint Banner on Right */}
-            <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-3 sm:gap-4 mb-3 sm:mb-3.5">
+            <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-3 sm:gap-4 mb-3 sm:mb-3.5 animate-fadeInUp" style={{ animationDelay: '60ms' }}>
               
               {/* Left Title Area */}
               <div className="max-w-md flex-shrink-0">
@@ -605,11 +620,11 @@ export default function NewPhonesPage({
               </div>
 
               {/* Right: Exact Panoramic Mint Banner Image from Reference */}
-              <div className="flex-1 max-w-2xl flex justify-start xl:justify-end">
+              <div className="flex-1 max-w-2xl flex justify-start xl:justify-end animate-fadeInScale" style={{ animationDelay: '100ms' }}>
                 <img
                   src="/assets/latest_smartphones_banner.png"
                   alt="Latest Smartphones - Brand New. Full Warranty. 100% Original."
-                  className="w-full h-auto max-h-24 sm:max-h-26 object-contain rounded-xl sm:rounded-2xl drop-shadow-2xs"
+                  className="w-full h-auto max-h-24 sm:max-h-26 object-contain rounded-xl sm:rounded-2xl drop-shadow-2xs hover:scale-[1.01] transition-transform duration-300"
                 />
               </div>
 
@@ -617,7 +632,7 @@ export default function NewPhonesPage({
 
 
             {/* ROW 2: Sub-Header Filter Bar (Count + Horizontal Brand Pills + Sort + Grid/List Toggle) */}
-            <div className="bg-white rounded-xl sm:rounded-2xl border border-gray-200/80 p-2.5 sm:p-3 mb-3.5 sm:mb-4 shadow-2xs flex flex-col md:flex-row md:items-center justify-between gap-2.5">
+            <div className="bg-white rounded-xl sm:rounded-2xl border border-gray-200/80 p-2.5 sm:p-3 mb-3.5 sm:mb-4 shadow-2xs flex flex-col md:flex-row md:items-center justify-between gap-2.5 animate-fadeInUp" style={{ animationDelay: '120ms' }}>
               
               {/* Left: 245 Count + Brand Filter Pills */}
               <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 md:pb-0">
@@ -832,12 +847,13 @@ export default function NewPhonesPage({
                =============================================================== */}
             {paginatedProducts.length > 0 ? (
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2.5 sm:gap-3 lg:gap-3.5">
-                {paginatedProducts.map((phone) => {
+                {paginatedProducts.map((phone, index) => {
                   const isWishlisted = wishlistIds.includes(phone.id);
                   return (
                     <div
                       key={phone.id}
-                      className="bg-white rounded-xl border border-gray-200/80 p-2.5 sm:p-3 hover:shadow-md hover:border-emerald-300 transition-all duration-200 flex flex-col justify-between group relative"
+                      style={{ animationDelay: `${Math.min(index * 35, 400)}ms` }}
+                      className="bg-white rounded-xl border border-gray-200/80 p-2.5 sm:p-3 hover:shadow-md hover:border-emerald-300 transition-all duration-200 flex flex-col justify-between group relative animate-fadeInUp"
                     >
                       {/* Top Bar: Green "New" Badge (left) + Wishlist Heart (right) */}
                       <div className="flex items-center justify-between min-h-[22px] mb-1">
