@@ -179,40 +179,13 @@ export default function OffersPopupModal({
               </div>
             </div>
 
-            {/* Right Column: 3D "BIG SAVINGS" Badge & Hero Phones Graphic */}
-            <div className="relative flex items-center justify-center md:justify-end pr-2 sm:pr-8">
-              
-              {/* Stacked 3D "BIG SAVINGS" Badges */}
-              <div className="relative z-20 flex flex-col items-center transform -rotate-3 hover:rotate-0 transition-transform duration-300">
-                {/* Top Yellow "BIG" card */}
-                <div className="bg-[#ffcc00] text-gray-950 font-black text-2xl sm:text-3xl lg:text-4xl px-6 sm:px-8 py-1 sm:py-1.5 rounded-2xl shadow-lg border border-amber-300 tracking-wider">
-                  BIG
-                </div>
-                {/* Middle Dark Green "SAVINGS" banner */}
-                <div className="bg-[#00704A] text-white font-black text-lg sm:text-2xl px-5 sm:px-7 py-1 rounded-xl shadow-md tracking-wider -mt-2.5 border border-emerald-600">
-                  SAVINGS
-                </div>
-                {/* Bottom Yellow Pill "LIMITED TIME ONLY" */}
-                <div className="bg-[#ffcc00] text-[#004d30] font-extrabold text-[9px] sm:text-[10.5px] px-3 sm:px-4 py-0.5 rounded-full shadow-sm tracking-wider uppercase -mt-1.5 border border-amber-300">
-                  LIMITED TIME ONLY
-                </div>
-              </div>
-
-              {/* Hero Phones Visual (Deep Purple iPhone + Botanic Green Galaxy S23) */}
-              <div className="relative z-10 flex items-end -space-x-8 sm:-space-x-10 ml-2 sm:ml-4 drop-shadow-md">
-                {/* Purple iPhone */}
-                <img
-                  src="/assets/phones/iphone14_purple.jpg"
-                  alt="Exclusive iPhone deals"
-                  className="h-28 sm:h-36 md:h-40 w-auto object-contain transform -rotate-6 drop-shadow-md"
-                />
-                {/* Green Samsung */}
-                <img
-                  src="/assets/phones/galaxy_s23.jpg"
-                  alt="Exclusive Samsung deals"
-                  className="h-32 sm:h-40 md:h-44 w-auto object-contain transform rotate-6 drop-shadow-md"
-                />
-              </div>
+            {/* Right Column: Exact Graphic Provided by User */}
+            <div className="relative flex items-center justify-center md:justify-end flex-shrink-0 self-end -mb-4 sm:-mb-5 md:-mr-9 md:-mt-6 overflow-hidden">
+              <img
+                src="/assets/offers_banner_hero.png"
+                alt="Big Savings on Popular Phones"
+                className="h-36 sm:h-44 md:h-52 lg:h-56 w-auto max-w-full object-contain object-right"
+              />
             </div>
 
           </div>
