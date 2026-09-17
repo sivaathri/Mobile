@@ -508,14 +508,14 @@ export default function Footer() {
         type="button"
         onClick={scrollToTop}
         aria-label="Back to top"
-        className={`fixed bottom-6 right-6 z-40 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#0b4d3c] hover:bg-[#07392c] text-white flex items-center justify-center shadow-lg hover:shadow-xl border border-emerald-500/30 hover:-translate-y-1 active:translate-y-0 transition-all duration-300 cursor-pointer group ${
+        className={`fixed bottom-3.5 right-3.5 sm:bottom-6 sm:right-6 z-40 w-9 h-9 sm:w-12 sm:h-12 rounded-full bg-[#0b4d3c]/95 hover:bg-[#07392c] text-white flex items-center justify-center shadow-md hover:shadow-xl border border-emerald-500/40 hover:-translate-y-1 active:translate-y-0 transition-all duration-300 cursor-pointer group ${
           showScrollTop
             ? 'opacity-100 translate-y-0 pointer-events-auto'
             : 'opacity-0 translate-y-6 pointer-events-none'
         }`}
         title="Back to Top"
       >
-        <ArrowUp className="w-5 h-5 stroke-[2.5] group-hover:-translate-y-0.5 transition-transform duration-200" />
+        <ArrowUp className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.5] group-hover:-translate-y-0.5 transition-transform duration-200" />
       </button>
     </footer>
   );

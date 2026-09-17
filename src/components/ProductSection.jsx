@@ -13,12 +13,12 @@ export default function ProductSection({
   onViewAll,
 }) {
   return (
-    <section className="w-full px-4 lg:px-6 xl:px-8 py-4">
+    <section className="w-full px-2.5 sm:px-4 lg:px-6 xl:px-8 py-3 sm:py-4">
       {/* Section Header */}
-      <div className="flex items-end justify-between mb-4">
+      <div className="flex items-end justify-between mb-3 sm:mb-4">
         <div>
-          <div className="flex items-baseline gap-2.5">
-            <h2 className="text-xl md:text-2xl font-bold text-gray-900 tracking-tight">
+          <div className="flex items-baseline gap-2 sm:gap-2.5">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 tracking-tight">
               {title}
             </h2>
             {subtitle && (
@@ -45,7 +45,7 @@ export default function ProductSection({
       </div>
 
       {/* Grid of Products: 2 columns mobile, 4 columns tablet, 8 columns ultra-wide/xl */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-3.5">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-2 sm:gap-3.5">
         {products.map((product) => (
           <ProductCard
             key={product.id}
