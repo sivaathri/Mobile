@@ -207,6 +207,80 @@ export function PhoneMockup({ type, className = "h-40 w-auto object-contain" }) 
         </svg>
       );
 
+    case 'galaxy-s22':
+      return (
+        <svg viewBox="0 0 160 140" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="18" y="10" width="56" height="118" rx="12" fill="#09090b" stroke="#3f3f46" strokeWidth="2" />
+          <rect x="21" y="13" width="50" height="112" rx="10" fill="url(#grad-s22-screen)" />
+          <circle cx="46" cy="18" r="2" fill="#000" />
+          <g transform="translate(76, 10)">
+            <rect x="0" y="0" width="58" height="118" rx="12" fill="#18181b" stroke="#27272a" strokeWidth="2" />
+            <rect x="2" y="4" width="22" height="52" rx="8" fill="#27272a" />
+            <circle cx="13" cy="14" r="5" fill="#09090b" stroke="#52525b" strokeWidth="1.2" />
+            <circle cx="13" cy="28" r="5" fill="#09090b" stroke="#52525b" strokeWidth="1.2" />
+            <circle cx="13" cy="42" r="5" fill="#09090b" stroke="#52525b" strokeWidth="1.2" />
+            <circle cx="28" cy="16" r="2" fill="#fef08a" />
+          </g>
+          <defs>
+            <linearGradient id="grad-s22-screen" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#18181b" />
+              <stop offset="60%" stopColor="#3f3f46" />
+              <stop offset="100%" stopColor="#09090b" />
+            </linearGradient>
+          </defs>
+        </svg>
+      );
+
+    case 'oneplus-nord3':
+      return (
+        <svg viewBox="0 0 160 140" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="18" y="10" width="56" height="118" rx="12" fill="#064e3b" stroke="#a7f3d0" strokeWidth="2" />
+          <rect x="21" y="13" width="50" height="112" rx="10" fill="url(#grad-nord3-screen)" />
+          <circle cx="46" cy="18" r="2" fill="#000" />
+          <g transform="translate(76, 10)">
+            <rect x="0" y="0" width="58" height="118" rx="12" fill="#d1fae5" stroke="#a7f3d0" strokeWidth="2" />
+            {/* Dual circular rings */}
+            <circle cx="18" cy="18" r="8" fill="#ecfdf5" stroke="#34d399" strokeWidth="1.5" />
+            <circle cx="18" cy="18" r="4" fill="#064e3b" />
+            <circle cx="18" cy="38" r="8" fill="#ecfdf5" stroke="#34d399" strokeWidth="1.5" />
+            <circle cx="15" cy="38" r="2.5" fill="#064e3b" />
+            <circle cx="21" cy="38" r="2.5" fill="#064e3b" />
+            <circle cx="34" cy="18" r="2" fill="#34d399" />
+          </g>
+          <defs>
+            <linearGradient id="grad-nord3-screen" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#064e3b" />
+              <stop offset="50%" stopColor="#059669" />
+              <stop offset="100%" stopColor="#d1fae5" />
+            </linearGradient>
+          </defs>
+        </svg>
+      );
+
+    case 'moto-edge30':
+      return (
+        <svg viewBox="0 0 160 140" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="18" y="10" width="56" height="118" rx="12" fill="#1e1b4b" stroke="#6366f1" strokeWidth="2" />
+          <rect x="21" y="13" width="50" height="112" rx="10" fill="url(#grad-moto-screen)" />
+          <circle cx="46" cy="18" r="2" fill="#000" />
+          <g transform="translate(76, 10)">
+            <rect x="0" y="0" width="58" height="118" rx="12" fill="#312e81" stroke="#4338ca" strokeWidth="2" />
+            <rect x="5" y="6" width="22" height="42" rx="8" fill="#1e1b4b" stroke="#6366f1" strokeWidth="1.2" />
+            <circle cx="16" cy="15" r="4.5" fill="#4338ca" />
+            <circle cx="16" cy="27" r="4.5" fill="#4338ca" />
+            <circle cx="16" cy="39" r="3" fill="#6366f1" />
+            <circle cx="29" cy="65" r="6" fill="#4338ca" opacity="0.6" />
+          </g>
+          <defs>
+            <linearGradient id="grad-moto-screen" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#431407" />
+              <stop offset="50%" stopColor="#b45309" />
+              <stop offset="100%" stopColor="#1e1b4b" />
+            </linearGradient>
+          </defs>
+        </svg>
+      );
+
     case 'nothing-1':
       return (
         <svg viewBox="0 0 160 140" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
