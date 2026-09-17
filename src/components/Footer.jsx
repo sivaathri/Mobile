@@ -46,15 +46,15 @@ export default function Footer() {
         {/* =================================================================== */}
         {/* 1. NEWSLETTER BANNER                                                */}
         {/* =================================================================== */}
-        <div className="bg-[#eef8f3] border border-[#d2ece0] rounded-2xl px-6 py-6 md:px-10 md:py-7 mb-10 shadow-2xs">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
+        <div className="bg-[#eef8f3] border border-[#d2ece0] rounded-2xl px-4 py-5 sm:px-6 sm:py-6 md:px-10 md:py-7 mb-8 sm:mb-10 shadow-2xs">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-5 sm:gap-6">
             
             {/* Left: Envelope Icon + Title & Subtitle */}
-            <div className="flex items-center gap-4 text-center sm:text-left w-full lg:w-auto">
-              <div className="w-13 h-13 rounded-2xl bg-white/90 border border-[#bfe7d4] flex items-center justify-center flex-shrink-0 shadow-2xs text-[#0b4d3c]">
-                <Mail className="w-6 h-6 stroke-[1.8]" />
+            <div className="flex items-center gap-3.5 sm:gap-4 text-left w-full lg:w-auto">
+              <div className="w-11 h-11 sm:w-13 sm:h-13 rounded-xl sm:rounded-2xl bg-white/90 border border-[#bfe7d4] flex items-center justify-center flex-shrink-0 shadow-2xs text-[#0b4d3c]">
+                <Mail className="w-5 h-5 sm:w-6 sm:h-6 stroke-[1.8]" />
               </div>
-              <div>
+              <div className="min-w-0">
                 <h3 className="text-base sm:text-lg lg:text-xl font-bold text-gray-900 tracking-tight leading-snug">
                   Stay Updated with the Latest Deals!
                 </h3>
@@ -65,7 +65,7 @@ export default function Footer() {
             </div>
 
             {/* Middle: Email Input & Subscribe Button */}
-            <form onSubmit={handleSubscribe} className="flex items-center gap-2.5 w-full sm:w-auto max-w-xl">
+            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 w-full lg:w-auto max-w-xl">
               <div className="relative flex-1 sm:w-80 md:w-96 lg:w-[380px]">
                 <Mail className="w-4 h-4 text-[#759c8b] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                 <input
@@ -79,7 +79,7 @@ export default function Footer() {
               </div>
               <button
                 type="submit"
-                className="bg-[#0b4d3c] hover:bg-[#07392c] active:scale-[0.98] text-white text-xs sm:text-sm font-semibold px-6 py-2.5 rounded-lg shadow-xs transition-all flex-shrink-0 cursor-pointer"
+                className="bg-[#0b4d3c] hover:bg-[#07392c] active:scale-[0.98] text-white text-xs sm:text-sm font-semibold px-6 py-2.5 rounded-lg shadow-xs transition-all flex-shrink-0 cursor-pointer text-center"
               >
                 {subscribed ? 'Subscribed! ✓' : 'Subscribe'}
               </button>
