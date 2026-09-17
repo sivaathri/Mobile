@@ -55,7 +55,7 @@ export default function HeroSection({ onExplore, onSellClick, onViewDeals }) {
           </div>
 
           {/* Handwritten Angle Tagline ("Same Phones Brighter Futures") */}
-          <div className="hidden md:block absolute left-[38%] lg:left-[41%] top-[46%] -translate-y-1/2 z-10 transform -rotate-[7deg] text-center select-none pointer-events-none">
+          <div className="hidden lg:block absolute left-[42%] xl:left-[41%] top-[46%] -translate-y-1/2 z-10 transform -rotate-[7deg] text-center select-none pointer-events-none">
             <div className="font-script text-[21px] lg:text-[25px] xl:text-[27px] font-bold text-[#0d3b2e] leading-[1.02] tracking-wide">
               <span>Same</span><br />
               <span>Phones</span><br />
@@ -102,8 +102,8 @@ export default function HeroSection({ onExplore, onSellClick, onViewDeals }) {
 
         </div>
 
-        {/* Right Stacked Cards (4 of 12 columns) */}
-        <div className="lg:col-span-4 flex flex-col gap-3 justify-between">
+        {/* Right Stacked Cards (4 of 12 columns, side-by-side on tablet md) */}
+        <div className="lg:col-span-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-3">
           
           {/* Card 1: Sell Your Phone */}
           <div 

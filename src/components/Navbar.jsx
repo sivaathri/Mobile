@@ -38,7 +38,7 @@ export default function Navbar({
         </div>
 
         {/* Search Bar with Location Selector & Search Button */}
-        <div className="flex-1 max-w-2xl xl:max-w-3xl ml-8 lg:ml-20 xl:ml-32 mr-4 lg:mr-8 hidden md:block">
+        <div className="flex-1 max-w-2xl xl:max-w-3xl ml-3 lg:ml-8 xl:ml-16 mr-2 lg:mr-6 hidden md:block">
           <div className="flex items-center border border-gray-200 rounded-lg bg-gray-50/50 hover:border-gray-300 focus-within:border-emerald-600 focus-within:bg-white transition-all overflow-hidden shadow-sm">
             {/* Magnifying Glass & Input */}
             <div className="flex items-center flex-1 pl-4 pr-3 py-2">
@@ -95,18 +95,18 @@ export default function Navbar({
         </div>
 
         {/* Right Actions: Sell Button, Wishlist, Cart, Account */}
-        <div className="flex items-center gap-1.5 sm:gap-4 lg:gap-6 flex-shrink-0">
+        <div className="flex items-center gap-2 sm:gap-3 lg:gap-5 xl:gap-6 flex-shrink-0">
           {/* Sell Your Phone CTA */}
           <button
             onClick={onOpenSellModal}
-            className="flex items-center gap-1 sm:gap-1.5 bg-[#0b4d3c] hover:bg-[#07362a] text-white text-[11px] sm:text-xs lg:text-sm font-semibold px-2 py-1.5 sm:px-3.5 sm:py-2 rounded-lg shadow-sm transition-all hover:shadow"
+            className="flex items-center gap-1 sm:gap-1.5 bg-[#0b4d3c] hover:bg-[#07362a] text-white text-[11px] sm:text-xs lg:text-sm font-semibold px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-lg shadow-sm transition-all hover:shadow"
           >
             <Plus className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5]" />
-            <span>Sell<span className="hidden sm:inline">&nbsp;Your Phone</span></span>
+            <span>Sell<span className="hidden xl:inline">&nbsp;Your Phone</span></span>
           </button>
 
           {/* Wishlist */}
-          <button className="flex items-center gap-1.5 text-gray-700 hover:text-emerald-800 text-xs lg:text-sm font-medium transition-colors relative">
+          <button className="flex items-center gap-1.5 text-gray-700 hover:text-emerald-800 text-xs lg:text-sm font-medium transition-colors relative p-1">
             <div className="relative">
               <Heart className="w-5 h-5 text-gray-600 hover:text-emerald-700 transition-colors" />
               {wishlistCount > 0 && (
@@ -115,13 +115,13 @@ export default function Navbar({
                 </span>
               )}
             </div>
-            <span className="hidden sm:inline">Wishlist</span>
+            <span className="hidden xl:inline">Wishlist</span>
           </button>
 
           {/* Cart */}
           <button 
             onClick={onOpenCart}
-            className="flex items-center gap-1.5 text-gray-700 hover:text-emerald-800 text-xs lg:text-sm font-medium transition-colors relative"
+            className="flex items-center gap-1.5 text-gray-700 hover:text-emerald-800 text-xs lg:text-sm font-medium transition-colors relative p-1"
           >
             <div className="relative">
               <ShoppingCart className="w-5 h-5 text-gray-600 hover:text-emerald-700 transition-colors" />
@@ -131,13 +131,13 @@ export default function Navbar({
                 </span>
               )}
             </div>
-            <span className="hidden sm:inline">Cart</span>
+            <span className="hidden xl:inline">Cart</span>
           </button>
 
           {/* Account */}
-          <button className="flex items-center gap-1.5 text-gray-700 hover:text-emerald-800 text-xs lg:text-sm font-medium transition-colors">
+          <button className="flex items-center gap-1.5 text-gray-700 hover:text-emerald-800 text-xs lg:text-sm font-medium transition-colors p-1">
             <User className="w-5 h-5 text-gray-600" />
-            <span className="hidden sm:inline">Account</span>
+            <span className="hidden xl:inline">Account</span>
           </button>
         </div>
 

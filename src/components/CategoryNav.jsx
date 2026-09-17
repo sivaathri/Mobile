@@ -89,8 +89,8 @@ export default function CategoryNav({
       <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 xl:px-8 flex items-center justify-center relative">
         
         {/* Centered Categories Row */}
-        <div className="w-full overflow-x-auto no-scrollbar flex items-center justify-start sm:justify-center">
-          <div className="flex items-center gap-1 min-w-max mx-auto px-1">
+        <div className="w-full overflow-x-auto no-scrollbar flex items-center justify-start xl:justify-center">
+          <div className="flex items-center gap-1 min-w-max px-1 xl:mx-auto">
             
             {/* All Categories Dropdown Trigger (hover & click) */}
             <div 
