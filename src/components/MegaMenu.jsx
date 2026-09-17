@@ -198,7 +198,7 @@ export default function MegaMenu({
       <div 
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
-        className="absolute top-full -mt-[1px] left-0 w-full bg-white z-50 border-b border-gray-200/90 shadow-2xl transition-all animate-in fade-in slide-in-from-top-1 duration-200"
+        className="absolute top-full -mt-[1px] left-0 w-full bg-white z-50 border-b border-gray-200/90 shadow-2xl transition-all duration-200 ease-out max-h-[calc(100vh-115px)] overflow-y-auto"
       >
         <div className="w-full px-4 lg:px-6 xl:px-8 py-5">
           

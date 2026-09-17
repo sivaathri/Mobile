@@ -108,7 +108,7 @@ export default function CategoryNav({
                 if (timeoutRef.current) clearTimeout(timeoutRef.current);
                 setIsMegaMenuOpen((prev) => !prev);
               }}
-              className={`flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all font-bold cursor-pointer select-none ${
+              className={`flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all font-bold cursor-pointer select-none border-0 outline-none focus:outline-none focus-visible:outline-none ring-0 focus:ring-0 ${
                 isMegaMenuOpen
                   ? 'text-[#00684a] bg-emerald-50/70'
                   : 'text-gray-900 hover:text-[#00684a] hover:bg-gray-50'
@@ -125,7 +125,7 @@ export default function CategoryNav({
 
             {/* Active Indicator Bar (Green bottom bar when open) */}
             {isMegaMenuOpen && (
-              <div className="absolute bottom-0 left-3 right-3 h-[2.5px] bg-[#00684a] rounded-t-full shadow-2xs" />
+              <div className="absolute bottom-0 left-3 right-3 h-[2.5px] bg-[#00684a] rounded-t-full shadow-2xs pointer-events-none" />
             )}
           </div>
 
@@ -144,7 +144,7 @@ export default function CategoryNav({
                     closeMenuImmediately();
                     if (onSelectCategory) onSelectCategory(cat);
                   }}
-                  className={`px-3 py-1.5 rounded-md whitespace-nowrap transition-colors flex-shrink-0 text-[12.5px] ${
+                  className={`px-3 py-1.5 rounded-md whitespace-nowrap transition-colors flex-shrink-0 text-[12.5px] border-0 outline-none focus:outline-none focus-visible:outline-none ring-0 focus:ring-0 ${
                     isActive
                       ? 'text-[#00684a] font-bold bg-emerald-50'
                       : 'text-gray-600 hover:text-gray-950 hover:bg-gray-50'
