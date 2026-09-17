@@ -21,6 +21,7 @@ export default function OffersPopupModal({
   onToggleWishlist,
   wishlistIds = [],
   onQuickView,
+  onViewAllNew,
 }) {
   // Prevent body scroll when modal is open and handle ESC key
   useEffect(() => {
@@ -334,8 +335,11 @@ export default function OffersPopupModal({
                 </div>
 
                 <button
-                  onClick={onClose}
-                  className="text-[11px] sm:text-xs font-bold text-[#00704A] hover:underline flex items-center gap-0.5 group flex-shrink-0"
+                  onClick={() => {
+                    onClose();
+                    onViewAllNew?.();
+                  }}
+                  className="text-[11px] sm:text-xs font-bold text-[#00704A] hover:underline flex items-center gap-0.5 group flex-shrink-0 cursor-pointer"
                 >
                   <span>View All New</span>
                   <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />

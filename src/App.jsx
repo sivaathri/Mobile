@@ -11,10 +11,12 @@ import CartDrawer from './components/CartDrawer';
 import SellPhoneModal from './components/SellPhoneModal';
 import QuickViewModal from './components/QuickViewModal';
 import OffersPopupModal from './components/OffersPopupModal';
+import NewPhonesPage from './components/NewPhonesPage';
 import { FEATURED_PHONES, MORE_PHONES, LATEST_NEW_PHONES, QUALITY_PREOWNED_PHONES } from './data/products';
 
 export default function App() {
   // State management
+  const [currentView, setCurrentView] = useState('home'); // 'home' | 'new-phones'
   const [selectedBrand, setSelectedBrand] = useState('All Phones');
   const [activeCategory, setActiveCategory] = useState('All Categories');
   const [searchQuery, setSearchQuery] = useState('');
@@ -126,24 +128,38 @@ export default function App() {
           setSearchQuery={setSearchQuery}
           selectedCity={selectedCity}
           setSelectedCity={setSelectedCity}
+          onGoHome={() => {
+            setCurrentView('home');
+            setActiveCategory('All Categories');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
         />
 
         {/* Subheader / Category Navigation with Mega Menu */}
         <CategoryNav
-          activeCategory={activeCategory}
+          activeCategory={currentView === 'new-phones' ? 'New Phones' : activeCategory}
           onSelectCategory={(cat) => {
-            setActiveCategory(cat);
-            if (cat === 'Top Deals') {
-              showToast('Showing handpicked top deals below!');
+            if (cat === 'New Phones') {
+              setCurrentView('new-phones');
+              setActiveCategory('New Phones');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+              setCurrentView('home');
+              setActiveCategory(cat);
+              if (cat === 'Top Deals') {
+                showToast('Showing handpicked top deals below!');
+              }
             }
           }}
           onSelectBrand={(brand) => {
+            setCurrentView('home');
             setSelectedBrand(brand);
             const el = document.getElementById('featured-phones');
             el?.scrollIntoView({ behavior: 'smooth' });
             showToast(`Filtered by ${brand}`);
           }}
           onSelectFilter={(filterName) => {
+            setCurrentView('home');
             showToast(`Filtered by ${filterName}`);
             const el = document.getElementById('featured-phones');
             el?.scrollIntoView({ behavior: 'smooth' });
@@ -153,95 +169,113 @@ export default function App() {
 
       {/* Main Container */}
       <main className="flex-1">
-        {/* Hero Section */}
-        <HeroSection
-          onExplore={() => {
-            const el = document.getElementById('featured-phones');
-            el?.scrollIntoView({ behavior: 'smooth' });
-          }}
-          onSellClick={() => setIsSellModalOpen(true)}
-          onViewDeals={() => {
-            setSelectedBrand('All Phones');
-            const el = document.getElementById('featured-phones');
-            el?.scrollIntoView({ behavior: 'smooth' });
-          }}
-        />
+        {currentView === 'new-phones' ? (
+          <NewPhonesPage
+            onBackToHome={() => {
+              setCurrentView('home');
+              setActiveCategory('All Categories');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            wishlistIds={wishlistIds}
+            onToggleWishlist={handleToggleWishlist}
+            onAddToCart={handleAddToCart}
+            onQuickView={(phone) => setQuickViewProduct(phone)}
+            showToast={showToast}
+          />
+        ) : (
+          <>
+            {/* Hero Section */}
+            <HeroSection
+              onExplore={() => {
+                const el = document.getElementById('featured-phones');
+                el?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              onSellClick={() => setIsSellModalOpen(true)}
+              onViewDeals={() => {
+                setSelectedBrand('All Phones');
+                const el = document.getElementById('featured-phones');
+                el?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            />
 
-        {/* Brand & Category Filter Slider */}
-        <BrandFilterBar
-          selectedBrand={selectedBrand}
-          onSelectBrand={(brand) => {
-            setSelectedBrand(brand);
-            if (brand !== 'All Phones') {
-              showToast(`Filtered by ${brand}`);
-            }
-          }}
-        />
+            {/* Brand & Category Filter Slider */}
+            <BrandFilterBar
+              selectedBrand={selectedBrand}
+              onSelectBrand={(brand) => {
+                setSelectedBrand(brand);
+                if (brand !== 'All Phones') {
+                  showToast(`Filtered by ${brand}`);
+                }
+              }}
+            />
 
-        {/* Active Filter Indicator if filtered */}
-        {selectedBrand !== 'All Phones' && (
-          <div className="w-full px-4 lg:px-6 xl:px-8 py-1 flex items-center justify-between">
-            <div className="text-xs text-gray-500 flex items-center gap-2">
-              <span>Showing results for:</span>
-              <span className="font-bold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
-                {selectedBrand}
-              </span>
+            {/* Active Filter Indicator if filtered */}
+            {selectedBrand !== 'All Phones' && (
+              <div className="w-full px-4 lg:px-6 xl:px-8 py-1 flex items-center justify-between">
+                <div className="text-xs text-gray-500 flex items-center gap-2">
+                  <span>Showing results for:</span>
+                  <span className="font-bold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
+                    {selectedBrand}
+                  </span>
+                </div>
+                <button
+                  onClick={() => setSelectedBrand('All Phones')}
+                  className="text-xs text-emerald-700 hover:underline font-medium"
+                >
+                  Reset to All Phones
+                </button>
+              </div>
+            )}
+
+            {/* Featured Phones Section - Exact Side-by-Side UI (Latest New Phones & Quality Pre-Owned Phones) */}
+            <div id="featured-phones">
+              <FeaturedPhonesDual
+                newPhones={filteredNewPhones}
+                preOwnedPhones={filteredPreOwnedPhones}
+                wishlistIds={wishlistIds}
+                onToggleWishlist={handleToggleWishlist}
+                onAddToCart={handleAddToCart}
+                onQuickView={(phone) => setQuickViewProduct(phone)}
+                onViewAllNew={() => {
+                  setCurrentView('new-phones');
+                  setActiveCategory('New Phones');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                  showToast('Viewing All New Phones');
+                }}
+                onViewAllPreOwned={() => {
+                  showToast('Showing all certified used phone deals');
+                  const el = document.getElementById('more-phones');
+                  el?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              />
             </div>
-            <button
-              onClick={() => setSelectedBrand('All Phones')}
-              className="text-xs text-emerald-700 hover:underline font-medium"
-            >
-              Reset to All Phones
-            </button>
-          </div>
+
+            {/* More Phones for You Section (Row 2) */}
+            <div id="more-phones">
+              <ProductSection
+                title="More Phones for You"
+                subtitle="Explore a wider range of options"
+                products={filteredMore.length > 0 ? filteredMore : MORE_PHONES}
+                wishlistIds={wishlistIds}
+                onToggleWishlist={handleToggleWishlist}
+                onAddToCart={handleAddToCart}
+                onQuickView={(phone) => setQuickViewProduct(phone)}
+                onViewAll={() => setSelectedBrand('All Phones')}
+              />
+            </div>
+
+            {/* 4 Bottom Promotional Banners */}
+            <PromoBanners
+              onPromoClick={(type) => {
+                if (type === 'Exchange') {
+                  setIsSellModalOpen(true);
+                } else {
+                  showToast(`Opening ${type} offers...`);
+                }
+              }}
+            />
+          </>
         )}
-
-        {/* Featured Phones Section - Exact Side-by-Side UI (Latest New Phones & Quality Pre-Owned Phones) */}
-        <div id="featured-phones">
-          <FeaturedPhonesDual
-            newPhones={filteredNewPhones}
-            preOwnedPhones={filteredPreOwnedPhones}
-            wishlistIds={wishlistIds}
-            onToggleWishlist={handleToggleWishlist}
-            onAddToCart={handleAddToCart}
-            onQuickView={(phone) => setQuickViewProduct(phone)}
-            onViewAllNew={() => {
-              showToast('Showing all brand-new phone offers');
-              const el = document.getElementById('more-phones');
-              el?.scrollIntoView({ behavior: 'smooth' });
-            }}
-            onViewAllPreOwned={() => {
-              showToast('Showing all certified used phone deals');
-              const el = document.getElementById('more-phones');
-              el?.scrollIntoView({ behavior: 'smooth' });
-            }}
-          />
-        </div>
-
-        {/* More Phones for You Section (Row 2) */}
-        <div id="more-phones">
-          <ProductSection
-            title="More Phones for You"
-            subtitle="Explore a wider range of options"
-            products={filteredMore.length > 0 ? filteredMore : MORE_PHONES}
-            wishlistIds={wishlistIds}
-            onToggleWishlist={handleToggleWishlist}
-            onAddToCart={handleAddToCart}
-            onQuickView={(phone) => setQuickViewProduct(phone)}
-            onViewAll={() => setSelectedBrand('All Phones')}
-          />
-        </div>
-
-        {/* 4 Bottom Promotional Banners */}
-        <PromoBanners
-          onPromoClick={(type) => {
-            if (type === 'Exchange') {
-              setIsSellModalOpen(true);
-            } else {
-              showToast(`Opening ${type} offers...`);
-            }
-          }}
-        />
       </main>
 
       {/* Footer */}

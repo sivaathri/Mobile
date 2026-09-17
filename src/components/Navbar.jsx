@@ -9,7 +9,8 @@ export default function Navbar({
   searchQuery,
   setSearchQuery,
   selectedCity,
-  setSelectedCity
+  setSelectedCity,
+  onGoHome,
 }) {
   const [isCityDropdownOpen, setIsCityDropdownOpen] = useState(false);
   const cities = ['All India', 'Chennai', 'Bangalore', 'Coimbatore', 'Madurai', 'Trichy', 'Salem', 'Hyderabad', 'Mumbai', 'Delhi'];
@@ -19,7 +20,10 @@ export default function Navbar({
       <div className="w-full px-2.5 sm:px-4 lg:px-6 xl:px-8 py-2.5 sm:py-3 flex items-center justify-between gap-2 sm:gap-4">
         
         {/* Brand Logo */}
-        <div className="flex items-center gap-1.5 sm:gap-2.5 cursor-pointer flex-shrink-0">
+        <div 
+          onClick={onGoHome}
+          className="flex items-center gap-1.5 sm:gap-2.5 cursor-pointer flex-shrink-0"
+        >
           <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-emerald-700 flex items-center justify-center text-white shadow-sm ring-2 sm:ring-4 ring-emerald-50">
             {/* Eco Leaf Recycled Icon */}
             <svg viewBox="0 0 24 24" className="w-5 h-5 sm:w-6 sm:h-6 stroke-white fill-none stroke-2">

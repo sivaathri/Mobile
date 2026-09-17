@@ -147,13 +147,16 @@ export default function CategoryNav({
                       closeMenuImmediately();
                       if (onSelectCategory) onSelectCategory(cat);
                     }}
-                    className={`px-3 py-1.5 rounded-md whitespace-nowrap transition-colors flex-shrink-0 text-[12.5px] border-0 outline-none focus:outline-none focus-visible:outline-none ring-0 focus:ring-0 ${
+                    className={`relative px-3 py-1.5 whitespace-nowrap transition-colors flex-shrink-0 text-[12.5px] cursor-pointer border-0 outline-none focus:outline-none focus-visible:outline-none ring-0 focus:ring-0 ${
                       isActive
-                        ? 'text-[#00684a] font-bold bg-emerald-50'
+                        ? 'text-[#00704a] font-bold'
                         : 'text-gray-600 hover:text-gray-950 hover:bg-gray-50'
                     }`}
                   >
-                    {cat}
+                    <span>{cat}</span>
+                    {isActive && (
+                      <div className="absolute -bottom-2 left-2 right-2 h-[2.5px] bg-[#00704a] rounded-t-full shadow-2xs" />
+                    )}
                   </button>
                 );
               })}
