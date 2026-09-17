@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Smartphone, 
   Tablet, 
@@ -32,8 +32,28 @@ export default function MegaMenu({
   onMouseLeave,
 }) {
   const [selectedSidebarCat, setSelectedSidebarCat] = useState('Mobiles');
+  const [isRendered, setIsRendered] = useState(isOpen);
+  const [isAnimatingIn, setIsAnimatingIn] = useState(false);
 
-  if (!isOpen) return null;
+  useEffect(() => {
+    let timer;
+    if (isOpen) {
+      setIsRendered(true);
+      // Small tick to ensure DOM element is mounted before animating in
+      const animFrame = requestAnimationFrame(() => {
+        setIsAnimatingIn(true);
+      });
+      return () => cancelAnimationFrame(animFrame);
+    } else {
+      setIsAnimatingIn(false);
+      timer = setTimeout(() => {
+        setIsRendered(false);
+      }, 250);
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen]);
+
+  if (!isRendered) return null;
 
   // Sidebar 14 categories
   const sidebarCategories = [
