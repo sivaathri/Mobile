@@ -92,39 +92,42 @@ export default function App() {
         </div>
       )}
 
-      {/* Top Navbar */}
-      <Navbar
-        cartCount={cartItems.length}
-        wishlistCount={wishlistIds.length}
-        onOpenCart={() => setIsCartOpen(true)}
-        onOpenSellModal={() => setIsSellModalOpen(true)}
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-        selectedCity={selectedCity}
-        setSelectedCity={setSelectedCity}
-      />
+      {/* Unified Sticky Header */}
+      <header className="sticky top-0 z-40 bg-white shadow-[0_2px_10px_rgba(0,0,0,0.05)] w-full">
+        {/* Top Navbar */}
+        <Navbar
+          cartCount={cartItems.length}
+          wishlistCount={wishlistIds.length}
+          onOpenCart={() => setIsCartOpen(true)}
+          onOpenSellModal={() => setIsSellModalOpen(true)}
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+          selectedCity={selectedCity}
+          setSelectedCity={setSelectedCity}
+        />
 
-      {/* Subheader / Category Navigation with Mega Menu */}
-      <CategoryNav
-        activeCategory={activeCategory}
-        onSelectCategory={(cat) => {
-          setActiveCategory(cat);
-          if (cat === 'Top Deals') {
-            showToast('Showing handpicked top deals below!');
-          }
-        }}
-        onSelectBrand={(brand) => {
-          setSelectedBrand(brand);
-          const el = document.getElementById('featured-phones');
-          el?.scrollIntoView({ behavior: 'smooth' });
-          showToast(`Filtered by ${brand}`);
-        }}
-        onSelectFilter={(filterName) => {
-          showToast(`Filtered by ${filterName}`);
-          const el = document.getElementById('featured-phones');
-          el?.scrollIntoView({ behavior: 'smooth' });
-        }}
-      />
+        {/* Subheader / Category Navigation with Mega Menu */}
+        <CategoryNav
+          activeCategory={activeCategory}
+          onSelectCategory={(cat) => {
+            setActiveCategory(cat);
+            if (cat === 'Top Deals') {
+              showToast('Showing handpicked top deals below!');
+            }
+          }}
+          onSelectBrand={(brand) => {
+            setSelectedBrand(brand);
+            const el = document.getElementById('featured-phones');
+            el?.scrollIntoView({ behavior: 'smooth' });
+            showToast(`Filtered by ${brand}`);
+          }}
+          onSelectFilter={(filterName) => {
+            showToast(`Filtered by ${filterName}`);
+            const el = document.getElementById('featured-phones');
+            el?.scrollIntoView({ behavior: 'smooth' });
+          }}
+        />
+      </header>
 
       {/* Main Container */}
       <main className="flex-1">

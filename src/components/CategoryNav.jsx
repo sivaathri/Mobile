@@ -85,7 +85,7 @@ export default function CategoryNav({
   }, []);
 
   return (
-    <nav ref={navRef} className="relative bg-white border-b border-gray-200/80 text-xs font-medium text-gray-700 w-full z-40 py-2 sm:py-2.5">
+    <nav ref={navRef} className="relative bg-white border-b border-gray-200/80 text-xs font-medium text-gray-700 w-full py-2 sm:py-2.5">
       <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 xl:px-8 flex items-center justify-center relative">
         
         {/* Centered Categories Row */}

@@ -15,7 +15,7 @@ export default function Navbar({
   const cities = ['All India', 'Chennai', 'Bangalore', 'Coimbatore', 'Madurai', 'Trichy', 'Salem', 'Hyderabad', 'Mumbai', 'Delhi'];
 
   return (
-    <header className="bg-white border-b border-gray-100 sticky top-0 z-40 shadow-[0_1px_3px_rgba(0,0,0,0.04)] w-full">
+    <div className="bg-white border-b border-gray-100 w-full">
       <div className="w-full px-4 lg:px-6 xl:px-8 py-3 flex items-center justify-between gap-4">
         
         {/* Brand Logo */}
@@ -156,6 +156,6 @@ export default function Navbar({
           />
         </div>
       </div>
-    </header>
+    </div>
   );
 }
