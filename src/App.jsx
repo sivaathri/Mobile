@@ -104,7 +104,7 @@ export default function App() {
         setSelectedCity={setSelectedCity}
       />
 
-      {/* Subheader / Category Navigation */}
+      {/* Subheader / Category Navigation with Mega Menu */}
       <CategoryNav
         activeCategory={activeCategory}
         onSelectCategory={(cat) => {
@@ -112,6 +112,17 @@ export default function App() {
           if (cat === 'Top Deals') {
             showToast('Showing handpicked top deals below!');
           }
+        }}
+        onSelectBrand={(brand) => {
+          setSelectedBrand(brand);
+          const el = document.getElementById('featured-phones');
+          el?.scrollIntoView({ behavior: 'smooth' });
+          showToast(`Filtered by ${brand}`);
+        }}
+        onSelectFilter={(filterName) => {
+          showToast(`Filtered by ${filterName}`);
+          const el = document.getElementById('featured-phones');
+          el?.scrollIntoView({ behavior: 'smooth' });
         }}
       />
 
