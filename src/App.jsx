@@ -4,7 +4,6 @@ import CategoryNav from './components/CategoryNav';
 import HeroSection from './components/HeroSection';
 import BrandFilterBar from './components/BrandFilterBar';
 import ProductSection from './components/ProductSection';
-import TrustBadges from './components/TrustBadges';
 import PromoBanners from './components/PromoBanners';
 import Footer from './components/Footer';
 import CartDrawer from './components/CartDrawer';
@@ -201,9 +200,6 @@ export default function App() {
             onViewAll={() => setSelectedBrand('All Phones')}
           />
         </div>
-
-        {/* 6-Item Trust & Value Badges Strip */}
-        <TrustBadges />
 
         {/* 4 Bottom Promotional Banners */}
         <PromoBanners
