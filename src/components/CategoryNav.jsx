@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Menu, ChevronDown, HelpCircle } from 'lucide-react';
+import { Menu, ChevronDown } from 'lucide-react';
 import MegaMenu from './MegaMenu';
 
 export default function CategoryNav({ 
@@ -22,12 +22,6 @@ export default function CategoryNav({
     'New Arrivals',
     'Brand Stores',
     'Bulk Orders',
-  ];
-
-  const utilityLinks = [
-    { name: 'Buy', href: '#products' },
-    { name: 'Sell', href: '#sell' },
-    { name: 'Exchange', href: '#exchange' },
   ];
 
   // Open menu with hover
@@ -158,28 +152,6 @@ export default function CategoryNav({
             </div>
 
           </div>
-        </div>
-
-        {/* Right: Buy, Sell, Exchange, Help (cleanly positioned on the right) */}
-        <div className="hidden 2xl:flex items-center gap-5 pl-4 border-l border-gray-200/80 flex-shrink-0 py-2.5 absolute right-4 lg:right-6 xl:right-8 top-1/2 -translate-y-1/2">
-          {utilityLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="text-gray-600 hover:text-[#00684a] font-semibold text-xs transition-colors"
-            >
-              <span>{link.name}</span>
-            </a>
-          ))}
-          
-          {/* Help link with icon */}
-          <a
-            href="#help"
-            className="flex items-center gap-1.5 text-gray-600 hover:text-[#00684a] font-semibold text-xs transition-colors"
-          >
-            <HelpCircle className="w-3.5 h-3.5 text-gray-500 stroke-[2]" />
-            <span>Help</span>
-          </a>
         </div>
 
       </div>
