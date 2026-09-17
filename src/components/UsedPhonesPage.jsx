@@ -400,6 +400,20 @@ export default function UsedPhonesPage({
   const [currentPage, setCurrentPage] = useState(1);
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
 
+  // Always ensure this screen opens directly from the top with smooth presentation
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    const timer = setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }, 15);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // When switching page number, smoothly scroll back to top
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [currentPage]);
+
   // Accordion open states
   const [isConditionOpen, setIsConditionOpen] = useState(true);
   const [isPriceOpen, setIsPriceOpen] = useState(true);
@@ -540,7 +554,7 @@ export default function UsedPhonesPage({
   const paginatedProducts = displayItems.slice(startIndex, startIndex + itemsPerPage);
 
   return (
-    <div className="w-full bg-[#F8F9FA] text-gray-800 pb-16">
+    <div className="w-full bg-[#F8F9FA] text-gray-800 pb-16 animate-fadeIn">
       
       {/* Container matching full width grid */}
       <div className="w-full mx-auto px-3 sm:px-4 lg:px-6 pt-3 sm:pt-4">
@@ -555,7 +569,10 @@ export default function UsedPhonesPage({
           {/* -----------------------------------------------------------------
               LEFT COLUMN: Filters Sidebar
              ----------------------------------------------------------------- */}
-          <aside className="hidden lg:block w-56 xl:w-60 flex-shrink-0 bg-white rounded-xl border border-gray-200/80 p-4 shadow-2xs sticky top-28 self-start">
+          <aside
+            className="hidden lg:block w-56 xl:w-60 flex-shrink-0 bg-white rounded-xl border border-gray-200/80 p-4 shadow-2xs sticky top-28 self-start animate-fadeInUp"
+            style={{ animationDelay: '40ms' }}
+          >
             
             {/* Header: Filters + Clear All */}
             <div className="flex items-center justify-between pb-3 border-b border-gray-100 mb-3">
@@ -810,7 +827,7 @@ export default function UsedPhonesPage({
             </div>
 
             {/* 2. Top Header: Title (left) + Right Side Banner */}
-            <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3 sm:gap-4 mb-3.5">
+            <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3 sm:gap-4 mb-3.5 animate-fadeInUp" style={{ animationDelay: '60ms' }}>
               {/* Left Title Area */}
               <div className="flex-shrink-0">
                 <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
@@ -822,17 +839,17 @@ export default function UsedPhonesPage({
               </div>
 
               {/* Right Banner matching user's design */}
-              <div className="relative flex-1 max-w-full lg:max-w-[560px] xl:max-w-[620px] rounded-xl overflow-hidden shadow-2xs border border-purple-100 group">
+              <div className="relative flex-1 max-w-full lg:max-w-[560px] xl:max-w-[620px] rounded-xl overflow-hidden shadow-2xs border border-purple-100 group animate-fadeInScale" style={{ animationDelay: '100ms' }}>
                 <img
                   src="/assets/used_phones_banner.png"
                   alt="Quality Used Phones - Same Phones. Brighter Futures."
-                  className="w-full h-auto object-cover block"
+                  className="w-full h-auto object-cover block hover:scale-[1.01] transition-transform duration-300"
                 />
               </div>
             </div>
 
             {/* 3. Sub-header Controls Bar */}
-            <div className="bg-white rounded-xl border border-gray-200/80 p-2.5 sm:p-3 mb-4 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 shadow-2xs">
+            <div className="bg-white rounded-xl border border-gray-200/80 p-2.5 sm:p-3 mb-4 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 shadow-2xs animate-fadeInUp" style={{ animationDelay: '120ms' }}>
               
               {/* Left: Count + Brand Quick-Pills */}
               <div className="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0 custom-scrollbar flex-1 min-w-0">
@@ -1103,12 +1120,13 @@ export default function UsedPhonesPage({
                =============================================================== */}
             {paginatedProducts.length > 0 ? (
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2.5 sm:gap-3 lg:gap-3.5">
-                {paginatedProducts.map((phone) => {
+                {paginatedProducts.map((phone, index) => {
                   const isWishlisted = wishlistIds.includes(phone.id);
                   return (
                     <div
                       key={phone.id}
-                      className="bg-white rounded-xl border border-gray-200/80 p-2.5 sm:p-3 hover:shadow-md hover:border-purple-300 transition-all duration-200 flex flex-col justify-between group relative"
+                      style={{ animationDelay: `${Math.min(index * 35, 400)}ms` }}
+                      className="bg-white rounded-xl border border-gray-200/80 p-2.5 sm:p-3 hover:shadow-md hover:border-purple-300 transition-all duration-200 flex flex-col justify-between group relative animate-fadeInUp"
                     >
                       {/* Top Bar: Purple "Certified" Badge (left) + Wishlist Heart (right) */}
                       <div className="flex items-center justify-between min-h-[22px] mb-1">
