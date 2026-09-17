@@ -36,6 +36,36 @@ export default function App() {
   const [isOffersPopupOpen, setIsOffersPopupOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState(null);
 
+  // Always start at the top of the screen on refresh and initial mount
+  useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+
+    // Immediate scroll to top
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+
+    // Handle deferred browser scroll restoration
+    const scrollTimer = setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }, 10);
+
+    const handleBeforeUnload = () => {
+      window.scrollTo(0, 0);
+    };
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      clearTimeout(scrollTimer);
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
+
+  // Scroll to top whenever switching main view
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [currentView]);
+
   // Show exclusive offers popup on home screen initial load
   useEffect(() => {
     const timer = setTimeout(() => {
