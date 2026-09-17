@@ -4,12 +4,7 @@ import {
   ShoppingCart,
   Search,
   ChevronDown,
-  ChevronUp,
   ChevronRight,
-  ShieldCheck,
-  Shield,
-  Smartphone,
-  RotateCcw,
   LayoutGrid,
   List,
   SlidersHorizontal,
@@ -175,7 +170,7 @@ const ALL_NEW_PHONES_CATALOG = [
     image: '/assets/phones/iphone14_purple.jpg',
     imageType: 'iphone14-purple',
   },
-  // Additional products for pagination
+  // Additional items for pagination
   {
     id: 'np-13',
     name: 'iPhone 15 Plus',
@@ -245,7 +240,7 @@ export default function NewPhonesPage({
   const [selectedPriceRanges, setSelectedPriceRanges] = useState([]);
   const [sortBy, setSortBy] = useState('Popularity');
   const [currentPage, setCurrentPage] = useState(1);
-  const [viewMode, setViewMode] = useState('grid'); // 'grid' | 'list'
+  const [viewMode, setViewMode] = useState('grid');
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
 
   // Accordion open states
@@ -290,22 +285,6 @@ export default function NewPhonesPage({
     { label: 'Above ₹50,000', min: 50000, max: Infinity, count: 48 },
   ];
 
-  // Brand pills for top bar
-  const brandPills = [
-    { id: 'All Brands', label: 'All Brands' },
-    { id: 'Apple', label: 'Apple', icon: '🍎' },
-    { id: 'Samsung', label: 'SAMSUNG', isCustom: true, style: 'font-extrabold text-[#0034a8] tracking-tight text-[11px]' },
-    { id: 'OnePlus', label: '1+', isCustom: true, style: 'bg-red-600 text-white font-black px-1.5 py-0.2 rounded text-[10px]' },
-    { id: 'Xiaomi', label: 'mi', isCustom: true, style: 'bg-orange-500 text-white font-bold px-1.5 py-0.2 rounded text-[10px]' },
-    { id: 'Realme', label: 'R', isCustom: true, style: 'bg-amber-400 text-gray-950 font-black px-1.5 py-0.2 rounded text-[10px]' },
-    { id: 'Vivo', label: 'vivo', isCustom: true, style: 'text-[#0051d5] font-bold text-[11px]' },
-    { id: 'Oppo', label: 'oppo', isCustom: true, style: 'text-[#008751] font-bold text-[11px]' },
-    { id: 'Google', label: 'Google', isCustom: true, style: 'font-bold text-[11px] text-gray-800' },
-    { id: 'Motorola', label: 'M', isCustom: true, style: 'bg-blue-600 text-white font-black rounded-full px-1.5 text-[9.5px]' },
-    { id: 'Nothing', label: 'Nothing', isCustom: true, style: 'font-mono text-gray-900 text-[11px]' },
-    { id: 'Nokia', label: 'NOKIA', isCustom: true, style: 'font-extrabold text-[#124191] text-[10px] tracking-wider' },
-  ];
-
   // Clear all filters
   const handleClearAll = () => {
     setSelectedCategory('All Smartphones');
@@ -325,15 +304,12 @@ export default function NewPhonesPage({
   // Filtered and sorted products
   const filteredProducts = useMemo(() => {
     return ALL_NEW_PHONES_CATALOG.filter((p) => {
-      // Category filter
       if (selectedCategory !== 'All Smartphones' && p.category !== selectedCategory) {
         return false;
       }
-      // Brand filter
       if (selectedBrand !== 'All Brands' && p.brand.toLowerCase() !== selectedBrand.toLowerCase()) {
         return false;
       }
-      // Price range filter
       if (selectedPriceRanges.length > 0) {
         const matchesAnyPrice = selectedPriceRanges.some((rangeLabel) => {
           const rangeObj = priceRanges.find((r) => r.label === rangeLabel);
@@ -355,150 +331,55 @@ export default function NewPhonesPage({
   );
 
   return (
-    <div className="w-full bg-[#f8faf8] min-h-screen py-4 sm:py-6">
+    <div className="w-full bg-[#f8faf8] min-h-screen py-3 sm:py-5">
       <div className="w-full px-2.5 sm:px-4 lg:px-6 xl:px-8">
-        
-        {/* ===================================================================
-            HEADER: Breadcrumbs + Title + Promo Banner Box
-           =================================================================== */}
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-4 sm:mb-6">
-          
-          {/* Left Title & Breadcrumbs */}
-          <div>
-            {/* Breadcrumb Links */}
-            <div className="flex items-center gap-1.5 text-xs text-gray-500 mb-1.5">
-              <button
-                onClick={onBackToHome}
-                className="hover:text-[#00704A] hover:underline transition-colors cursor-pointer"
-              >
-                Home
-              </button>
-              <ChevronRight className="w-3 h-3 text-gray-400" />
-              <span className="text-gray-900 font-semibold">New Phones</span>
-            </div>
 
-            {/* Page Heading */}
-            <h1 className="text-2xl sm:text-3xl font-black text-gray-950 tracking-tight leading-tight">
-              New Phones
-            </h1>
-            <p className="text-xs sm:text-sm text-gray-500 mt-0.5 max-w-xl">
-              Explore the latest smartphones with full warranty. 100% original. Best prices.
-            </p>
-          </div>
-
-          {/* Right Promotional Banner Box (Matching Reference) */}
-          <div className="rounded-2xl bg-gradient-to-r from-[#eef9f3] via-[#e4f6ec] to-[#d8f2e4] border border-[#c4ebdb] p-3.5 sm:p-4 flex items-center justify-between gap-3 shadow-2xs">
-            {/* Promo text & CTA */}
-            <div className="max-w-[170px] sm:max-w-[200px]">
-              <h3 className="text-xs sm:text-sm font-extrabold text-[#094936] leading-snug">
-                Latest Smartphones
-              </h3>
-              <p className="text-[10px] sm:text-[11px] text-[#245d47] font-normal leading-tight mt-0.5">
-                Brand New. Full Warranty. 100% Original.
-              </p>
-              <button
-                onClick={() => {
-                  setSelectedCategory('All Smartphones');
-                  showToast?.('Exploring all new phones below!');
-                }}
-                className="mt-2 inline-flex items-center gap-1 bg-[#00704A] hover:bg-[#00583a] text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-2xs transition-all cursor-pointer active:scale-95"
-              >
-                <span>Explore Now</span>
-                <ChevronRight className="w-3 h-3" />
-              </button>
-            </div>
-
-            {/* Phone Image Graphic */}
-            <div className="h-16 sm:h-18 flex items-center justify-center -space-x-4">
-              <img
-                src="/assets/phones/iphone13_pink.jpg"
-                alt="Latest phone"
-                className="h-16 sm:h-18 w-auto object-contain drop-shadow-xs"
-              />
-              <img
-                src="/assets/phones/galaxy_s22.jpg"
-                alt="Latest phone"
-                className="h-16 sm:h-18 w-auto object-contain drop-shadow-xs"
-              />
-            </div>
-
-            {/* 4 Trust Value Props in Banner */}
-            <div className="hidden sm:grid grid-cols-4 gap-2.5 pl-3 border-l border-[#c4ebdb] text-[10px] text-gray-700">
-              <div className="flex flex-col items-center text-center">
-                <ShieldCheck className="w-4 h-4 text-[#00704A] mb-1" />
-                <span className="font-bold text-[9px] leading-tight text-gray-900">100% Original</span>
-                <span className="text-[8.5px] text-gray-500">Products</span>
-              </div>
-              <div className="flex flex-col items-center text-center">
-                <Shield className="w-4 h-4 text-[#00704A] mb-1" />
-                <span className="font-bold text-[9px] leading-tight text-gray-900">Brand</span>
-                <span className="text-[8.5px] text-gray-500">Warranty</span>
-              </div>
-              <div className="flex flex-col items-center text-center">
-                <Smartphone className="w-4 h-4 text-[#00704A] mb-1" />
-                <span className="font-bold text-[9px] leading-tight text-gray-900">Latest</span>
-                <span className="text-[8.5px] text-gray-500">Models</span>
-              </div>
-              <div className="flex flex-col items-center text-center">
-                <RotateCcw className="w-4 h-4 text-[#00704A] mb-1" />
-                <span className="font-bold text-[9px] leading-tight text-gray-900">Hassle-Free</span>
-                <span className="text-[8.5px] text-gray-500">Returns</span>
-              </div>
-            </div>
-
-          </div>
-
+        {/* Mobile Filter Trigger Button */}
+        <div className="lg:hidden flex items-center justify-between pb-3 mb-3 border-b border-gray-200">
+          <button
+            onClick={() => setIsMobileFilterOpen(true)}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-gray-300 rounded-lg text-xs font-semibold text-gray-700 shadow-2xs cursor-pointer"
+          >
+            <SlidersHorizontal className="w-3.5 h-3.5" />
+            <span>Filters ({selectedPriceRanges.length + (selectedBrand !== 'All Brands' ? 1 : 0)})</span>
+          </button>
+          <span className="text-xs text-gray-500 font-medium">245 New Phones</span>
         </div>
 
-
         {/* ===================================================================
-            MAIN 2-COLUMN LAYOUT: Sidebar Filters (Left) + Catalog Grid (Right)
+            EXACT 2-COLUMN LAYOUT: 
+            Left = Filters Sidebar starting at top baseline
+            Right = Breadcrumbs + Title + Mint Banner + Brand Pills + 12-Card Grid
            =================================================================== */}
-        <div className="flex flex-col lg:flex-row gap-5 lg:gap-6">
-          
-          {/* Mobile Filter Toggle Button */}
-          <div className="lg:hidden flex items-center justify-between pb-2 border-b border-gray-200">
-            <button
-              onClick={() => setIsMobileFilterOpen(true)}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-gray-300 rounded-lg text-xs font-semibold text-gray-700 shadow-2xs"
-            >
-              <SlidersHorizontal className="w-3.5 h-3.5" />
-              <span>Filters ({selectedPriceRanges.length + (selectedBrand !== 'All Brands' ? 1 : 0)})</span>
-            </button>
-
-            <span className="text-xs text-gray-500 font-medium">
-              245 New Phones
-            </span>
-          </div>
+        <div className="flex flex-col lg:flex-row items-start gap-4 sm:gap-5 lg:gap-6">
 
           {/* -----------------------------------------------------------------
-              LEFT SIDEBAR: Filters (Sticky on desktop)
+              LEFT COLUMN: Filters Sidebar Card
              ----------------------------------------------------------------- */}
           <aside
             className={`
               fixed inset-0 z-50 bg-black/50 p-4 lg:p-0 lg:static lg:z-0 lg:bg-transparent
               ${isMobileFilterOpen ? 'flex' : 'hidden lg:block'}
-              w-full lg:w-64 xl:w-72 flex-shrink-0
+              w-full lg:w-60 xl:w-64 flex-shrink-0
             `}
           >
-            <div className="bg-white rounded-2xl border border-gray-200/80 p-4 sm:p-5 shadow-2xs w-full max-w-xs lg:max-w-none max-h-[90vh] lg:max-h-none overflow-y-auto m-auto lg:m-0">
+            <div className="bg-white rounded-2xl border border-gray-200/80 p-4 shadow-2xs w-full max-w-xs lg:max-w-none max-h-[90vh] lg:max-h-none overflow-y-auto m-auto lg:m-0">
               
-              {/* Filter Top Header */}
-              <div className="flex items-center justify-between pb-3 border-b border-gray-100 mb-4">
-                <h2 className="text-base font-extrabold text-gray-900 tracking-tight">
+              {/* Header: Filters + Clear All */}
+              <div className="flex items-center justify-between pb-3 border-b border-gray-100 mb-3">
+                <h2 className="text-base font-extrabold text-gray-950 tracking-tight">
                   Filters
                 </h2>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2.5">
                   <button
                     onClick={handleClearAll}
                     className="text-xs font-semibold text-blue-600 hover:text-blue-800 hover:underline cursor-pointer"
                   >
                     Clear All
                   </button>
-                  {/* Mobile close button */}
                   <button
                     onClick={() => setIsMobileFilterOpen(false)}
-                    className="lg:hidden p-1 text-gray-400 hover:text-gray-700"
+                    className="lg:hidden p-1 text-gray-400 hover:text-gray-700 cursor-pointer"
                   >
                     <X className="w-5 h-5" />
                   </button>
@@ -506,10 +387,10 @@ export default function NewPhonesPage({
               </div>
 
               {/* 1. Category Accordion */}
-              <div className="pb-4 border-b border-gray-100">
+              <div className="pb-3.5 border-b border-gray-100">
                 <button
                   onClick={() => setIsCategoryOpen(!isCategoryOpen)}
-                  className="w-full flex items-center justify-between text-xs font-bold text-gray-900 py-1 cursor-pointer"
+                  className="w-full flex items-center justify-between text-xs font-bold text-gray-900 py-0.5 cursor-pointer"
                 >
                   <span>Category</span>
                   <span className="text-gray-400 text-sm font-bold">
@@ -518,12 +399,12 @@ export default function NewPhonesPage({
                 </button>
 
                 {isCategoryOpen && (
-                  <div className="mt-2.5 space-y-2">
+                  <div className="mt-2 space-y-2">
                     {categoriesList.map((cat) => (
                       <label
                         key={cat.name}
                         onClick={() => setSelectedCategory(cat.name)}
-                        className="flex items-center justify-between text-xs text-gray-700 hover:text-gray-950 cursor-pointer select-none group"
+                        className="flex items-center justify-between text-xs text-gray-700 hover:text-gray-950 cursor-pointer select-none"
                       >
                         <div className="flex items-center gap-2">
                           <input
@@ -532,7 +413,7 @@ export default function NewPhonesPage({
                             onChange={() => setSelectedCategory(cat.name)}
                             className="w-3.5 h-3.5 rounded border-gray-300 text-[#00704A] focus:ring-0 cursor-pointer"
                           />
-                          <span className={selectedCategory === cat.name ? 'font-bold text-gray-950' : 'font-medium'}>
+                          <span className={selectedCategory === cat.name ? 'font-bold text-gray-950' : 'font-normal text-gray-700'}>
                             {cat.name}
                           </span>
                         </div>
@@ -546,10 +427,10 @@ export default function NewPhonesPage({
               </div>
 
               {/* 2. Brand Accordion */}
-              <div className="py-4 border-b border-gray-100">
+              <div className="py-3.5 border-b border-gray-100">
                 <button
                   onClick={() => setIsBrandOpen(!isBrandOpen)}
-                  className="w-full flex items-center justify-between text-xs font-bold text-gray-900 py-1 cursor-pointer"
+                  className="w-full flex items-center justify-between text-xs font-bold text-gray-900 py-0.5 cursor-pointer"
                 >
                   <span>Brand</span>
                   <span className="text-gray-400 text-sm font-bold">
@@ -558,28 +439,28 @@ export default function NewPhonesPage({
                 </button>
 
                 {isBrandOpen && (
-                  <div className="mt-2.5 space-y-2.5">
-                    {/* Brand search input */}
+                  <div className="mt-2 space-y-2">
+                    {/* Search Input */}
                     <div className="relative">
-                      <Search className="w-3.5 h-3.5 absolute left-2.5 top-2.5 text-gray-400" />
+                      <Search className="w-3.5 h-3.5 absolute left-2.5 top-2 text-gray-400" />
                       <input
                         type="text"
                         placeholder="Search brand..."
                         value={brandSearch}
                         onChange={(e) => setBrandSearch(e.target.value)}
-                        className="w-full pl-8 pr-2.5 py-1.5 bg-gray-50 border border-gray-200 rounded-lg text-xs text-gray-800 placeholder-gray-400 focus:bg-white focus:border-[#00704A] transition-colors"
+                        className="w-full pl-8 pr-2 py-1 bg-gray-50 border border-gray-200 rounded-lg text-xs text-gray-800 placeholder-gray-400 focus:bg-white focus:border-[#00704A] transition-colors"
                       />
                     </div>
 
-                    {/* Brand Checkbox List */}
-                    <div className="space-y-2 max-h-56 overflow-y-auto pr-1">
+                    {/* Brand List */}
+                    <div className="space-y-1.5 max-h-52 overflow-y-auto pr-1">
                       {brandsList
                         .filter((b) => b.name.toLowerCase().includes(brandSearch.toLowerCase()))
                         .map((brand) => (
                           <label
                             key={brand.name}
                             onClick={() => setSelectedBrand(selectedBrand === brand.name ? 'All Brands' : brand.name)}
-                            className="flex items-center justify-between text-xs text-gray-700 hover:text-gray-950 cursor-pointer select-none"
+                            className="flex items-center justify-between text-xs text-gray-700 hover:text-gray-950 cursor-pointer select-none py-0.5"
                           >
                             <div className="flex items-center gap-2">
                               <input
@@ -588,7 +469,7 @@ export default function NewPhonesPage({
                                 onChange={() => setSelectedBrand(selectedBrand === brand.name ? 'All Brands' : brand.name)}
                                 className="w-3.5 h-3.5 rounded border-gray-300 text-[#00704A] focus:ring-0 cursor-pointer"
                               />
-                              <span className={selectedBrand === brand.name ? 'font-bold text-gray-950' : 'font-medium'}>
+                              <span className={selectedBrand === brand.name ? 'font-bold text-gray-950' : 'font-normal text-gray-700'}>
                                 {brand.name}
                               </span>
                             </div>
@@ -600,8 +481,8 @@ export default function NewPhonesPage({
                     </div>
 
                     <button
-                      onClick={() => showToast?.('All 13 brands displayed')}
-                      className="text-[11px] text-[#00704A] hover:underline font-semibold flex items-center gap-0.5 pt-1"
+                      onClick={() => showToast?.('Showing all brands')}
+                      className="text-[11px] text-[#00704A] hover:underline font-semibold flex items-center gap-0.5 pt-0.5 cursor-pointer"
                     >
                       <span>View More</span>
                       <ChevronDown className="w-3 h-3" />
@@ -611,10 +492,10 @@ export default function NewPhonesPage({
               </div>
 
               {/* 3. Price Range Accordion */}
-              <div className="py-4 border-b border-gray-100">
+              <div className="py-3.5 border-b border-gray-100">
                 <button
                   onClick={() => setIsPriceOpen(!isPriceOpen)}
-                  className="w-full flex items-center justify-between text-xs font-bold text-gray-900 py-1 cursor-pointer"
+                  className="w-full flex items-center justify-between text-xs font-bold text-gray-900 py-0.5 cursor-pointer"
                 >
                   <span>Price Range</span>
                   <span className="text-gray-400 text-sm font-bold">
@@ -623,14 +504,14 @@ export default function NewPhonesPage({
                 </button>
 
                 {isPriceOpen && (
-                  <div className="mt-2.5 space-y-2">
+                  <div className="mt-2 space-y-1.5">
                     {priceRanges.map((range) => {
                       const isChecked = selectedPriceRanges.includes(range.label);
                       return (
                         <label
                           key={range.label}
                           onClick={() => handleTogglePrice(range.label)}
-                          className="flex items-center justify-between text-xs text-gray-700 hover:text-gray-950 cursor-pointer select-none"
+                          className="flex items-center justify-between text-xs text-gray-700 hover:text-gray-950 cursor-pointer select-none py-0.5"
                         >
                           <div className="flex items-center gap-2">
                             <input
@@ -639,7 +520,7 @@ export default function NewPhonesPage({
                               onChange={() => handleTogglePrice(range.label)}
                               className="w-3.5 h-3.5 rounded border-gray-300 text-[#00704A] focus:ring-0 cursor-pointer"
                             />
-                            <span className={isChecked ? 'font-bold text-gray-950' : 'font-medium'}>
+                            <span className={isChecked ? 'font-bold text-gray-950' : 'font-normal text-gray-700'}>
                               {range.label}
                             </span>
                           </div>
@@ -654,43 +535,39 @@ export default function NewPhonesPage({
               </div>
 
               {/* 4. RAM Accordion */}
-              <div className="py-3 border-b border-gray-100">
+              <div className="py-2.5 border-b border-gray-100">
                 <button
                   onClick={() => setIsRamOpen(!isRamOpen)}
-                  className="w-full flex items-center justify-between text-xs font-bold text-gray-900 py-1 cursor-pointer"
+                  className="w-full flex items-center justify-between text-xs font-bold text-gray-900 py-0.5 cursor-pointer"
                 >
                   <span>RAM</span>
-                  <span className="text-gray-400 text-sm font-bold">
-                    {isRamOpen ? '−' : '+'}
-                  </span>
+                  <span className="text-gray-400 text-sm font-bold">{isRamOpen ? '−' : '+'}</span>
                 </button>
                 {isRamOpen && (
-                  <div className="mt-2 space-y-1.5 text-xs text-gray-600">
-                    <div className="flex items-center gap-2"><input type="checkbox" className="rounded" /> 4 GB</div>
-                    <div className="flex items-center gap-2"><input type="checkbox" className="rounded" /> 6 GB</div>
-                    <div className="flex items-center gap-2"><input type="checkbox" className="rounded" /> 8 GB</div>
-                    <div className="flex items-center gap-2"><input type="checkbox" className="rounded" /> 12 GB</div>
+                  <div className="mt-1.5 space-y-1 text-xs text-gray-600">
+                    <label className="flex items-center gap-2"><input type="checkbox" className="rounded" /> 4 GB</label>
+                    <label className="flex items-center gap-2"><input type="checkbox" className="rounded" /> 6 GB</label>
+                    <label className="flex items-center gap-2"><input type="checkbox" className="rounded" /> 8 GB</label>
+                    <label className="flex items-center gap-2"><input type="checkbox" className="rounded" /> 12 GB</label>
                   </div>
                 )}
               </div>
 
               {/* 5. Storage Accordion */}
-              <div className="pt-3">
+              <div className="pt-2.5">
                 <button
                   onClick={() => setIsStorageOpen(!isStorageOpen)}
-                  className="w-full flex items-center justify-between text-xs font-bold text-gray-900 py-1 cursor-pointer"
+                  className="w-full flex items-center justify-between text-xs font-bold text-gray-900 py-0.5 cursor-pointer"
                 >
                   <span>Storage</span>
-                  <span className="text-gray-400 text-sm font-bold">
-                    {isStorageOpen ? '−' : '+'}
-                  </span>
+                  <span className="text-gray-400 text-sm font-bold">{isStorageOpen ? '−' : '+'}</span>
                 </button>
                 {isStorageOpen && (
-                  <div className="mt-2 space-y-1.5 text-xs text-gray-600">
-                    <div className="flex items-center gap-2"><input type="checkbox" className="rounded" /> 64 GB</div>
-                    <div className="flex items-center gap-2"><input type="checkbox" className="rounded" /> 128 GB</div>
-                    <div className="flex items-center gap-2"><input type="checkbox" className="rounded" /> 256 GB</div>
-                    <div className="flex items-center gap-2"><input type="checkbox" className="rounded" /> 512 GB</div>
+                  <div className="mt-1.5 space-y-1 text-xs text-gray-600">
+                    <label className="flex items-center gap-2"><input type="checkbox" className="rounded" /> 64 GB</label>
+                    <label className="flex items-center gap-2"><input type="checkbox" className="rounded" /> 128 GB</label>
+                    <label className="flex items-center gap-2"><input type="checkbox" className="rounded" /> 256 GB</label>
+                    <label className="flex items-center gap-2"><input type="checkbox" className="rounded" /> 512 GB</label>
                   </div>
                 )}
               </div>
@@ -700,49 +577,235 @@ export default function NewPhonesPage({
 
 
           {/* -----------------------------------------------------------------
-              RIGHT MAIN AREA: Top Controls Bar + 12-Card Grid + Pagination
+              RIGHT COLUMN: Top Row (Title + Panoramic Banner) + Sub-Header + Grid
              ----------------------------------------------------------------- */}
-          <main className="flex-1 min-w-0">
+          <main className="flex-1 min-w-0 w-full">
             
-            {/* Sub-Header Controls: Brand Pills + Sorting + Layout View Toggle */}
-            <div className="bg-white rounded-2xl border border-gray-200/80 p-3 sm:p-3.5 mb-4 shadow-2xs flex flex-col md:flex-row md:items-center justify-between gap-3">
+            {/* ROW 1: Breadcrumbs/Title on Left + Exact Panoramic Mint Banner on Right */}
+            <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-3 sm:gap-4 mb-3 sm:mb-3.5">
               
-              {/* Left: Total Count + Horizontal Brand Filter Pills */}
-              <div className="flex items-center gap-2.5 overflow-x-auto no-scrollbar pb-1 md:pb-0">
-                <span className="text-xs font-black text-gray-900 whitespace-nowrap pr-1">
+              {/* Left Title Area */}
+              <div className="max-w-md flex-shrink-0">
+                {/* Breadcrumbs */}
+                <div className="flex items-center gap-1.5 text-xs text-gray-500 mb-0.5">
+                  <button
+                    onClick={onBackToHome}
+                    className="hover:text-[#00704A] hover:underline transition-colors cursor-pointer"
+                  >
+                    Home
+                  </button>
+                  <ChevronRight className="w-3 h-3 text-gray-400" />
+                  <span className="text-gray-800 font-semibold">New Phones</span>
+                </div>
+
+                {/* Main Heading */}
+                <h1 className="text-2xl sm:text-3xl lg:text-[32px] font-black text-[#0f172a] tracking-tight leading-tight">
+                  New Phones
+                </h1>
+                <p className="text-xs sm:text-[12.5px] text-gray-500 font-normal mt-0.5 leading-snug">
+                  Explore the latest smartphones with full warranty. 100% original. Best prices.
+                </p>
+              </div>
+
+              {/* Right: Exact Panoramic Mint Banner Image from Reference */}
+              <div className="flex-1 max-w-2xl flex justify-start xl:justify-end">
+                <img
+                  src="/assets/latest_smartphones_banner.png"
+                  alt="Latest Smartphones - Brand New. Full Warranty. 100% Original."
+                  className="w-full h-auto max-h-24 sm:max-h-26 object-contain rounded-xl sm:rounded-2xl drop-shadow-2xs"
+                />
+              </div>
+
+            </div>
+
+
+            {/* ROW 2: Sub-Header Filter Bar (Count + Horizontal Brand Pills + Sort + Grid/List Toggle) */}
+            <div className="bg-white rounded-xl sm:rounded-2xl border border-gray-200/80 p-2.5 sm:p-3 mb-3.5 sm:mb-4 shadow-2xs flex flex-col md:flex-row md:items-center justify-between gap-2.5">
+              
+              {/* Left: 245 Count + Brand Filter Pills */}
+              <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 md:pb-0">
+                <span className="text-xs sm:text-sm font-black text-gray-900 whitespace-nowrap pr-1 flex-shrink-0">
                   245 New Phones
                 </span>
 
-                {brandPills.map((pill) => {
-                  const isActive = selectedBrand === pill.id;
-                  return (
-                    <button
-                      key={pill.id}
-                      onClick={() => {
-                        setSelectedBrand(pill.id);
-                        setCurrentPage(1);
-                      }}
-                      className={`
-                        inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-150 cursor-pointer active:scale-95
-                        ${
-                          isActive
-                            ? 'bg-[#00704A] text-white shadow-2xs'
-                            : 'bg-gray-100 hover:bg-gray-200 text-gray-800'
-                        }
-                      `}
-                    >
-                      {pill.isCustom ? (
-                        <span className={pill.style}>{pill.label}</span>
-                      ) : (
-                        <span>{pill.label}</span>
-                      )}
-                    </button>
-                  );
-                })}
-
+                {/* 1. All Brands (Active Green) */}
                 <button
-                  onClick={() => showToast?.('Showing all brand selections')}
-                  className="text-xs text-gray-600 hover:text-gray-900 font-medium flex items-center gap-0.5 whitespace-nowrap px-1"
+                  onClick={() => setSelectedBrand('All Brands')}
+                  className={`
+                    px-3.5 py-1 rounded-full text-xs font-bold whitespace-nowrap transition-all flex-shrink-0 cursor-pointer active:scale-95
+                    ${
+                      selectedBrand === 'All Brands'
+                        ? 'bg-[#00704A] text-white shadow-2xs'
+                        : 'bg-white border border-gray-200 text-gray-700 hover:border-gray-400'
+                    }
+                  `}
+                >
+                  All Brands
+                </button>
+
+                {/* 2. Apple */}
+                <button
+                  onClick={() => setSelectedBrand('Apple')}
+                  className={`px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap flex items-center gap-1.5 flex-shrink-0 border transition-all cursor-pointer ${
+                    selectedBrand === 'Apple'
+                      ? 'bg-[#00704A] text-white border-[#00704A]'
+                      : 'bg-white border-gray-200 text-gray-800 hover:border-gray-400'
+                  }`}
+                >
+                  {/* Apple SVG icon */}
+                  <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 170 170">
+                    <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.69-7.85-11.96-14.43-5.26-8.08-9.43-17.1-12.51-27.06-3.08-9.96-4.62-19.53-4.62-28.71 0-14.28 3.59-25.79 10.77-34.53 7.18-8.74 16.27-13.23 27.27-13.48 4.67 0 10.02 1.25 16.06 3.75 6.04 2.5 9.94 3.8 11.69 3.9 1.48-.1 5.34-1.4 11.59-3.9 6.24-2.5 11.45-3.65 15.63-3.45 11.98.61 21.36 4.78 28.14 12.51-10.45 6.33-15.54 15.04-15.28 26.13.26 8.7 3.55 15.98 9.87 21.84 6.32 5.86 13.88 9.3 22.68 10.32-2.17 6.42-4.93 12.92-8.28 19.51zM119.22 31.84c0-7.05 2.53-13.86 7.6-20.44 5.07-6.57 11.4-10.87 18.99-12.89.26 1.48.39 2.85.39 4.12 0 7.18-2.67 14.15-8.01 20.91-5.34 6.76-11.78 10.82-19.33 12.18-.32-1.27-.48-2.39-.48-3.88z" />
+                  </svg>
+                </button>
+
+                {/* 3. Samsung */}
+                <button
+                  onClick={() => setSelectedBrand('Samsung')}
+                  className={`px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap flex items-center flex-shrink-0 border transition-all cursor-pointer ${
+                    selectedBrand === 'Samsung'
+                      ? 'bg-[#00704A] text-white border-[#00704A]'
+                      : 'bg-white border-gray-200 hover:border-gray-400'
+                  }`}
+                >
+                  <span className={`font-black tracking-tight text-[11px] ${selectedBrand === 'Samsung' ? 'text-white' : 'text-[#0034a8]'}`}>
+                    SAMSUNG
+                  </span>
+                </button>
+
+                {/* 4. OnePlus (1+) */}
+                <button
+                  onClick={() => setSelectedBrand('OnePlus')}
+                  className={`px-2.5 py-1 rounded-full text-xs font-semibold whitespace-nowrap flex items-center flex-shrink-0 border transition-all cursor-pointer ${
+                    selectedBrand === 'OnePlus'
+                      ? 'bg-[#00704A] text-white border-[#00704A]'
+                      : 'bg-white border-gray-200 hover:border-gray-400'
+                  }`}
+                >
+                  <span className="bg-red-600 text-white font-black px-1.5 py-0.2 rounded text-[10px]">
+                    1+
+                  </span>
+                </button>
+
+                {/* 5. Xiaomi (mi) */}
+                <button
+                  onClick={() => setSelectedBrand('Xiaomi')}
+                  className={`px-2.5 py-1 rounded-full text-xs font-semibold whitespace-nowrap flex items-center flex-shrink-0 border transition-all cursor-pointer ${
+                    selectedBrand === 'Xiaomi'
+                      ? 'bg-[#00704A] text-white border-[#00704A]'
+                      : 'bg-white border-gray-200 hover:border-gray-400'
+                  }`}
+                >
+                  <span className="bg-[#ff6900] text-white font-bold px-1.5 py-0.2 rounded text-[10px]">
+                    mi
+                  </span>
+                </button>
+
+                {/* 6. Realme (R) */}
+                <button
+                  onClick={() => setSelectedBrand('Realme')}
+                  className={`px-2.5 py-1 rounded-full text-xs font-semibold whitespace-nowrap flex items-center flex-shrink-0 border transition-all cursor-pointer ${
+                    selectedBrand === 'Realme'
+                      ? 'bg-[#00704A] text-white border-[#00704A]'
+                      : 'bg-white border-gray-200 hover:border-gray-400'
+                  }`}
+                >
+                  <span className="bg-[#ffc700] text-gray-950 font-black px-1.5 py-0.2 rounded text-[10px]">
+                    R
+                  </span>
+                </button>
+
+                {/* 7. Vivo */}
+                <button
+                  onClick={() => setSelectedBrand('Vivo')}
+                  className={`px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap flex items-center flex-shrink-0 border transition-all cursor-pointer ${
+                    selectedBrand === 'Vivo'
+                      ? 'bg-[#00704A] text-white border-[#00704A]'
+                      : 'bg-white border-gray-200 hover:border-gray-400'
+                  }`}
+                >
+                  <span className={`font-bold text-[11px] ${selectedBrand === 'Vivo' ? 'text-white' : 'text-[#0051d5]'}`}>
+                    vivo
+                  </span>
+                </button>
+
+                {/* 8. Oppo */}
+                <button
+                  onClick={() => setSelectedBrand('Oppo')}
+                  className={`px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap flex items-center flex-shrink-0 border transition-all cursor-pointer ${
+                    selectedBrand === 'Oppo'
+                      ? 'bg-[#00704A] text-white border-[#00704A]'
+                      : 'bg-white border-gray-200 hover:border-gray-400'
+                  }`}
+                >
+                  <span className={`font-bold text-[11px] ${selectedBrand === 'Oppo' ? 'text-white' : 'text-[#008751]'}`}>
+                    oppo
+                  </span>
+                </button>
+
+                {/* 9. Google */}
+                <button
+                  onClick={() => setSelectedBrand('Google')}
+                  className={`px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap flex items-center flex-shrink-0 border transition-all cursor-pointer ${
+                    selectedBrand === 'Google'
+                      ? 'bg-[#00704A] text-white border-[#00704A]'
+                      : 'bg-white border-gray-200 hover:border-gray-400'
+                  }`}
+                >
+                  {/* Google 4-color G icon */}
+                  <svg className="w-3.5 h-3.5" viewBox="0 0 24 24">
+                    <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/>
+                    <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z"/>
+                    <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.97 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/>
+                    <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+                  </svg>
+                </button>
+
+                {/* 10. Motorola */}
+                <button
+                  onClick={() => setSelectedBrand('Motorola')}
+                  className={`px-2.5 py-1 rounded-full text-xs font-semibold whitespace-nowrap flex items-center flex-shrink-0 border transition-all cursor-pointer ${
+                    selectedBrand === 'Motorola'
+                      ? 'bg-[#00704A] text-white border-[#00704A]'
+                      : 'bg-white border-gray-200 hover:border-gray-400'
+                  }`}
+                >
+                  <span className="bg-[#001489] text-white font-black rounded-full px-1.5 py-0.2 text-[9px]">
+                    M
+                  </span>
+                </button>
+
+                {/* 11. Nothing */}
+                <button
+                  onClick={() => setSelectedBrand('Nothing')}
+                  className={`px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap flex items-center flex-shrink-0 border transition-all cursor-pointer ${
+                    selectedBrand === 'Nothing'
+                      ? 'bg-[#00704A] text-white border-[#00704A]'
+                      : 'bg-white border-gray-200 hover:border-gray-400'
+                  }`}
+                >
+                  <span className={`font-mono text-[11px] ${selectedBrand === 'Nothing' ? 'text-white' : 'text-gray-900'}`}>
+                    Nothing
+                  </span>
+                </button>
+
+                {/* 12. Nokia */}
+                <button
+                  onClick={() => setSelectedBrand('Nokia')}
+                  className={`px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap flex items-center flex-shrink-0 border transition-all cursor-pointer ${
+                    selectedBrand === 'Nokia'
+                      ? 'bg-[#00704A] text-white border-[#00704A]'
+                      : 'bg-white border-gray-200 hover:border-gray-400'
+                  }`}
+                >
+                  <span className={`font-black tracking-wider text-[10px] ${selectedBrand === 'Nokia' ? 'text-white' : 'text-[#124191]'}`}>
+                    NOKIA
+                  </span>
+                </button>
+
+                {/* 13. More */}
+                <button
+                  onClick={() => showToast?.('Showing all brand options')}
+                  className="px-2.5 py-1 rounded-full text-xs font-medium text-gray-600 hover:text-gray-900 bg-white border border-gray-200 hover:border-gray-400 flex items-center gap-0.5 whitespace-nowrap flex-shrink-0 cursor-pointer"
                 >
                   <span>More</span>
                   <ChevronDown className="w-3 h-3" />
@@ -750,14 +813,13 @@ export default function NewPhonesPage({
               </div>
 
               {/* Right: Sort Dropdown + Grid/List View Toggles */}
-              <div className="flex items-center gap-3 self-end md:self-center flex-shrink-0">
-                {/* Sort Dropdown */}
+              <div className="flex items-center gap-2.5 self-end md:self-center flex-shrink-0">
                 <div className="flex items-center gap-1.5 text-xs text-gray-600">
                   <span className="hidden sm:inline text-gray-500">Sort by:</span>
                   <select
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value)}
-                    className="bg-gray-50 hover:bg-gray-100 border border-gray-200 text-xs font-semibold text-gray-800 rounded-lg px-2.5 py-1.5 focus:bg-white focus:border-[#00704A] cursor-pointer"
+                    className="bg-white hover:bg-gray-50 border border-gray-200 text-xs font-semibold text-gray-800 rounded-lg px-2.5 py-1.5 focus:border-[#00704A] cursor-pointer"
                   >
                     <option value="Popularity">Popularity</option>
                     <option value="Price: Low to High">Price: Low to High</option>
@@ -766,11 +828,11 @@ export default function NewPhonesPage({
                   </select>
                 </div>
 
-                {/* Grid / List Toggles */}
+                {/* Grid & List Toggle Icons */}
                 <div className="flex items-center border border-gray-200 rounded-lg p-0.5 bg-gray-50">
                   <button
                     onClick={() => setViewMode('grid')}
-                    className={`p-1 rounded-md transition-colors ${
+                    className={`p-1 rounded-md transition-colors cursor-pointer ${
                       viewMode === 'grid'
                         ? 'bg-white text-[#00704A] shadow-2xs'
                         : 'text-gray-400 hover:text-gray-700'
@@ -781,7 +843,7 @@ export default function NewPhonesPage({
                   </button>
                   <button
                     onClick={() => setViewMode('list')}
-                    className={`p-1 rounded-md transition-colors ${
+                    className={`p-1 rounded-md transition-colors cursor-pointer ${
                       viewMode === 'list'
                         ? 'bg-white text-[#00704A] shadow-2xs'
                         : 'text-gray-400 hover:text-gray-700'
@@ -797,7 +859,7 @@ export default function NewPhonesPage({
 
 
             {/* ===============================================================
-                PRODUCT GRID: 6 columns on large screen, 2 rows of 6 = 12 items
+                PRODUCT GRID: 6 columns on wide screens, 2 rows of 6 = 12 items
                =============================================================== */}
             {paginatedProducts.length > 0 ? (
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2.5 sm:gap-3 lg:gap-3.5">
@@ -819,7 +881,7 @@ export default function NewPhonesPage({
                             onToggleWishlist?.(phone);
                           }}
                           aria-label="Add to Wishlist"
-                          className="p-1 rounded-full text-gray-400 hover:text-rose-500 hover:bg-rose-50 transition-colors z-10"
+                          className="p-1 rounded-full text-gray-400 hover:text-rose-500 hover:bg-rose-50 transition-colors z-10 cursor-pointer"
                         >
                           <Heart
                             className={`w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform active:scale-125 ${
@@ -875,7 +937,7 @@ export default function NewPhonesPage({
                           e.stopPropagation();
                           onAddToCart?.(phone);
                         }}
-                        className="mt-2.5 sm:mt-3 w-full py-1.5 sm:py-2 px-2 rounded-lg border border-[#009A44] text-[#009A44] hover:bg-[#009A44] hover:text-white transition-colors duration-200 flex items-center justify-center gap-1.5 text-xs font-semibold active:scale-[0.98]"
+                        className="mt-2.5 sm:mt-3 w-full py-1.5 sm:py-2 px-2 rounded-lg border border-[#009A44] text-[#009A44] hover:bg-[#009A44] hover:text-white transition-colors duration-200 flex items-center justify-center gap-1.5 text-xs font-semibold active:scale-[0.98] cursor-pointer"
                       >
                         <ShoppingCart className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2]" />
                         <span>Add to Cart</span>
@@ -889,7 +951,7 @@ export default function NewPhonesPage({
                 <p className="text-base font-bold text-gray-800">No phones match the selected filters.</p>
                 <button
                   onClick={handleClearAll}
-                  className="mt-3 inline-flex items-center gap-1.5 bg-[#00704A] text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-[#00583a]"
+                  className="mt-3 inline-flex items-center gap-1.5 bg-[#00704A] text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-[#00583a] cursor-pointer"
                 >
                   Reset Filters
                 </button>
@@ -909,7 +971,6 @@ export default function NewPhonesPage({
 
               {/* Right Pagination Number Buttons */}
               <div className="flex items-center gap-1.5">
-                {/* Previous Button */}
                 <button
                   onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
                   disabled={currentPage === 1}
@@ -919,10 +980,9 @@ export default function NewPhonesPage({
                   ←
                 </button>
 
-                {/* Page 1 */}
                 <button
                   onClick={() => setCurrentPage(1)}
-                  className={`w-8 h-8 rounded-lg text-xs font-bold transition-all ${
+                  className={`w-8 h-8 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                     currentPage === 1
                       ? 'bg-[#00704A] text-white shadow-2xs'
                       : 'bg-white border border-gray-200 text-gray-700 hover:bg-gray-50'
@@ -931,10 +991,9 @@ export default function NewPhonesPage({
                   1
                 </button>
 
-                {/* Page 2 */}
                 <button
                   onClick={() => setCurrentPage(2)}
-                  className={`w-8 h-8 rounded-lg text-xs font-bold transition-all ${
+                  className={`w-8 h-8 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                     currentPage === 2
                       ? 'bg-[#00704A] text-white shadow-2xs'
                       : 'bg-white border border-gray-200 text-gray-700 hover:bg-gray-50'
@@ -943,10 +1002,9 @@ export default function NewPhonesPage({
                   2
                 </button>
 
-                {/* Page 3 */}
                 <button
                   onClick={() => setCurrentPage(3)}
-                  className={`hidden sm:flex w-8 h-8 rounded-lg text-xs font-bold items-center justify-center transition-all ${
+                  className={`hidden sm:flex w-8 h-8 rounded-lg text-xs font-bold items-center justify-center transition-all cursor-pointer ${
                     currentPage === 3
                       ? 'bg-[#00704A] text-white shadow-2xs'
                       : 'bg-white border border-gray-200 text-gray-700 hover:bg-gray-50'
@@ -955,10 +1013,9 @@ export default function NewPhonesPage({
                   3
                 </button>
 
-                {/* Page 4 */}
                 <button
                   onClick={() => setCurrentPage(4)}
-                  className={`hidden sm:flex w-8 h-8 rounded-lg text-xs font-bold items-center justify-center transition-all ${
+                  className={`hidden sm:flex w-8 h-8 rounded-lg text-xs font-bold items-center justify-center transition-all cursor-pointer ${
                     currentPage === 4
                       ? 'bg-[#00704A] text-white shadow-2xs'
                       : 'bg-white border border-gray-200 text-gray-700 hover:bg-gray-50'
@@ -967,10 +1024,9 @@ export default function NewPhonesPage({
                   4
                 </button>
 
-                {/* Page 5 */}
                 <button
                   onClick={() => setCurrentPage(5)}
-                  className={`hidden sm:flex w-8 h-8 rounded-lg text-xs font-bold items-center justify-center transition-all ${
+                  className={`hidden sm:flex w-8 h-8 rounded-lg text-xs font-bold items-center justify-center transition-all cursor-pointer ${
                     currentPage === 5
                       ? 'bg-[#00704A] text-white shadow-2xs'
                       : 'bg-white border border-gray-200 text-gray-700 hover:bg-gray-50'
@@ -979,13 +1035,11 @@ export default function NewPhonesPage({
                   5
                 </button>
 
-                {/* Ellipsis */}
                 <span className="text-gray-400 px-1 text-xs">...</span>
 
-                {/* Page 21 */}
                 <button
                   onClick={() => setCurrentPage(21)}
-                  className={`w-8 h-8 rounded-lg text-xs font-bold transition-all ${
+                  className={`w-8 h-8 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                     currentPage === 21
                       ? 'bg-[#00704A] text-white shadow-2xs'
                       : 'bg-white border border-gray-200 text-gray-700 hover:bg-gray-50'
@@ -994,7 +1048,6 @@ export default function NewPhonesPage({
                   21
                 </button>
 
-                {/* Next Button */}
                 <button
                   onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
                   disabled={currentPage === totalPages}

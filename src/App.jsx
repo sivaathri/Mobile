@@ -316,6 +316,12 @@ export default function App() {
         onAddToCart={handleAddToCart}
         onToggleWishlist={handleToggleWishlist}
         wishlistIds={wishlistIds}
+        onViewAllNew={() => {
+          setIsOffersPopupOpen(false);
+          setCurrentView('new-phones');
+          setActiveCategory('New Phones');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
         onQuickView={(prod) => {
           setIsOffersPopupOpen(false);
           setQuickViewProduct(prod);
