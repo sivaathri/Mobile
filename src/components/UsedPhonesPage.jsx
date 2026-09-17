@@ -13,6 +13,8 @@ import {
   Award,
   Leaf,
   MapPin,
+  LayoutGrid,
+  List,
 } from 'lucide-react';
 import { PhoneMockup, BrandIcon } from './PhoneGraphics';
 
@@ -375,6 +377,7 @@ export default function UsedPhonesPage({
   const [selectedStorage, setSelectedStorage] = useState(['128 GB']);
   const [selectedRam, setSelectedRam] = useState([]);
   const [sortBy, setSortBy] = useState('Popularity');
+  const [viewMode, setViewMode] = useState('grid');
   const [currentPage, setCurrentPage] = useState(1);
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
 
@@ -510,7 +513,7 @@ export default function UsedPhonesPage({
     });
   }, [selectedBrand, selectedConditions, selectedStorage, selectedRam, selectedPriceRanges, sortBy]);
 
-  // When filters produce items, paginate 12 per page. If filters are restrictive, fallback nicely so user always sees data
+  // Fallback nicely so user always sees data
   const displayItems = filteredProducts.length > 0 ? filteredProducts : ALL_USED_PHONES_CATALOG;
   const itemsPerPage = 12;
   const totalPages = Math.ceil(displayItems.length / itemsPerPage);
@@ -521,134 +524,18 @@ export default function UsedPhonesPage({
     <div className="min-h-screen bg-[#F8F9FA] text-gray-800 pb-16">
       
       {/* Container matching full width grid */}
-      <div className="max-w-[1536px] mx-auto px-3 sm:px-4 lg:px-6 pt-3.5 sm:pt-4">
+      <div className="max-w-[1536px] mx-auto px-3 sm:px-4 lg:px-6 pt-3 sm:pt-4">
 
-        {/* Breadcrumb Navigation */}
-        <div className="flex items-center gap-1.5 text-xs text-gray-500 mb-3">
-          <button
-            onClick={onGoHome}
-            className="hover:text-[#00704A] hover:underline cursor-pointer transition-colors"
-          >
-            Home
-          </button>
-          <ChevronRight className="w-3.5 h-3.5 text-gray-400" />
-          <span className="text-gray-800 font-medium">Used Phones</span>
-        </div>
-
-        {/* Top Header: Title + Right Side Banner */}
-        <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4 mb-4">
-          {/* Left Title Area */}
-          <div className="flex-shrink-0">
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
-              Used Phones
-            </h1>
-            <p className="text-xs sm:text-sm text-gray-500 mt-1 font-normal">
-              Quality checked second-hand phones at the best prices.
-            </p>
-          </div>
-
-          {/* Right Banner matching user's design */}
-          <div className="relative flex-1 max-w-full lg:max-w-[620px] xl:max-w-[680px] rounded-xl overflow-hidden shadow-2xs border border-purple-100 group">
-            <img
-              src="/assets/used_phones_banner.png"
-              alt="Quality Used Phones - Same Phones. Brighter Futures."
-              className="w-full h-auto object-cover block"
-            />
-          </div>
-        </div>
-
-        {/* ===============================================================
-            5 TRUST / VALUE PROPOSITION BADGES
-           =============================================================== */}
-        <div className="bg-white rounded-xl border border-gray-200/80 p-3 sm:p-4 mb-5 shadow-2xs">
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 divide-y sm:divide-y-0 sm:divide-x divide-gray-100">
-            
-            {/* 1. Quality Checked */}
-            <div className="flex items-center gap-3 pt-2 sm:pt-0 sm:px-2">
-              <div className="w-9 h-9 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center flex-shrink-0 text-[#00704A]">
-                <ShieldCheck className="w-5 h-5" />
-              </div>
-              <div>
-                <h4 className="text-xs sm:text-sm font-bold text-gray-900 leading-tight">
-                  Quality Checked
-                </h4>
-                <p className="text-[11px] text-gray-500 mt-0.5">
-                  Tested by experts
-                </p>
-              </div>
-            </div>
-
-            {/* 2. 7-Day Returns */}
-            <div className="flex items-center gap-3 pt-2 sm:pt-0 sm:px-2">
-              <div className="w-9 h-9 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center flex-shrink-0 text-[#00704A]">
-                <RotateCcw className="w-4.5 h-4.5" />
-              </div>
-              <div>
-                <h4 className="text-xs sm:text-sm font-bold text-gray-900 leading-tight">
-                  7-Day Returns
-                </h4>
-                <p className="text-[11px] text-gray-500 mt-0.5">
-                  Hassle-free returns
-                </p>
-              </div>
-            </div>
-
-            {/* 3. Pan India Delivery */}
-            <div className="flex items-center gap-3 pt-2 sm:pt-0 sm:px-2">
-              <div className="w-9 h-9 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center flex-shrink-0 text-[#00704A]">
-                <Truck className="w-4.5 h-4.5" />
-              </div>
-              <div>
-                <h4 className="text-xs sm:text-sm font-bold text-gray-900 leading-tight">
-                  Pan India Delivery
-                </h4>
-                <p className="text-[11px] text-gray-500 mt-0.5">
-                  Fast & reliable shipping
-                </p>
-              </div>
-            </div>
-
-            {/* 4. Best Value */}
-            <div className="flex items-center gap-3 pt-2 sm:pt-0 sm:px-2">
-              <div className="w-9 h-9 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center flex-shrink-0 text-[#00704A]">
-                <Award className="w-5 h-5" />
-              </div>
-              <div>
-                <h4 className="text-xs sm:text-sm font-bold text-gray-900 leading-tight">
-                  Best Value
-                </h4>
-                <p className="text-[11px] text-gray-500 mt-0.5">
-                  Premium phones, lower prices
-                </p>
-              </div>
-            </div>
-
-            {/* 5. Sustainable Choice */}
-            <div className="flex items-center gap-3 pt-2 sm:pt-0 sm:px-2 col-span-2 sm:col-span-1">
-              <div className="w-9 h-9 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center flex-shrink-0 text-[#00704A]">
-                <Leaf className="w-4.5 h-4.5" />
-              </div>
-              <div>
-                <h4 className="text-xs sm:text-sm font-bold text-gray-900 leading-tight">
-                  Sustainable Choice
-                </h4>
-                <p className="text-[11px] text-gray-500 mt-0.5">
-                  Good for you, good for the planet
-                </p>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        {/* ===============================================================
-            MAIN CONTENT AREA: LEFT SIDEBAR FILTERS + RIGHT PRODUCTS GRID
-           =============================================================== */}
-        <div className="flex items-start gap-5 lg:gap-6">
+        {/* ===================================================================
+            EXACT 2-COLUMN LAYOUT: 
+            Left = Filters Sidebar starting at top baseline
+            Right = Breadcrumbs + Title & Banner + 5 Trust Badges + Brand Pills + Cards Grid
+           =================================================================== */}
+        <div className="flex flex-col lg:flex-row items-start gap-4 sm:gap-5 lg:gap-6">
           
-          {/* -------------------------------------------------------------
-              LEFT SIDEBAR FILTERS (Sticky on Desktop)
-             ------------------------------------------------------------- */}
+          {/* -----------------------------------------------------------------
+              LEFT COLUMN: Filters Sidebar
+             ----------------------------------------------------------------- */}
           <aside className="hidden lg:block w-56 xl:w-60 flex-shrink-0 bg-white rounded-xl border border-gray-200/80 p-4 shadow-2xs sticky top-28 self-start">
             
             {/* Header: Filters + Clear All */}
@@ -669,7 +556,7 @@ export default function UsedPhonesPage({
                 className="w-full flex items-center justify-between text-xs font-bold text-gray-800 hover:text-gray-950 cursor-pointer"
               >
                 <span>Condition</span>
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform ${isConditionOpen ? 'rotate-180' : ''}`} />
+                <span className="text-gray-400 font-bold text-xs">{isConditionOpen ? '—' : '+'}</span>
               </button>
 
               {isConditionOpen && (
@@ -708,7 +595,7 @@ export default function UsedPhonesPage({
                 className="w-full flex items-center justify-between text-xs font-bold text-gray-800 hover:text-gray-950 cursor-pointer"
               >
                 <span>Price Range</span>
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform ${isPriceOpen ? 'rotate-180' : ''}`} />
+                <span className="text-gray-400 font-bold text-xs">{isPriceOpen ? '—' : '+'}</span>
               </button>
 
               {isPriceOpen && (
@@ -747,7 +634,7 @@ export default function UsedPhonesPage({
                 className="w-full flex items-center justify-between text-xs font-bold text-gray-800 hover:text-gray-950 cursor-pointer"
               >
                 <span>Brand</span>
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform ${isBrandOpen ? 'rotate-180' : ''}`} />
+                <span className="text-gray-400 font-bold text-xs">{isBrandOpen ? '—' : '+'}</span>
               </button>
 
               {isBrandOpen && (
@@ -813,7 +700,7 @@ export default function UsedPhonesPage({
                 className="w-full flex items-center justify-between text-xs font-bold text-gray-800 hover:text-gray-950 cursor-pointer"
               >
                 <span>Storage</span>
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform ${isStorageOpen ? 'rotate-180' : ''}`} />
+                <span className="text-gray-400 font-bold text-xs">{isStorageOpen ? '—' : '+'}</span>
               </button>
 
               {isStorageOpen && (
@@ -852,7 +739,7 @@ export default function UsedPhonesPage({
                 className="w-full flex items-center justify-between text-xs font-bold text-gray-800 hover:text-gray-950 cursor-pointer"
               >
                 <span>RAM</span>
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform ${isRamOpen ? 'rotate-180' : ''}`} />
+                <span className="text-gray-400 font-bold text-xs">{isRamOpen ? '—' : '+'}</span>
               </button>
 
               {isRamOpen && (
@@ -886,12 +773,128 @@ export default function UsedPhonesPage({
 
           </aside>
 
-          {/* -------------------------------------------------------------
-              RIGHT MAIN SECTION: CONTROLS BAR + PRODUCT GRID + PAGINATION
-             ------------------------------------------------------------- */}
+          {/* -----------------------------------------------------------------
+              RIGHT MAIN SECTION: BREADCRUMBS + HEADER & BANNER + 5 BADGES + CONTROLS + PRODUCT GRID + PAGINATION
+             ----------------------------------------------------------------- */}
           <div className="flex-1 min-w-0">
             
-            {/* Sub-header Controls Bar */}
+            {/* 1. Breadcrumb Navigation */}
+            <div className="flex items-center gap-1.5 text-xs text-gray-500 mb-2.5">
+              <button
+                onClick={onGoHome}
+                className="hover:text-[#00704A] hover:underline cursor-pointer transition-colors"
+              >
+                Home
+              </button>
+              <span className="text-gray-400">&gt;</span>
+              <span className="text-gray-800 font-medium">Used Phones</span>
+            </div>
+
+            {/* 2. Top Header: Title (left) + Right Side Banner */}
+            <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3 sm:gap-4 mb-3.5">
+              {/* Left Title Area */}
+              <div className="flex-shrink-0">
+                <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
+                  Used Phones
+                </h1>
+                <p className="text-xs sm:text-sm text-gray-500 mt-1 font-normal">
+                  Quality checked second-hand phones at the best prices.
+                </p>
+              </div>
+
+              {/* Right Banner matching user's design */}
+              <div className="relative flex-1 max-w-full lg:max-w-[560px] xl:max-w-[620px] rounded-xl overflow-hidden shadow-2xs border border-purple-100 group">
+                <img
+                  src="/assets/used_phones_banner.png"
+                  alt="Quality Used Phones - Same Phones. Brighter Futures."
+                  className="w-full h-auto object-cover block"
+                />
+              </div>
+            </div>
+
+            {/* 3. 5 TRUST / VALUE PROPOSITION BADGES */}
+            <div className="bg-white rounded-xl border border-gray-200/80 p-3 sm:p-3.5 mb-4 shadow-2xs">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 divide-y sm:divide-y-0 sm:divide-x divide-gray-100">
+                
+                {/* 1. Quality Checked */}
+                <div className="flex items-center gap-2.5 pt-2 sm:pt-0 sm:px-2">
+                  <div className="w-8 h-8 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center flex-shrink-0 text-[#00704A]">
+                    <ShieldCheck className="w-4.5 h-4.5" />
+                  </div>
+                  <div>
+                    <h4 className="text-xs sm:text-sm font-bold text-gray-900 leading-tight">
+                      Quality Checked
+                    </h4>
+                    <p className="text-[11px] text-gray-500 mt-0.5">
+                      Tested by experts
+                    </p>
+                  </div>
+                </div>
+
+                {/* 2. 7-Day Returns */}
+                <div className="flex items-center gap-2.5 pt-2 sm:pt-0 sm:px-2">
+                  <div className="w-8 h-8 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center flex-shrink-0 text-[#00704A]">
+                    <RotateCcw className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <h4 className="text-xs sm:text-sm font-bold text-gray-900 leading-tight">
+                      7-Day Returns
+                    </h4>
+                    <p className="text-[11px] text-gray-500 mt-0.5">
+                      Hassle-free returns
+                    </p>
+                  </div>
+                </div>
+
+                {/* 3. Pan India Delivery */}
+                <div className="flex items-center gap-2.5 pt-2 sm:pt-0 sm:px-2">
+                  <div className="w-8 h-8 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center flex-shrink-0 text-[#00704A]">
+                    <Truck className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <h4 className="text-xs sm:text-sm font-bold text-gray-900 leading-tight">
+                      Pan India Delivery
+                    </h4>
+                    <p className="text-[11px] text-gray-500 mt-0.5">
+                      Fast & reliable shipping
+                    </p>
+                  </div>
+                </div>
+
+                {/* 4. Best Value */}
+                <div className="flex items-center gap-2.5 pt-2 sm:pt-0 sm:px-2">
+                  <div className="w-8 h-8 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center flex-shrink-0 text-[#00704A]">
+                    <Award className="w-4.5 h-4.5" />
+                  </div>
+                  <div>
+                    <h4 className="text-xs sm:text-sm font-bold text-gray-900 leading-tight">
+                      Best Value
+                    </h4>
+                    <p className="text-[11px] text-gray-500 mt-0.5">
+                      Premium phones, lower prices
+                    </p>
+                  </div>
+                </div>
+
+                {/* 5. Sustainable Choice */}
+                <div className="flex items-center gap-2.5 pt-2 sm:pt-0 sm:px-2 col-span-2 sm:col-span-1">
+                  <div className="w-8 h-8 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center flex-shrink-0 text-[#00704A]">
+                    <Leaf className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <h4 className="text-xs sm:text-sm font-bold text-gray-900 leading-tight">
+                      Sustainable Choice
+                    </h4>
+                    <p className="text-[11px] text-gray-500 mt-0.5">
+                      Good for you, good for the planet
+                    </p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            {/* 4. Sub-header Controls Bar */}
             <div className="bg-white rounded-xl border border-gray-200/80 p-2.5 sm:p-3 mb-4 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 shadow-2xs">
               
               {/* Left: Count + Brand Quick-Pills */}
@@ -1115,8 +1118,8 @@ export default function UsedPhonesPage({
                 </button>
               </div>
 
-              {/* Right: Clean Sort Dropdown */}
-              <div className="flex items-center gap-1.5 self-end md:self-center flex-shrink-0 text-xs text-gray-600">
+              {/* Right: Sort Dropdown + Grid/List Toggle matching user screenshot */}
+              <div className="flex items-center gap-2 self-end md:self-center flex-shrink-0 text-xs text-gray-600">
                 <span className="hidden sm:inline text-gray-500">Sort by:</span>
                 <select
                   value={sortBy}
@@ -1128,6 +1131,32 @@ export default function UsedPhonesPage({
                   <option value="Price: High to Low">Price: High to Low</option>
                   <option value="Newest First">Newest First</option>
                 </select>
+
+                {/* Layout Toggle Widget */}
+                <div className="flex items-center border border-gray-200 rounded-lg p-0.5 bg-gray-50 shadow-2xs">
+                  <button
+                    onClick={() => setViewMode('grid')}
+                    className={`p-1 rounded transition-colors cursor-pointer ${
+                      viewMode === 'grid'
+                        ? 'bg-white text-[#00704A] shadow-xs'
+                        : 'text-gray-400 hover:text-gray-600'
+                    }`}
+                    title="Grid View"
+                  >
+                    <LayoutGrid className="w-3.5 h-3.5" />
+                  </button>
+                  <button
+                    onClick={() => setViewMode('list')}
+                    className={`p-1 rounded transition-colors cursor-pointer ${
+                      viewMode === 'list'
+                        ? 'bg-white text-[#00704A] shadow-xs'
+                        : 'text-gray-400 hover:text-gray-600'
+                    }`}
+                    title="List View"
+                  >
+                    <List className="w-3.5 h-3.5" />
+                  </button>
+                </div>
               </div>
 
             </div>
