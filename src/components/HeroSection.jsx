@@ -13,16 +13,32 @@ export default function HeroSection({ onExplore, onSellClick, onViewDeals }) {
         <div 
           className="lg:col-span-8 rounded-2xl border border-emerald-100/90 p-4 sm:p-5 lg:p-5.5 relative overflow-hidden flex flex-col justify-between shadow-xs bg-[#e8f7f0] min-h-[240px] sm:min-h-[220px] lg:min-h-[235px]"
         >
-          {/* Background image on the right */}
+          {/* Background image on the right with feathered mask */}
           <div 
-            className="absolute inset-0 bg-no-repeat bg-right-bottom bg-cover sm:bg-contain opacity-25 sm:opacity-100 pointer-events-none transition-opacity"
+            className="absolute inset-0 bg-no-repeat bg-right-bottom bg-cover sm:bg-contain opacity-35 sm:opacity-100 pointer-events-none transition-opacity"
             style={{ 
               backgroundImage: `url(${heroBg})`,
+              WebkitMaskImage: 'linear-gradient(to right, transparent 0%, transparent 18%, rgba(0,0,0,0.15) 28%, rgba(0,0,0,0.65) 42%, black 58%)',
+              maskImage: 'linear-gradient(to right, transparent 0%, transparent 18%, rgba(0,0,0,0.15) 28%, rgba(0,0,0,0.65) 42%, black 58%)',
             }}
           />
 
-          {/* Soft gradient mask for mobile so text has 100% crisp contrast */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#e8f7f0] via-[#e8f7f0]/90 to-transparent pointer-events-none sm:hidden z-10" />
+          {/* Blur band directly at the start place of the background image */}
+          <div 
+            className="absolute inset-y-0 left-[18%] sm:left-[22%] lg:left-[24%] w-[36%] pointer-events-none backdrop-blur-[7px] z-10"
+            style={{
+              WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 30%, black 70%, transparent 100%)',
+              maskImage: 'linear-gradient(to right, transparent 0%, black 30%, black 70%, transparent 100%)',
+            }}
+          />
+
+          {/* Smooth mint gradient fade from left blending the start place */}
+          <div 
+            className="absolute inset-0 pointer-events-none z-10"
+            style={{
+              background: 'linear-gradient(to right, #e8f7f0 0%, #e8f7f0 18%, rgba(232, 247, 240, 0.92) 28%, rgba(232, 247, 240, 0.45) 42%, transparent 58%)'
+            }}
+          />
 
           {/* Main Content (Left side) */}
           <div className="relative z-20 max-w-xs sm:max-w-sm lg:max-w-md">
@@ -55,7 +71,7 @@ export default function HeroSection({ onExplore, onSellClick, onViewDeals }) {
           </div>
 
           {/* Handwritten Angle Tagline ("Same Phones Brighter Futures") */}
-          <div className="hidden lg:block absolute left-[42%] xl:left-[41%] top-[46%] -translate-y-1/2 z-10 transform -rotate-[7deg] text-center select-none pointer-events-none">
+          <div className="hidden lg:block absolute left-[42%] xl:left-[41%] top-[46%] -translate-y-1/2 z-20 transform -rotate-[7deg] text-center select-none pointer-events-none">
             <div className="font-script text-[21px] lg:text-[25px] xl:text-[27px] font-bold text-[#0d3b2e] leading-[1.02] tracking-wide">
               <span>Same</span><br />
               <span>Phones</span><br />
