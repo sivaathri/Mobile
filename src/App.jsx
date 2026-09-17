@@ -138,11 +138,15 @@ export default function App() {
 
         {/* Subheader / Category Navigation with Mega Menu */}
         <CategoryNav
-          activeCategory={currentView === 'new-phones' ? 'New Phones' : activeCategory}
+          activeCategory={currentView === 'new-phones' ? 'New Phones' : currentView === 'used-phones' ? 'Used Phones' : activeCategory}
           onSelectCategory={(cat) => {
             if (cat === 'New Phones') {
               setCurrentView('new-phones');
               setActiveCategory('New Phones');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else if (cat === 'Used Phones') {
+              setCurrentView('used-phones');
+              setActiveCategory('Used Phones');
               window.scrollTo({ top: 0, behavior: 'smooth' });
             } else {
               setCurrentView('home');
@@ -160,10 +164,20 @@ export default function App() {
             showToast(`Filtered by ${brand}`);
           }}
           onSelectFilter={(filterName) => {
-            setCurrentView('home');
-            showToast(`Filtered by ${filterName}`);
-            const el = document.getElementById('featured-phones');
-            el?.scrollIntoView({ behavior: 'smooth' });
+            if (filterName === 'New Phones') {
+              setCurrentView('new-phones');
+              setActiveCategory('New Phones');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else if (filterName === 'Used Phones' || filterName === 'Refurbished Phones') {
+              setCurrentView('used-phones');
+              setActiveCategory('Used Phones');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+              setCurrentView('home');
+              showToast(`Filtered by ${filterName}`);
+              const el = document.getElementById('featured-phones');
+              el?.scrollIntoView({ behavior: 'smooth' });
+            }
           }}
         />
       </header>
@@ -173,6 +187,19 @@ export default function App() {
         {currentView === 'new-phones' ? (
           <NewPhonesPage
             onBackToHome={() => {
+              setCurrentView('home');
+              setActiveCategory('All Categories');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            wishlistIds={wishlistIds}
+            onToggleWishlist={handleToggleWishlist}
+            onAddToCart={handleAddToCart}
+            onQuickView={(phone) => setQuickViewProduct(phone)}
+            showToast={showToast}
+          />
+        ) : currentView === 'used-phones' ? (
+          <UsedPhonesPage
+            onGoHome={() => {
               setCurrentView('home');
               setActiveCategory('All Categories');
               window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -244,9 +271,10 @@ export default function App() {
                   showToast('Viewing All New Phones');
                 }}
                 onViewAllPreOwned={() => {
-                  showToast('Showing all certified used phone deals');
-                  const el = document.getElementById('more-phones');
-                  el?.scrollIntoView({ behavior: 'smooth' });
+                  setCurrentView('used-phones');
+                  setActiveCategory('Used Phones');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                  showToast('Viewing All Used Phones');
                 }}
               />
             </div>
