@@ -298,6 +298,106 @@ export function PhoneMockup({ type, className = "h-40 w-auto object-contain" }) 
         </svg>
       );
 
+    case 'tablet':
+      return (
+        <svg viewBox="0 0 160 140" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+          {/* Tablet Body */}
+          <rect x="22" y="12" width="116" height="116" rx="14" fill="#0f172a" stroke="#475569" strokeWidth="2.5" />
+          {/* Tablet Screen */}
+          <rect x="28" y="18" width="104" height="104" rx="8" fill="url(#grad-tablet-screen)" />
+          {/* Front Camera */}
+          <circle cx="80" cy="15" r="1.5" fill="#334155" />
+          {/* Screen Content Graphics */}
+          <rect x="36" y="26" width="36" height="18" rx="4" fill="#38bdf8" opacity="0.3" />
+          <rect x="76" y="26" width="48" height="18" rx="4" fill="#818cf8" opacity="0.3" />
+          <rect x="36" y="50" width="88" height="42" rx="6" fill="#1e293b" opacity="0.5" />
+          <circle cx="80" cy="71" r="12" fill="#00684a" opacity="0.4" />
+          {/* Stylus next to tablet */}
+          <rect x="144" y="22" width="4" height="96" rx="2" fill="#cbd5e1" stroke="#94a3b8" strokeWidth="0.8" />
+          <defs>
+            <linearGradient id="grad-tablet-screen" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#091b29" />
+              <stop offset="50%" stopColor="#0e3a40" />
+              <stop offset="100%" stopColor="#04231b" />
+            </linearGradient>
+          </defs>
+        </svg>
+      );
+
+    case 'watch':
+      return (
+        <svg viewBox="0 0 160 140" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+          {/* Watch Straps */}
+          <rect x="62" y="6" width="36" height="34" rx="6" fill="#334155" />
+          <rect x="62" y="100" width="36" height="34" rx="6" fill="#334155" />
+          {/* Watch Case */}
+          <rect x="46" y="28" width="68" height="84" rx="22" fill="#0f172a" stroke="#64748b" strokeWidth="2.5" />
+          {/* Watch Display */}
+          <rect x="52" y="34" width="56" height="72" rx="16" fill="url(#grad-watch-screen)" />
+          {/* Digital Crown & Button */}
+          <rect x="114" y="44" width="4" height="18" rx="2" fill="#94a3b8" />
+          <rect x="114" y="72" width="3" height="14" rx="1.5" fill="#64748b" />
+          {/* Watchface Activity Rings */}
+          <circle cx="80" cy="70" r="20" stroke="#f43f5e" strokeWidth="3" fill="none" strokeDasharray="95 30" />
+          <circle cx="80" cy="70" r="14" stroke="#10b981" strokeWidth="3" fill="none" strokeDasharray="65 25" />
+          <circle cx="80" cy="70" r="8" stroke="#06b6d4" strokeWidth="3" fill="none" strokeDasharray="40 10" />
+          <defs>
+            <linearGradient id="grad-watch-screen" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#050811" />
+              <stop offset="100%" stopColor="#0f172a" />
+            </linearGradient>
+          </defs>
+        </svg>
+      );
+
+    case 'audio':
+      return (
+        <svg viewBox="0 0 160 140" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+          {/* Over-ear Headphones / Audio Case */}
+          <path d="M 38 72 C 38 42, 122 42, 122 72" stroke="#475569" strokeWidth="7" fill="none" strokeLinecap="round" />
+          {/* Ear cushions */}
+          <rect x="28" y="68" width="20" height="38" rx="8" fill="#1e293b" stroke="#334155" strokeWidth="2" />
+          <rect x="112" y="68" width="20" height="38" rx="8" fill="#1e293b" stroke="#334155" strokeWidth="2" />
+          {/* TWS Charging Case in front */}
+          <rect x="62" y="78" width="36" height="42" rx="14" fill="#f8fafc" stroke="#cbd5e1" strokeWidth="2" />
+          <line x1="62" y1="92" x2="98" y2="92" stroke="#e2e8f0" strokeWidth="1.5" />
+          <circle cx="80" cy="104" r="2.5" fill="#10b981" />
+        </svg>
+      );
+
+    case 'charger':
+      return (
+        <svg viewBox="0 0 160 140" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+          {/* Fast Charger Adapter */}
+          <rect x="44" y="38" width="58" height="64" rx="10" fill="#f8fafc" stroke="#cbd5e1" strokeWidth="2.5" />
+          <rect x="62" y="86" width="22" height="6" rx="3" fill="#0f172a" />
+          {/* Type-C Port Accent */}
+          <rect x="68" y="88" width="10" height="2" rx="1" fill="#10b981" />
+          {/* USB-C Cable */}
+          <path d="M 102 68 C 125 68, 128 106, 142 106" stroke="#94a3b8" strokeWidth="4" fill="none" strokeLinecap="round" />
+          {/* Electric bolt */}
+          <path d="M 74 52 L 67 65 L 73 65 L 70 78 L 81 63 L 75 63 Z" fill="#f59e0b" />
+        </svg>
+      );
+
+    case 'powerbank':
+      return (
+        <svg viewBox="0 0 160 140" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+          {/* Sleek Power Bank */}
+          <rect x="42" y="24" width="76" height="92" rx="14" fill="#1e293b" stroke="#475569" strokeWidth="2" />
+          {/* MagSafe Ring */}
+          <circle cx="80" cy="68" r="22" stroke="#64748b" strokeWidth="2.5" strokeDasharray="6 3" fill="none" />
+          <circle cx="80" cy="68" r="5" fill="#64748b" opacity="0.6" />
+          {/* LED battery meter */}
+          <rect x="54" y="34" width="52" height="14" rx="4" fill="#0f172a" />
+          <circle cx="62" cy="41" r="2" fill="#10b981" />
+          <circle cx="69" cy="41" r="2" fill="#10b981" />
+          <circle cx="76" cy="41" r="2" fill="#10b981" />
+          <circle cx="83" cy="41" r="2" fill="#10b981" />
+          <span className="text-[7px] font-bold text-white font-mono">100%</span>
+        </svg>
+      );
+
     default:
       // Generic smart device front and back
       return (

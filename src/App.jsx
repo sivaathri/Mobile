@@ -13,11 +13,12 @@ import QuickViewModal from './components/QuickViewModal';
 import OffersPopupModal from './components/OffersPopupModal';
 import NewPhonesPage from './components/NewPhonesPage';
 import UsedPhonesPage from './components/UsedPhonesPage';
+import CategoryPage from './components/CategoryPage';
 import { FEATURED_PHONES, MORE_PHONES, LATEST_NEW_PHONES, QUALITY_PREOWNED_PHONES } from './data/products';
 
 export default function App() {
   // State management
-  const [currentView, setCurrentView] = useState('home'); // 'home' | 'new-phones' | 'used-phones'
+  const [currentView, setCurrentView] = useState('home'); // 'home' | 'new-phones' | 'used-phones' | 'category'
   const [selectedBrand, setSelectedBrand] = useState('All Phones');
   const [activeCategory, setActiveCategory] = useState('All Categories');
   const [searchQuery, setSearchQuery] = useState('');
@@ -172,7 +173,15 @@ export default function App() {
 
         {/* Subheader / Category Navigation with Mega Menu */}
         <CategoryNav
-          activeCategory={currentView === 'new-phones' ? 'New Phones' : currentView === 'used-phones' ? 'Used Phones' : activeCategory}
+          activeCategory={
+            currentView === 'new-phones'
+              ? 'New Phones'
+              : currentView === 'used-phones'
+              ? 'Used Phones'
+              : currentView === 'category'
+              ? activeCategory
+              : activeCategory
+          }
           onSelectCategory={(cat) => {
             if (cat === 'New Phones') {
               setCurrentView('new-phones');
@@ -182,12 +191,13 @@ export default function App() {
               setCurrentView('used-phones');
               setActiveCategory('Used Phones');
               window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+            } else if (cat === 'All Categories') {
+              setActiveCategory('All Categories');
             } else {
-              setCurrentView('home');
+              setCurrentView('category');
               setActiveCategory(cat);
-              if (cat === 'Top Deals') {
-                showToast('Showing handpicked top deals below!');
-              }
+              window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+              showToast(`Viewing ${cat}`);
             }
           }}
           onSelectBrand={(brand) => {
@@ -205,6 +215,22 @@ export default function App() {
             } else if (filterName === 'Used Phones' || filterName === 'Refurbished Phones') {
               setCurrentView('used-phones');
               setActiveCategory('Used Phones');
+              window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+            } else if (
+              [
+                'Tablets',
+                'Smartwatches',
+                'Accessories',
+                'Audio',
+                'Smartphones',
+                'Top Deals',
+                'New Arrivals',
+                'Brand Stores',
+                'Bulk Orders',
+              ].includes(filterName)
+            ) {
+              setCurrentView('category');
+              setActiveCategory(filterName);
               window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
             } else {
               setCurrentView('home');
@@ -244,6 +270,34 @@ export default function App() {
             onQuickView={(phone) => setQuickViewProduct(phone)}
             showToast={showToast}
           />
+        ) : currentView === 'category' ? (
+          <CategoryPage
+            category={activeCategory}
+            onBackToHome={() => {
+              setCurrentView('home');
+              setActiveCategory('All Categories');
+              window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+            }}
+            onSelectCategory={(cat) => {
+              if (cat === 'New Phones') {
+                setCurrentView('new-phones');
+                setActiveCategory('New Phones');
+              } else if (cat === 'Used Phones') {
+                setCurrentView('used-phones');
+                setActiveCategory('Used Phones');
+              } else {
+                setCurrentView('category');
+                setActiveCategory(cat);
+              }
+              window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+            }}
+            wishlistIds={wishlistIds}
+            onToggleWishlist={handleToggleWishlist}
+            onAddToCart={handleAddToCart}
+            onQuickView={(prod) => setQuickViewProduct(prod)}
+            showToast={showToast}
+            searchQuery={searchQuery}
+          />
         ) : (
           <>
             {/* Hero Section */}
@@ -264,9 +318,16 @@ export default function App() {
             <BrandFilterBar
               selectedBrand={selectedBrand}
               onSelectBrand={(brand) => {
-                setSelectedBrand(brand);
-                if (brand !== 'All Phones') {
-                  showToast(`Filtered by ${brand}`);
+                if (['Tablets', 'Smartwatches', 'Accessories'].includes(brand)) {
+                  setCurrentView('category');
+                  setActiveCategory(brand);
+                  window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+                  showToast(`Viewing ${brand}`);
+                } else {
+                  setSelectedBrand(brand);
+                  if (brand !== 'All Phones') {
+                    showToast(`Filtered by ${brand}`);
+                  }
                 }
               }}
             />
