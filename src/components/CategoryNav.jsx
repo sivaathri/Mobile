@@ -2,28 +2,26 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Menu, ChevronDown } from 'lucide-react';
 import MegaMenu from './MegaMenu';
 
-export default function CategoryNav({ 
-  onSelectCategory, 
-  activeCategory, 
-  onSelectBrand, 
-  onSelectFilter 
+export default function CategoryNav({
+  onSelectCategory,
+  activeCategory,
+  onSelectBrand,
+  onSelectFilter
 }) {
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
   const navRef = useRef(null);
   const timeoutRef = useRef(null);
 
   const categories = [
-'New Phones',
+    'New Phones',
     'Used Phones',
-     'Top Deals',
+    'New Arrivals',
+   
     'Smartphones',
     'Tablets',
     'Smartwatches',
     'Accessories',
     'Audio',
-   
-    'New Arrivals',
-    'Brand Stores',
     'Bulk Orders',
   ];
 
@@ -90,13 +88,13 @@ export default function CategoryNav({
   return (
     <nav ref={navRef} className="relative bg-white border-b border-gray-200/80 text-xs font-medium text-gray-700 w-full py-2 sm:py-2.5">
       <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 xl:px-8 flex items-center justify-center relative">
-        
+
         {/* Centered Categories Row */}
         <div className="w-full overflow-x-auto no-scrollbar flex items-center justify-start xl:justify-center">
           <div className="flex items-center gap-1 min-w-max px-1 xl:mx-auto">
-            
+
             {/* All Categories Dropdown Trigger (hover & click) */}
-            <div 
+            <div
               onMouseEnter={handleMouseEnterTrigger}
               onMouseLeave={handleMouseLeave}
               className="relative mr-1.5 sm:mr-2 flex-shrink-0"
@@ -107,29 +105,25 @@ export default function CategoryNav({
                   setIsMegaMenuOpen((prev) => !prev);
                   if (onSelectCategory) onSelectCategory('All Categories');
                 }}
-                className={`flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all duration-200 font-bold cursor-pointer select-none border-0 outline-none focus:outline-none focus-visible:outline-none ring-0 focus:ring-0 active:scale-[0.98] ${
-                  isMegaMenuOpen || activeCategory === 'All Categories'
+                className={`flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all duration-200 font-bold cursor-pointer select-none border-0 outline-none focus:outline-none focus-visible:outline-none ring-0 focus:ring-0 active:scale-[0.98] ${isMegaMenuOpen || activeCategory === 'All Categories'
                     ? 'text-[#00684a] font-bold bg-emerald-50 shadow-2xs'
                     : 'text-gray-900 hover:text-[#00684a] hover:bg-gray-50'
-                }`}
+                  }`}
               >
-                <Menu className={`w-4 h-4 transition-colors duration-200 ${
-                  isMegaMenuOpen || activeCategory === 'All Categories' ? 'text-[#00684a]' : 'text-gray-800'
-                }`} />
+                <Menu className={`w-4 h-4 transition-colors duration-200 ${isMegaMenuOpen || activeCategory === 'All Categories' ? 'text-[#00684a]' : 'text-gray-800'
+                  }`} />
                 <span className="text-[13px]">All Categories</span>
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-300 ease-out ${
-                  isMegaMenuOpen 
-                    ? 'rotate-180 text-[#00684a]' 
-                    : activeCategory === 'All Categories' 
-                    ? 'text-[#00684a]' 
-                    : 'text-gray-500'
-                }`} />
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-300 ease-out ${isMegaMenuOpen
+                    ? 'rotate-180 text-[#00684a]'
+                    : activeCategory === 'All Categories'
+                      ? 'text-[#00684a]'
+                      : 'text-gray-500'
+                  }`} />
               </button>
 
               {/* Active Indicator Bar (Smooth scale and fade) */}
-              <div className={`absolute -bottom-2 left-2.5 right-2.5 h-[2.5px] bg-[#00684a] rounded-t-full shadow-2xs pointer-events-none transition-all duration-300 ease-out ${
-                isMegaMenuOpen ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'
-              }`} />
+              <div className={`absolute -bottom-2 left-2.5 right-2.5 h-[2.5px] bg-[#00684a] rounded-t-full shadow-2xs pointer-events-none transition-all duration-300 ease-out ${isMegaMenuOpen ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'
+                }`} />
             </div>
 
             {/* Categories Horizontal Links */}
@@ -147,11 +141,10 @@ export default function CategoryNav({
                       closeMenuImmediately();
                       if (onSelectCategory) onSelectCategory(cat);
                     }}
-                    className={`relative px-3 py-1.5 whitespace-nowrap transition-colors flex-shrink-0 text-[12.5px] cursor-pointer border-0 outline-none focus:outline-none focus-visible:outline-none ring-0 focus:ring-0 ${
-                      isActive
+                    className={`relative px-3 py-1.5 whitespace-nowrap transition-colors flex-shrink-0 text-[12.5px] cursor-pointer border-0 outline-none focus:outline-none focus-visible:outline-none ring-0 focus:ring-0 ${isActive
                         ? 'text-[#00704a] font-bold'
                         : 'text-gray-600 hover:text-gray-950 hover:bg-gray-50'
-                    }`}
+                      }`}
                   >
                     <span>{cat}</span>
                     {isActive && (
