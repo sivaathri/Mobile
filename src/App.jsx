@@ -14,6 +14,7 @@ import OffersPopupModal from './components/OffersPopupModal';
 import NewPhonesPage from './components/NewPhonesPage';
 import UsedPhonesPage from './components/UsedPhonesPage';
 import CategoryPage from './components/CategoryPage';
+import ProductDetailsPage from './components/ProductDetailsPage';
 import { FEATURED_PHONES, MORE_PHONES, LATEST_NEW_PHONES, QUALITY_PREOWNED_PHONES } from './data/products';
 
 export default function App() {
@@ -31,6 +32,7 @@ export default function App() {
   const [wishlistIds, setWishlistIds] = useState(['feat-1', 'feat-3']);
   
   // Modals & Drawers state
+  const [selectedProduct, setSelectedProduct] = useState(FEATURED_PHONES[0]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isSellModalOpen, setIsSellModalOpen] = useState(false);
   const [quickViewProduct, setQuickViewProduct] = useState(null);
@@ -90,6 +92,12 @@ export default function App() {
   const handleAddToCart = (product) => {
     setCartItems((prev) => [...prev, product]);
     showToast(`Added "${product.name}" to cart!`);
+  };
+
+  const handleOpenProduct = (product) => {
+    setSelectedProduct(product);
+    setCurrentView('product-details');
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   };
 
   const handleRemoveFromCart = (index) => {
@@ -244,7 +252,41 @@ export default function App() {
 
       {/* Main Container */}
       <main className="flex-1">
-        {currentView === 'new-phones' ? (
+        {currentView === 'product-details' ? (
+          <ProductDetailsPage
+            product={selectedProduct}
+            onGoHome={() => {
+              setCurrentView('home');
+              setActiveCategory('All Categories');
+              window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+            }}
+            onGoUsedPhones={() => {
+              setCurrentView('used-phones');
+              setActiveCategory('Used Phones');
+              window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+            }}
+            onGoNewPhones={() => {
+              setCurrentView('new-phones');
+              setActiveCategory('New Phones');
+              window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+            }}
+            onSelectBrand={(brand) => {
+              setSelectedBrand(brand);
+              setCurrentView('home');
+              window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+              showToast(`Filtered by ${brand}`);
+            }}
+            onAddToCart={handleAddToCart}
+            onBuyNow={(prod) => {
+              handleAddToCart(prod);
+              setIsCartOpen(true);
+            }}
+            isWishlisted={selectedProduct ? wishlistIds.includes(selectedProduct.id) : false}
+            onToggleWishlist={handleToggleWishlist}
+            onSelectProduct={handleOpenProduct}
+            showToast={showToast}
+          />
+        ) : currentView === 'new-phones' ? (
           <NewPhonesPage
             onBackToHome={() => {
               setCurrentView('home');
@@ -254,7 +296,7 @@ export default function App() {
             wishlistIds={wishlistIds}
             onToggleWishlist={handleToggleWishlist}
             onAddToCart={handleAddToCart}
-            onQuickView={(phone) => setQuickViewProduct(phone)}
+            onQuickView={(phone) => handleOpenProduct(phone)}
             showToast={showToast}
           />
         ) : currentView === 'used-phones' ? (
@@ -267,7 +309,7 @@ export default function App() {
             wishlistIds={wishlistIds}
             onToggleWishlist={handleToggleWishlist}
             onAddToCart={handleAddToCart}
-            onQuickView={(phone) => setQuickViewProduct(phone)}
+            onQuickView={(phone) => handleOpenProduct(phone)}
             showToast={showToast}
           />
         ) : currentView === 'category' ? (
@@ -294,7 +336,7 @@ export default function App() {
             wishlistIds={wishlistIds}
             onToggleWishlist={handleToggleWishlist}
             onAddToCart={handleAddToCart}
-            onQuickView={(prod) => setQuickViewProduct(prod)}
+            onQuickView={(prod) => handleOpenProduct(prod)}
             showToast={showToast}
             searchQuery={searchQuery}
           />
@@ -358,7 +400,7 @@ export default function App() {
                 wishlistIds={wishlistIds}
                 onToggleWishlist={handleToggleWishlist}
                 onAddToCart={handleAddToCart}
-                onQuickView={(phone) => setQuickViewProduct(phone)}
+                onQuickView={(phone) => handleOpenProduct(phone)}
                 onViewAllNew={() => {
                   setCurrentView('new-phones');
                   setActiveCategory('New Phones');
@@ -383,7 +425,7 @@ export default function App() {
                 wishlistIds={wishlistIds}
                 onToggleWishlist={handleToggleWishlist}
                 onAddToCart={handleAddToCart}
-                onQuickView={(phone) => setQuickViewProduct(phone)}
+                onQuickView={(phone) => handleOpenProduct(phone)}
                 onViewAll={() => setSelectedBrand('All Phones')}
               />
             </div>
@@ -448,7 +490,7 @@ export default function App() {
         }}
         onQuickView={(prod) => {
           setIsOffersPopupOpen(false);
-          setQuickViewProduct(prod);
+          handleOpenProduct(prod);
         }}
       />
 
