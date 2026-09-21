@@ -15,6 +15,7 @@ import NewPhonesPage from './components/NewPhonesPage';
 import UsedPhonesPage from './components/UsedPhonesPage';
 import CategoryPage from './components/CategoryPage';
 import ProductDetailsPage from './components/ProductDetailsPage';
+import CheckoutPage from './components/CheckoutPage';
 import { FEATURED_PHONES, MORE_PHONES, LATEST_NEW_PHONES, QUALITY_PREOWNED_PHONES } from './data/products';
 
 export default function App() {
@@ -33,6 +34,7 @@ export default function App() {
   
   // Modals & Drawers state
   const [selectedProduct, setSelectedProduct] = useState(FEATURED_PHONES[0]);
+  const [checkoutProduct, setCheckoutProduct] = useState(null);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isSellModalOpen, setIsSellModalOpen] = useState(false);
   const [quickViewProduct, setQuickViewProduct] = useState(null);
@@ -97,6 +99,13 @@ export default function App() {
   const handleOpenProduct = (product) => {
     setSelectedProduct(product);
     setCurrentView('product-details');
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  };
+
+  const handleBuyNow = (configuredProduct) => {
+    const productToCheckout = configuredProduct || selectedProduct;
+    setCheckoutProduct(productToCheckout);
+    setCurrentView('checkout');
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   };
 
@@ -252,7 +261,21 @@ export default function App() {
 
       {/* Main Container */}
       <main className="flex-1">
-        {currentView === 'product-details' ? (
+        {currentView === 'checkout' ? (
+          <CheckoutPage
+            product={checkoutProduct || selectedProduct}
+            cartItems={cartItems}
+            onBack={() => {
+              setCurrentView('product-details');
+              window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+            }}
+            onOrderComplete={() => {
+              setCartItems([]);
+              showToast('🎉 Order placed successfully!');
+            }}
+            showToast={showToast}
+          />
+        ) : currentView === 'product-details' ? (
           <ProductDetailsPage
             product={selectedProduct}
             onGoHome={() => {
@@ -277,10 +300,7 @@ export default function App() {
               showToast(`Filtered by ${brand}`);
             }}
             onAddToCart={handleAddToCart}
-            onBuyNow={(prod) => {
-              handleAddToCart(prod);
-              setIsCartOpen(true);
-            }}
+            onBuyNow={handleBuyNow}
             isWishlisted={selectedProduct ? wishlistIds.includes(selectedProduct.id) : false}
             onToggleWishlist={handleToggleWishlist}
             onSelectProduct={handleOpenProduct}
@@ -454,8 +474,10 @@ export default function App() {
         cartItems={cartItems}
         onRemoveItem={handleRemoveFromCart}
         onCheckout={() => {
-          alert('Proceeding to Secure Gateway! Order total: ₹' + cartItems.reduce((s, c) => s + c.price, 0).toLocaleString('en-IN'));
           setIsCartOpen(false);
+          setCheckoutProduct(cartItems[0] || selectedProduct);
+          setCurrentView('checkout');
+          window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
         }}
       />
 
