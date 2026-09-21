@@ -406,20 +406,22 @@ export default function ProductDetailsPage({
               {selectedStorage} • {selectedCondition} Condition
             </p>
 
-            {/* Ratings & Sold Stats */}
-            <div className="flex items-center gap-2 mt-2.5 text-xs text-gray-600">
-              <div className="flex items-center text-emerald-600">
-                {[1, 2, 3, 4].map(i => (
-                  <Star key={i} className="w-3.5 h-3.5 fill-emerald-500 text-emerald-500" />
-                ))}
-                <Star className="w-3.5 h-3.5 fill-emerald-500/70 text-emerald-500" />
+            {/* Ratings & Sold Stats (Hidden for used phones, only shown for brand new phones) */}
+            {isNew && (
+              <div className="flex items-center gap-2 mt-2.5 text-xs text-gray-600">
+                <div className="flex items-center text-emerald-600">
+                  {[1, 2, 3, 4].map(i => (
+                    <Star key={i} className="w-3.5 h-3.5 fill-emerald-500 text-emerald-500" />
+                  ))}
+                  <Star className="w-3.5 h-3.5 fill-emerald-500/70 text-emerald-500" />
+                </div>
+                <span className="font-bold text-emerald-700 hover:underline cursor-pointer">
+                  4.6 (320 reviews)
+                </span>
+                <span className="text-gray-300">|</span>
+                <span className="text-gray-500 font-medium">1K+ sold</span>
               </div>
-              <span className="font-bold text-emerald-700 hover:underline cursor-pointer">
-                4.6 (320 reviews)
-              </span>
-              <span className="text-gray-300">|</span>
-              <span className="text-gray-500 font-medium">1K+ sold</span>
-            </div>
+            )}
 
             {/* Price Section */}
             <div className="mt-4 pb-4 border-b border-gray-100">
@@ -954,50 +956,86 @@ export default function ProductDetailsPage({
       {/* Lightbox / Zoom Modal rendered via Portal directly into document.body */}
       {isZoomOpen && typeof document !== 'undefined' && createPortal(
         <div 
-          className="fixed inset-0 z-[99999999] bg-black/92 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 animate-fadeIn"
+          className="fixed inset-0 z-[99999999] backdrop-blur-md flex items-center justify-center p-4 sm:p-6 animate-fadeIn"
+          style={{ backgroundColor: 'rgba(15, 23, 42, 0.88)' }}
           onClick={() => setIsZoomOpen(false)}
           role="dialog"
           aria-modal="true"
         >
-          {/* Close button */}
+          {/* Prominent High-Contrast Close Button */}
           <button
             onClick={(e) => {
               e.stopPropagation();
               setIsZoomOpen(false);
             }}
-            className="absolute top-5 right-5 text-white/90 hover:text-white p-2.5 rounded-full bg-white/15 hover:bg-white/25 transition-all cursor-pointer z-[100000000] shadow-xl"
+            className="absolute top-5 right-5 sm:top-6 sm:right-8 bg-white/95 hover:bg-white text-gray-900 px-4 py-2 rounded-full font-bold text-xs flex items-center gap-1.5 shadow-2xl transition-all cursor-pointer hover:scale-105 z-50 border border-gray-200"
             title="Close Zoom View (Esc)"
           >
-            <X className="w-6 h-6" />
+            <X className="w-4 h-4 text-gray-700" />
+            <span>Close (Esc)</span>
           </button>
 
-          {/* Modal Content Box */}
+          {/* Centered Showcase Card */}
           <div 
-            className="relative max-w-2xl w-full p-2 flex flex-col items-center justify-center pointer-events-auto z-[99999999]"
+            className="relative bg-white rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl flex flex-col items-center justify-center pointer-events-auto border border-gray-100 animate-scaleUp"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center justify-center w-full max-h-[70vh]">
+            {/* Top Badge & Header */}
+            <div className="w-full flex items-center justify-between pb-3 border-b border-gray-100 mb-4">
+              <div className="flex items-center gap-2">
+                <span className="bg-[#6936d3] text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full shadow-xs">
+                  {currentProduct.tag || 'Certified'}
+                </span>
+                <span className="text-xs font-bold text-gray-900">
+                  {currentProduct.name}
+                </span>
+              </div>
+              <span className="text-xs font-extrabold text-[#0b4d3c]">
+                ₹{finalPrice.toLocaleString('en-IN')}
+              </span>
+            </div>
+
+            {/* Main Phone Visual in High-Res */}
+            <div className="w-full h-72 sm:h-84 flex items-center justify-center my-2">
               {isApple ? (
-                <DualPhoneGraphic color={selectedColor.hex} className="max-h-[65vh] w-auto object-contain drop-shadow-2xl" />
+                <DualPhoneGraphic color={selectedColor.hex} className="h-68 sm:h-80 w-auto object-contain drop-shadow-xl" />
               ) : currentProduct.image ? (
-                <div className="bg-white rounded-3xl p-4 sm:p-6 shadow-2xl flex items-center justify-center">
-                  <img 
-                    src={currentProduct.image} 
-                    alt={currentProduct.name} 
-                    className="max-h-[58vh] w-auto max-w-full object-contain" 
-                  />
-                </div>
+                <img 
+                  src={currentProduct.image} 
+                  alt={currentProduct.name} 
+                  className="h-68 sm:h-80 w-auto max-w-full object-contain drop-shadow-lg" 
+                />
               ) : (
                 <PhoneMockup 
                   type={currentProduct.imageType} 
-                  className="max-h-[65vh] w-auto object-contain drop-shadow-2xl" 
+                  className="h-68 sm:h-80 w-auto object-contain drop-shadow-lg" 
                 />
               )}
             </div>
-            
-            <div className="text-white text-xs sm:text-sm font-semibold mt-4 bg-white/15 backdrop-blur-md px-5 py-2 rounded-full shadow-lg border border-white/20 text-center">
-              {currentProduct.name} {isApple ? `- ${selectedColor.name}` : (currentProduct.colorName ? `- ${currentProduct.colorName}` : '')} ({selectedStorage})
+
+            {/* Bottom Config Details & Actions */}
+            <div className="w-full pt-4 border-t border-gray-100 flex items-center justify-between mt-2">
+              <div className="text-left">
+                <p className="text-xs font-bold text-gray-900">
+                  {isApple ? selectedColor.name : (currentProduct.colorName || selectedColor.name)}
+                </p>
+                <p className="text-[11px] text-gray-500">
+                  {selectedStorage} • {selectedCondition} Condition
+                </p>
+              </div>
+
+              <button
+                onClick={() => {
+                  handleAddToCartClick();
+                  setIsZoomOpen(false);
+                }}
+                className="bg-[#0b4d3c] hover:bg-[#08382c] text-white text-xs font-bold py-2.5 px-4 rounded-xl flex items-center gap-1.5 shadow-sm transition-all cursor-pointer"
+              >
+                <ShoppingCart className="w-3.5 h-3.5 stroke-[2.5]" />
+                <span>Add to Cart</span>
+              </button>
             </div>
+
           </div>
         </div>,
         document.body
