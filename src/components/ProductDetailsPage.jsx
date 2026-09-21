@@ -90,10 +90,12 @@ export default function ProductDetailsPage({
   };
 
   const brandName = currentProduct.brand === 'iPhone' ? 'Apple' : (currentProduct.brand || 'Apple');
+  const isApple = brandName === 'Apple' || currentProduct.name?.toLowerCase().includes('iphone');
+  const isNew = currentProduct.condition === 'Brand New' || currentProduct.specs?.toLowerCase().includes('brand new');
 
   // Variant selections
   const [selectedStorage, setSelectedStorage] = useState('128 GB');
-  const [selectedCondition, setSelectedCondition] = useState('Excellent');
+  const [selectedCondition, setSelectedCondition] = useState(isNew ? 'Brand New' : 'Excellent');
   const [selectedColor, setSelectedColor] = useState(COLOR_OPTIONS[0]);
   const [activeThumb, setActiveThumb] = useState(0);
   const [activeTab, setActiveTab] = useState('Overview');
@@ -101,6 +103,23 @@ export default function ProductDetailsPage({
   const [isChangingPincode, setIsChangingPincode] = useState(false);
   const [tempPincode, setTempPincode] = useState(pincode);
   const [isZoomOpen, setIsZoomOpen] = useState(false);
+
+  // ESC key and body scroll lock for Zoom Modal
+  useEffect(() => {
+    if (isZoomOpen) {
+      document.body.style.overflow = 'hidden';
+      const handleKeyDown = (e) => {
+        if (e.key === 'Escape') setIsZoomOpen(false);
+      };
+      window.addEventListener('keydown', handleKeyDown);
+      return () => {
+        document.body.style.overflow = '';
+        window.removeEventListener('keydown', handleKeyDown);
+      };
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [isZoomOpen]);
 
   // Price calculations based on storage and condition
   const basePrice = currentProduct.price || 34999;
@@ -193,10 +212,10 @@ export default function ProductDetailsPage({
           </button>
           <ChevronRight className="w-3.5 h-3.5 text-gray-400 flex-shrink-0" />
           <button 
-            onClick={onGoUsedPhones} 
+            onClick={isNew ? onGoNewPhones : onGoUsedPhones} 
             className="hover:text-emerald-800 transition-colors font-medium cursor-pointer"
           >
-            Used Phones
+            {isNew ? 'New Phones' : 'Used Phones'}
           </button>
           <ChevronRight className="w-3.5 h-3.5 text-gray-400 flex-shrink-0" />
           <button 
@@ -233,7 +252,13 @@ export default function ProductDetailsPage({
                     title={`View angle ${idx + 1}`}
                   >
                     {idx === 0 && (
-                      <DualPhoneGraphic color={selectedColor.hex} className="h-14 w-auto object-contain" />
+                      isApple ? (
+                        <DualPhoneGraphic color={selectedColor.hex} className="h-14 w-auto object-contain" />
+                      ) : currentProduct.image ? (
+                        <img src={currentProduct.image} alt="" className="h-12 w-auto object-contain" />
+                      ) : (
+                        <PhoneMockup type={currentProduct.imageType} className="h-12 w-auto object-contain" />
+                      )
                     )}
                     {idx === 1 && (
                       <div className="flex items-center justify-center h-full w-full">
@@ -254,7 +279,13 @@ export default function ProductDetailsPage({
                     )}
                     {idx === 3 && (
                       <div className="flex items-center justify-center h-full w-full rotate-12 scale-90">
-                        <DualPhoneGraphic color={selectedColor.hex} className="h-12 w-auto object-contain" />
+                        {isApple ? (
+                          <DualPhoneGraphic color={selectedColor.hex} className="h-12 w-auto object-contain" />
+                        ) : currentProduct.image ? (
+                          <img src={currentProduct.image} alt="" className="h-10 w-auto object-contain" />
+                        ) : (
+                          <PhoneMockup type={currentProduct.imageType} className="h-10 w-auto object-contain" />
+                        )}
                       </div>
                     )}
                     {idx === 4 && (
@@ -278,7 +309,7 @@ export default function ProductDetailsPage({
               <div className="absolute top-4 left-4 z-10">
                 <span className="inline-flex items-center gap-1 bg-[#6936d3] text-white text-[11px] font-bold px-3 py-1 rounded-full shadow-xs">
                   <Sparkles className="w-3 h-3 fill-white" />
-                  <span>Certified</span>
+                  <span>{currentProduct.tag || 'Certified'}</span>
                 </span>
               </div>
 
@@ -296,13 +327,16 @@ export default function ProductDetailsPage({
                 <Heart className={`w-4 h-4 ${isWishlisted ? 'fill-rose-500' : ''}`} />
               </button>
 
-              {/* Main Phone Visual (Front & Back View side-by-side as in screenshot) */}
-              <div 
-                onClick={() => setIsZoomOpen(true)}
-                className="w-full h-72 sm:h-84 flex items-center justify-center cursor-zoom-in group transition-transform duration-300 hover:scale-[1.02]"
-              >
+              {/* Main Phone Visual */}
+              <div className="w-full h-72 sm:h-84 flex items-center justify-center group transition-transform duration-300">
                 {activeThumb === 0 ? (
-                  <DualPhoneGraphic color={selectedColor.hex} className="h-64 sm:h-76 w-auto object-contain drop-shadow-xl" />
+                  isApple ? (
+                    <DualPhoneGraphic color={selectedColor.hex} className="h-64 sm:h-76 w-auto object-contain drop-shadow-xl" />
+                  ) : currentProduct.image ? (
+                    <img src={currentProduct.image} alt={currentProduct.name} className="h-64 sm:h-76 w-auto max-w-full object-contain drop-shadow-xl" />
+                  ) : (
+                    <PhoneMockup type={currentProduct.imageType} className="h-64 sm:h-76 w-auto object-contain drop-shadow-xl" />
+                  )
                 ) : activeThumb === 1 ? (
                   <div className="h-64 sm:h-72 w-20 flex flex-col items-center justify-center">
                     <div className="w-5 h-64 rounded-md bg-gradient-to-r from-gray-200 via-gray-100 to-gray-300 border border-gray-300 shadow-md flex flex-col justify-between py-6">
@@ -323,14 +357,23 @@ export default function ProductDetailsPage({
                     </div>
                   </div>
                 ) : (
-                  <DualPhoneGraphic color={selectedColor.hex} className="h-64 sm:h-76 w-auto object-contain drop-shadow-xl" />
+                  isApple ? (
+                    <DualPhoneGraphic color={selectedColor.hex} className="h-64 sm:h-76 w-auto object-contain drop-shadow-xl" />
+                  ) : currentProduct.image ? (
+                    <img src={currentProduct.image} alt={currentProduct.name} className="h-64 sm:h-76 w-auto max-w-full object-contain drop-shadow-xl" />
+                  ) : (
+                    <PhoneMockup type={currentProduct.imageType} className="h-64 sm:h-76 w-auto object-contain drop-shadow-xl" />
+                  )
                 )}
               </div>
 
-              {/* Click to Zoom Button */}
+              {/* Click to Zoom Button - only this button triggers the zoom */}
               <button
-                onClick={() => setIsZoomOpen(true)}
-                className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-white/95 backdrop-blur-xs border border-gray-200 text-xs font-semibold text-gray-700 px-3.5 py-1.5 rounded-full shadow-xs hover:bg-gray-50 hover:border-gray-300 transition-all cursor-pointer flex items-center gap-1.5"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsZoomOpen(true);
+                }}
+                className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-white/95 backdrop-blur-xs border border-gray-200 text-xs font-semibold text-gray-700 px-3.5 py-1.5 rounded-full shadow-xs hover:bg-gray-50 hover:border-gray-300 transition-all cursor-pointer flex items-center gap-1.5 z-10"
               >
                 <ZoomIn className="w-3.5 h-3.5 text-gray-500" />
                 <span>Click to zoom</span>
@@ -348,12 +391,12 @@ export default function ProductDetailsPage({
             </span>
 
             {/* Title + Certified Badge */}
-            <div className="flex items-center gap-2 mt-1">
+            <div className="flex items-center gap-2 mt-1 flex-wrap">
               <h1 className="text-2xl sm:text-3xl font-bold text-gray-950 tracking-tight leading-tight">
-                {currentProduct.name} <span className="font-semibold text-gray-600 text-xl sm:text-2xl">(Used)</span>
+                {currentProduct.name} <span className="font-semibold text-gray-600 text-xl sm:text-2xl">({isNew ? 'Brand New' : 'Used'})</span>
               </h1>
               <span className="bg-[#6936d3] text-white text-[11px] font-bold px-2.5 py-0.5 rounded-md self-center shadow-xs">
-                Certified
+                {currentProduct.tag || 'Certified'}
               </span>
             </div>
 
@@ -907,19 +950,50 @@ export default function ProductDetailsPage({
 
       </div>
 
-      {/* Lightbox / Zoom Modal */}
+      {/* Lightbox / Zoom Modal with Ultra-High Z-Index above all components */}
       {isZoomOpen && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 animate-fadeIn">
+        <div 
+          className="fixed inset-0 z-[999999] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 animate-fadeIn"
+          onClick={() => setIsZoomOpen(false)}
+          role="dialog"
+          aria-modal="true"
+        >
+          {/* Close button */}
           <button
-            onClick={() => setIsZoomOpen(false)}
-            className="absolute top-5 right-5 text-white/80 hover:text-white p-2 rounded-full bg-white/10 hover:bg-white/20 transition-all cursor-pointer"
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsZoomOpen(false);
+            }}
+            className="absolute top-5 right-5 text-white/90 hover:text-white p-2.5 rounded-full bg-white/15 hover:bg-white/25 transition-all cursor-pointer z-50 shadow-lg"
+            title="Close Zoom View (Esc)"
           >
             <X className="w-6 h-6" />
           </button>
-          <div className="max-w-2xl w-full p-4 flex flex-col items-center justify-center">
-            <DualPhoneGraphic color={selectedColor.hex} className="h-[75vh] w-auto object-contain drop-shadow-2xl" />
-            <div className="text-white text-sm font-semibold mt-4 bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full">
-              {currentProduct.name} - {selectedColor.name} ({selectedStorage})
+
+          {/* Modal Content Box */}
+          <div 
+            className="relative max-w-2xl w-full p-2 flex flex-col items-center justify-center pointer-events-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-center w-full max-h-[70vh]">
+              {isApple ? (
+                <DualPhoneGraphic color={selectedColor.hex} className="max-h-[65vh] w-auto object-contain drop-shadow-2xl" />
+              ) : currentProduct.image ? (
+                <img 
+                  src={currentProduct.image} 
+                  alt={currentProduct.name} 
+                  className="max-h-[65vh] w-auto max-w-full object-contain drop-shadow-2xl bg-white/5 rounded-2xl p-4" 
+                />
+              ) : (
+                <PhoneMockup 
+                  type={currentProduct.imageType} 
+                  className="max-h-[65vh] w-auto object-contain drop-shadow-2xl" 
+                />
+              )}
+            </div>
+            
+            <div className="text-white text-xs sm:text-sm font-semibold mt-4 bg-white/15 backdrop-blur-md px-5 py-2 rounded-full shadow-lg border border-white/20 text-center">
+              {currentProduct.name} - {isApple ? selectedColor.name : (currentProduct.colorName || selectedColor.name)} ({selectedStorage})
             </div>
           </div>
         </div>
