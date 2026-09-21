@@ -124,18 +124,21 @@ export default function Navbar({
 
           {/* Cart */}
           <button 
+            id="navbar-cart-btn"
             onClick={onOpenCart}
-            className="flex items-center gap-1.5 text-gray-700 hover:text-emerald-800 text-xs lg:text-sm font-medium transition-colors relative p-1"
+            className="group relative flex items-center gap-1.5 text-gray-700 hover:text-[#0b4d3c] text-xs lg:text-sm font-semibold transition-all duration-200 py-1.5 px-2 rounded-xl hover:bg-emerald-50/80 active:scale-95 cursor-pointer select-none"
+            title="Open Shopping Cart"
+            aria-label="Open Shopping Cart"
           >
             <div className="relative">
-              <ShoppingCart className="w-5 h-5 text-gray-600 hover:text-emerald-700 transition-colors" />
+              <ShoppingCart className="w-5 h-5 text-gray-600 group-hover:text-[#0b4d3c] transition-all duration-250 group-hover:-translate-y-0.5 group-hover:rotate-[-8deg]" />
               {cartCount > 0 && (
-                <span className="absolute -top-1.5 -right-2 bg-emerald-600 text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
+                <span className="absolute -top-1.5 -right-2 bg-emerald-600 text-white text-[10px] font-extrabold rounded-full min-w-4 h-4 px-1 flex items-center justify-center shadow-xs ring-2 ring-white transform transition-transform duration-200 group-hover:scale-110">
                   {cartCount}
                 </span>
               )}
             </div>
-            <span className="hidden xl:inline">Cart</span>
+            <span className="hidden xl:inline group-hover:text-[#0b4d3c] transition-colors duration-200">Cart</span>
           </button>
 
           {/* Account */}

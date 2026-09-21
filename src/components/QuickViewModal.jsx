@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, ShieldCheck, Check, RotateCcw, Truck, ShoppingCart, Heart } from 'lucide-react';
 import { PhoneMockup } from './PhoneGraphics';
 
@@ -10,20 +10,75 @@ export default function QuickViewModal({
   isWishlisted,
   onToggleWishlist,
 }) {
-  if (!isOpen || !product) return null;
+  const [isRendered, setIsRendered] = useState(isOpen);
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  useEffect(() => {
+    let timeoutId;
+    let animFrameId;
+
+    if (isOpen && product) {
+      setIsRendered(true);
+      animFrameId = requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setIsAnimating(true);
+        });
+      });
+      document.body.style.overflow = 'hidden';
+    } else {
+      setIsAnimating(false);
+      timeoutId = setTimeout(() => {
+        setIsRendered(false);
+        document.body.style.overflow = '';
+      }, 250);
+    }
+
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+      if (animFrameId) cancelAnimationFrame(animFrameId);
+    };
+  }, [isOpen, product]);
+
+  // ESC key handler
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && isOpen) onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = '';
+    };
+  }, [isOpen, onClose]);
+
+  if (!isRendered && !isOpen) return null;
+  if (!product) return null;
 
   const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <div onClick={onClose} className="fixed inset-0 bg-black/50 backdrop-blur-xs" />
+    <div 
+      className={`fixed inset-0 z-50 flex items-center justify-center p-4 transition-all duration-250 ${
+        isAnimating ? 'pointer-events-auto' : 'pointer-events-none'
+      }`}
+    >
+      <div 
+        onClick={onClose} 
+        className={`fixed inset-0 bg-black/55 backdrop-blur-xs transition-opacity duration-250 ease-out cursor-pointer ${
+          isAnimating ? 'opacity-100' : 'opacity-0'
+        }`} 
+      />
       
-      <div className="relative bg-white rounded-2xl max-w-2xl w-full p-4 sm:p-6 shadow-2xl z-10 overflow-hidden max-h-[90vh] overflow-y-auto">
+      <div 
+        className={`relative bg-white rounded-2xl max-w-2xl w-full p-4 sm:p-6 shadow-2xl z-10 overflow-hidden max-h-[90vh] overflow-y-auto transform transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          isAnimating ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 translate-y-4'
+        }`}
+      >
         
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-1 rounded-md text-gray-400 hover:text-gray-700 hover:bg-gray-100 z-10"
+          className="absolute top-4 right-4 p-1.5 rounded-full text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-all duration-200 hover:rotate-90 z-10"
         >
           <X className="w-5 h-5" />
         </button>

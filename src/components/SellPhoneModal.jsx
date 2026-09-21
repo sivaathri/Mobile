@@ -1,14 +1,54 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, CheckCircle2, ShieldCheck, ArrowRight } from 'lucide-react';
 
 export default function SellPhoneModal({ isOpen, onClose }) {
+  const [isRendered, setIsRendered] = useState(isOpen);
+  const [isAnimating, setIsAnimating] = useState(false);
   const [brand, setBrand] = useState('Apple');
   const [model, setModel] = useState('iPhone 13 (128GB)');
   const [condition, setCondition] = useState('Excellent');
   const [estimatedPrice, setEstimatedPrice] = useState(25500);
   const [step, setStep] = useState(1);
 
-  if (!isOpen) return null;
+  useEffect(() => {
+    let timeoutId;
+    let animFrameId;
+
+    if (isOpen) {
+      setIsRendered(true);
+      animFrameId = requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setIsAnimating(true);
+        });
+      });
+      document.body.style.overflow = 'hidden';
+    } else {
+      setIsAnimating(false);
+      timeoutId = setTimeout(() => {
+        setIsRendered(false);
+        document.body.style.overflow = '';
+      }, 250);
+    }
+
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+      if (animFrameId) cancelAnimationFrame(animFrameId);
+    };
+  }, [isOpen]);
+
+  // ESC key handler
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && isOpen) onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = '';
+    };
+  }, [isOpen, onClose]);
+
+  if (!isRendered && !isOpen) return null;
 
   const handleCalculate = (e) => {
     e.preventDefault();
@@ -21,9 +61,22 @@ export default function SellPhoneModal({ isOpen, onClose }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <div onClick={onClose} className="fixed inset-0 bg-black/50 backdrop-blur-xs" />
-      <div className="relative bg-white rounded-2xl max-w-lg w-full p-4 sm:p-6 shadow-2xl z-10 overflow-hidden">
+    <div 
+      className={`fixed inset-0 z-50 flex items-center justify-center p-4 transition-all duration-250 ${
+        isAnimating ? 'pointer-events-auto' : 'pointer-events-none'
+      }`}
+    >
+      <div 
+        onClick={onClose} 
+        className={`fixed inset-0 bg-black/50 backdrop-blur-xs transition-opacity duration-250 ease-out cursor-pointer ${
+          isAnimating ? 'opacity-100' : 'opacity-0'
+        }`} 
+      />
+      <div 
+        className={`relative bg-white rounded-2xl max-w-lg w-full p-4 sm:p-6 shadow-2xl z-10 overflow-hidden transform transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          isAnimating ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 translate-y-4'
+        }`}
+      >
         
         {/* Header */}
         <div className="flex items-center justify-between pb-4 border-b border-gray-100">
@@ -37,7 +90,7 @@ export default function SellPhoneModal({ isOpen, onClose }) {
           </div>
           <button
             onClick={onClose}
-            className="p-1 rounded-md text-gray-400 hover:text-gray-700 hover:bg-gray-100"
+            className="p-1 rounded-md text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-all duration-200 hover:rotate-90"
           >
             <X className="w-5 h-5" />
           </button>
