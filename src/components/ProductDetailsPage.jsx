@@ -200,7 +200,7 @@ export default function ProductDetailsPage({
   ];
 
   return (
-    <div className="w-full bg-[#fbfcfb] text-gray-900 pb-16 animate-fadeIn">
+    <div className="w-full bg-[#fbfcfb] text-gray-900 pb-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
 
         {/* 1. Breadcrumb Trail */}
@@ -951,10 +951,10 @@ export default function ProductDetailsPage({
 
       </div>
 
-      {/* Lightbox / Zoom Modal with Ultra-High Z-Index above all components */}
-      {isZoomOpen && (
+      {/* Lightbox / Zoom Modal rendered via Portal directly into document.body */}
+      {isZoomOpen && typeof document !== 'undefined' && createPortal(
         <div 
-          className="fixed inset-0 z-[999999] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 animate-fadeIn"
+          className="fixed inset-0 z-[99999999] bg-black/92 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 animate-fadeIn"
           onClick={() => setIsZoomOpen(false)}
           role="dialog"
           aria-modal="true"
@@ -965,7 +965,7 @@ export default function ProductDetailsPage({
               e.stopPropagation();
               setIsZoomOpen(false);
             }}
-            className="absolute top-5 right-5 text-white/90 hover:text-white p-2.5 rounded-full bg-white/15 hover:bg-white/25 transition-all cursor-pointer z-50 shadow-lg"
+            className="absolute top-5 right-5 text-white/90 hover:text-white p-2.5 rounded-full bg-white/15 hover:bg-white/25 transition-all cursor-pointer z-[100000000] shadow-xl"
             title="Close Zoom View (Esc)"
           >
             <X className="w-6 h-6" />
@@ -973,18 +973,20 @@ export default function ProductDetailsPage({
 
           {/* Modal Content Box */}
           <div 
-            className="relative max-w-2xl w-full p-2 flex flex-col items-center justify-center pointer-events-auto"
+            className="relative max-w-2xl w-full p-2 flex flex-col items-center justify-center pointer-events-auto z-[99999999]"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-center w-full max-h-[70vh]">
               {isApple ? (
                 <DualPhoneGraphic color={selectedColor.hex} className="max-h-[65vh] w-auto object-contain drop-shadow-2xl" />
               ) : currentProduct.image ? (
-                <img 
-                  src={currentProduct.image} 
-                  alt={currentProduct.name} 
-                  className="max-h-[65vh] w-auto max-w-full object-contain drop-shadow-2xl bg-white/5 rounded-2xl p-4" 
-                />
+                <div className="bg-white rounded-3xl p-4 sm:p-6 shadow-2xl flex items-center justify-center">
+                  <img 
+                    src={currentProduct.image} 
+                    alt={currentProduct.name} 
+                    className="max-h-[58vh] w-auto max-w-full object-contain" 
+                  />
+                </div>
               ) : (
                 <PhoneMockup 
                   type={currentProduct.imageType} 
@@ -994,10 +996,11 @@ export default function ProductDetailsPage({
             </div>
             
             <div className="text-white text-xs sm:text-sm font-semibold mt-4 bg-white/15 backdrop-blur-md px-5 py-2 rounded-full shadow-lg border border-white/20 text-center">
-              {currentProduct.name} - {isApple ? selectedColor.name : (currentProduct.colorName || selectedColor.name)} ({selectedStorage})
+              {currentProduct.name} {isApple ? `- ${selectedColor.name}` : (currentProduct.colorName ? `- ${currentProduct.colorName}` : '')} ({selectedStorage})
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
     </div>
