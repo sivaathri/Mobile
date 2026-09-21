@@ -875,7 +875,7 @@ export default function UsedPhonesPage({
                     setSelectedBrand('All Brands');
                     setCurrentPage(1);
                   }}
-                  className={`px-3 py-1 rounded-full text-xs font-semibold transition-all whitespace-nowrap flex-shrink-0 cursor-pointer ${
+                  className={`h-9 px-3.5 rounded-full text-xs font-semibold transition-all whitespace-nowrap flex items-center justify-center flex-shrink-0 cursor-pointer ${
                     selectedBrand === 'All Brands'
                       ? 'bg-[#00704A] text-white shadow-2xs'
                       : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
@@ -890,14 +890,14 @@ export default function UsedPhonesPage({
                     setSelectedBrand('Apple');
                     setCurrentPage(1);
                   }}
-                  className={`px-2.5 py-1 rounded-full text-xs font-semibold transition-all flex items-center justify-center flex-shrink-0 cursor-pointer ${
+                  className={`w-9 h-9 rounded-full text-xs font-semibold transition-all flex items-center justify-center flex-shrink-0 cursor-pointer ${
                     selectedBrand === 'Apple'
                       ? 'bg-[#00704A] text-white shadow-2xs'
                       : 'bg-white text-gray-800 hover:bg-gray-100 border border-gray-200'
                   }`}
                   title="Apple"
                 >
-                  <BrandIcon name="apple" className="w-3.5 h-3.5" />
+                  <BrandIcon name="apple" className="w-4 h-4" />
                 </button>
 
                 {/* 3. Samsung */}
@@ -906,14 +906,16 @@ export default function UsedPhonesPage({
                     setSelectedBrand('Samsung');
                     setCurrentPage(1);
                   }}
-                  className={`px-2.5 py-1 rounded-full text-xs font-semibold transition-all flex items-center justify-center flex-shrink-0 cursor-pointer ${
+                  className={`h-9 px-3.5 rounded-full text-xs font-semibold transition-all flex items-center justify-center flex-shrink-0 cursor-pointer ${
                     selectedBrand === 'Samsung'
                       ? 'bg-[#00704A] text-white shadow-2xs'
                       : 'bg-white hover:bg-gray-100 border border-gray-200'
                   }`}
                   title="Samsung"
                 >
-                  <BrandIcon name="samsung" className="w-4 h-4" />
+                  <span className={`font-black tracking-tight text-[11px] ${selectedBrand === 'Samsung' ? 'text-white' : 'text-[#0034a8]'}`}>
+                    SAMSUNG
+                  </span>
                 </button>
 
                 {/* 4. OnePlus */}
@@ -922,14 +924,14 @@ export default function UsedPhonesPage({
                     setSelectedBrand('OnePlus');
                     setCurrentPage(1);
                   }}
-                  className={`px-2 py-0.5 rounded-full text-xs font-semibold transition-all flex items-center justify-center flex-shrink-0 cursor-pointer ${
+                  className={`w-9 h-9 rounded-full text-xs font-semibold transition-all flex items-center justify-center flex-shrink-0 cursor-pointer ${
                     selectedBrand === 'OnePlus'
                       ? 'bg-[#00704A] text-white shadow-2xs'
                       : 'bg-white hover:bg-gray-100 border border-gray-200'
                   }`}
                   title="OnePlus"
                 >
-                  <BrandIcon name="oneplus" className="w-4 h-4" />
+                  <BrandIcon name="oneplus" className="w-4.5 h-4.5" />
                 </button>
 
                 {/* 5. Xiaomi */}
@@ -938,14 +940,14 @@ export default function UsedPhonesPage({
                     setSelectedBrand('Xiaomi');
                     setCurrentPage(1);
                   }}
-                  className={`px-2 py-0.5 rounded-full text-xs font-semibold transition-all flex items-center justify-center flex-shrink-0 cursor-pointer ${
+                  className={`w-9 h-9 rounded-full text-xs font-semibold transition-all flex items-center justify-center flex-shrink-0 cursor-pointer ${
                     selectedBrand === 'Xiaomi'
                       ? 'bg-[#00704A] text-white shadow-2xs'
                       : 'bg-white hover:bg-gray-100 border border-gray-200'
                   }`}
                   title="Xiaomi"
                 >
-                  <BrandIcon name="xiaomi" className="w-4 h-4" />
+                  <BrandIcon name="xiaomi" className="w-4.5 h-4.5" />
                 </button>
 
                 {/* 6. Realme */}
@@ -954,14 +956,14 @@ export default function UsedPhonesPage({
                     setSelectedBrand('Realme');
                     setCurrentPage(1);
                   }}
-                  className={`px-2 py-0.5 rounded-full text-xs font-semibold transition-all flex items-center justify-center flex-shrink-0 cursor-pointer ${
+                  className={`w-9 h-9 rounded-full text-xs font-semibold transition-all flex items-center justify-center flex-shrink-0 cursor-pointer ${
                     selectedBrand === 'Realme'
                       ? 'bg-[#00704A] text-white shadow-2xs'
                       : 'bg-white hover:bg-gray-100 border border-gray-200'
                   }`}
                   title="Realme"
                 >
-                  <BrandIcon name="realme" className="w-4 h-4" />
+                  <BrandIcon name="realme" className="w-4.5 h-4.5" />
                 </button>
 
                 {/* 7. Vivo */}
@@ -970,14 +972,16 @@ export default function UsedPhonesPage({
                     setSelectedBrand('Vivo');
                     setCurrentPage(1);
                   }}
-                  className={`px-2.5 py-1 rounded-full text-xs font-semibold transition-all flex items-center justify-center flex-shrink-0 cursor-pointer ${
+                  className={`h-9 px-3.5 rounded-full text-xs font-semibold transition-all flex items-center justify-center flex-shrink-0 cursor-pointer ${
                     selectedBrand === 'Vivo'
                       ? 'bg-[#00704A] text-white shadow-2xs'
                       : 'bg-white hover:bg-gray-100 border border-gray-200'
                   }`}
                   title="Vivo"
                 >
-                  <BrandIcon name="vivo" className="w-4 h-4" />
+                  <span className={`font-bold text-[12px] ${selectedBrand === 'Vivo' ? 'text-white' : 'text-[#0051d5]'}`}>
+                    vivo
+                  </span>
                 </button>
 
                 {/* 8. Oppo */}
@@ -986,14 +990,16 @@ export default function UsedPhonesPage({
                     setSelectedBrand('Oppo');
                     setCurrentPage(1);
                   }}
-                  className={`px-2.5 py-1 rounded-full text-xs font-semibold transition-all flex items-center justify-center flex-shrink-0 cursor-pointer ${
+                  className={`h-9 px-3.5 rounded-full text-xs font-semibold transition-all flex items-center justify-center flex-shrink-0 cursor-pointer ${
                     selectedBrand === 'Oppo'
                       ? 'bg-[#00704A] text-white shadow-2xs'
                       : 'bg-white hover:bg-gray-100 border border-gray-200'
                   }`}
                   title="Oppo"
                 >
-                  <BrandIcon name="oppo" className="w-4 h-4" />
+                  <span className={`font-bold text-[12px] ${selectedBrand === 'Oppo' ? 'text-white' : 'text-emerald-700'}`}>
+                    oppo
+                  </span>
                 </button>
 
                 {/* 9. Google */}
@@ -1002,7 +1008,7 @@ export default function UsedPhonesPage({
                     setSelectedBrand('Google');
                     setCurrentPage(1);
                   }}
-                  className={`px-2 py-1 rounded-full text-xs font-semibold transition-all flex items-center justify-center flex-shrink-0 cursor-pointer ${
+                  className={`w-9 h-9 rounded-full text-xs font-semibold transition-all flex items-center justify-center flex-shrink-0 cursor-pointer ${
                     selectedBrand === 'Google'
                       ? 'bg-[#00704A] text-white shadow-2xs'
                       : 'bg-white hover:bg-gray-100 border border-gray-200'
@@ -1018,14 +1024,14 @@ export default function UsedPhonesPage({
                     setSelectedBrand('Motorola');
                     setCurrentPage(1);
                   }}
-                  className={`px-2 py-1 rounded-full text-xs font-semibold transition-all flex items-center justify-center flex-shrink-0 cursor-pointer ${
+                  className={`w-9 h-9 rounded-full text-xs font-semibold transition-all flex items-center justify-center flex-shrink-0 cursor-pointer ${
                     selectedBrand === 'Motorola'
                       ? 'bg-[#00704A] text-white shadow-2xs'
                       : 'bg-white hover:bg-gray-100 border border-gray-200'
                   }`}
                   title="Motorola"
                 >
-                  <BrandIcon name="motorola" className="w-4 h-4" />
+                  <BrandIcon name="motorola" className="w-4.5 h-4.5" />
                 </button>
 
                 {/* 11. Nothing */}
@@ -1034,14 +1040,16 @@ export default function UsedPhonesPage({
                     setSelectedBrand('Nothing');
                     setCurrentPage(1);
                   }}
-                  className={`px-2.5 py-1 rounded-full text-xs font-medium transition-all flex items-center justify-center flex-shrink-0 cursor-pointer ${
+                  className={`h-9 px-3.5 rounded-full text-xs font-medium transition-all flex items-center justify-center flex-shrink-0 cursor-pointer ${
                     selectedBrand === 'Nothing'
                       ? 'bg-[#00704A] text-white shadow-2xs'
                       : 'bg-white text-gray-800 hover:bg-gray-100 border border-gray-200'
                   }`}
                   title="Nothing"
                 >
-                  <span className="font-mono text-[11px]">Nothing</span>
+                  <span className={`font-mono text-[11px] ${selectedBrand === 'Nothing' ? 'text-white' : 'text-gray-900'}`}>
+                    Nothing
+                  </span>
                 </button>
 
                 {/* 12. Nokia */}
@@ -1050,14 +1058,14 @@ export default function UsedPhonesPage({
                     setSelectedBrand('Nokia');
                     setCurrentPage(1);
                   }}
-                  className={`px-2.5 py-1 rounded-full text-xs font-bold transition-all flex items-center justify-center flex-shrink-0 cursor-pointer ${
+                  className={`h-9 px-3.5 rounded-full text-xs font-bold transition-all flex items-center justify-center flex-shrink-0 cursor-pointer ${
                     selectedBrand === 'Nokia'
                       ? 'bg-[#00704A] text-white shadow-2xs'
                       : 'bg-white hover:bg-gray-100 border border-gray-200'
                   }`}
                   title="Nokia"
                 >
-                  <span className={`font-black tracking-wider text-[10px] ${selectedBrand === 'Nokia' ? 'text-white' : 'text-[#124191]'}`}>
+                  <span className={`font-black tracking-wider text-[11px] ${selectedBrand === 'Nokia' ? 'text-white' : 'text-[#124191]'}`}>
                     NOKIA
                   </span>
                 </button>
@@ -1065,10 +1073,10 @@ export default function UsedPhonesPage({
                 {/* 13. More */}
                 <button
                   onClick={() => showToast?.('Showing all brand options')}
-                  className="px-2.5 py-1 rounded-full text-xs font-medium text-gray-600 hover:text-gray-900 bg-white border border-gray-200 hover:border-gray-400 flex items-center gap-0.5 whitespace-nowrap flex-shrink-0 cursor-pointer"
+                  className="h-9 px-3 rounded-full text-xs font-medium text-gray-600 hover:text-gray-900 bg-white border border-gray-200 hover:border-gray-400 flex items-center gap-1 whitespace-nowrap flex-shrink-0 cursor-pointer"
                 >
                   <span>More</span>
-                  <ChevronDown className="w-3 h-3" />
+                  <ChevronDown className="w-3.5 h-3.5" />
                 </button>
               </div>
 

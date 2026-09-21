@@ -813,7 +813,7 @@ export default function CategoryPage({
                         setSelectedBrand(isSelected && !isAll ? 'All Brands' : brandName);
                         setCurrentPage(1);
                       }}
-                      className={`px-3 py-1 rounded-full text-xs font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 flex-shrink-0 cursor-pointer ${
+                      className={`h-9 px-3.5 rounded-full text-xs font-semibold transition-all whitespace-nowrap flex items-center justify-center gap-1.5 flex-shrink-0 cursor-pointer ${
                         isSelected
                           ? 'bg-[#00704A] text-white shadow-2xs border border-[#00704A]'
                           : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
@@ -834,10 +834,10 @@ export default function CategoryPage({
                     setIsMobileFilterOpen(true);
                     showToast?.('Use the sidebar to explore all filters & brands');
                   }}
-                  className="px-2.5 py-1 rounded-full text-xs font-medium text-gray-600 hover:text-gray-900 bg-white border border-gray-200 hover:border-gray-400 flex items-center gap-0.5 whitespace-nowrap flex-shrink-0 cursor-pointer"
+                  className="h-9 px-3 rounded-full text-xs font-medium text-gray-600 hover:text-gray-900 bg-white border border-gray-200 hover:border-gray-400 flex items-center gap-1 whitespace-nowrap flex-shrink-0 cursor-pointer"
                 >
                   <span>More</span>
-                  <ChevronDown className="w-3 h-3" />
+                  <ChevronDown className="w-3.5 h-3.5" />
                 </button>
               </div>
 

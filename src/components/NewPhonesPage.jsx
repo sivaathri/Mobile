@@ -644,7 +644,7 @@ export default function NewPhonesPage({
                 <button
                   onClick={() => setSelectedBrand('All Brands')}
                   className={`
-                    px-3.5 py-1 rounded-full text-xs font-bold whitespace-nowrap transition-all flex-shrink-0 cursor-pointer active:scale-95
+                    h-9 px-3.5 rounded-full text-xs font-bold whitespace-nowrap transition-all flex items-center justify-center flex-shrink-0 cursor-pointer active:scale-95
                     ${
                       selectedBrand === 'All Brands'
                         ? 'bg-[#00704A] text-white shadow-2xs'
@@ -658,14 +658,14 @@ export default function NewPhonesPage({
                 {/* 2. Apple */}
                 <button
                   onClick={() => setSelectedBrand('Apple')}
-                  className={`px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap flex items-center gap-1.5 flex-shrink-0 border transition-all cursor-pointer ${
+                  className={`w-9 h-9 rounded-full text-xs font-semibold whitespace-nowrap flex items-center justify-center flex-shrink-0 border transition-all cursor-pointer ${
                     selectedBrand === 'Apple'
                       ? 'bg-[#00704A] text-white border-[#00704A]'
                       : 'bg-white border-gray-200 text-gray-800 hover:border-gray-400'
                   }`}
+                  title="Apple"
                 >
-                  {/* Apple SVG icon */}
-                  <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 170 170">
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 170 170">
                     <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.69-7.85-11.96-14.43-5.26-8.08-9.43-17.1-12.51-27.06-3.08-9.96-4.62-19.53-4.62-28.71 0-14.28 3.59-25.79 10.77-34.53 7.18-8.74 16.27-13.23 27.27-13.48 4.67 0 10.02 1.25 16.06 3.75 6.04 2.5 9.94 3.8 11.69 3.9 1.48-.1 5.34-1.4 11.59-3.9 6.24-2.5 11.45-3.65 15.63-3.45 11.98.61 21.36 4.78 28.14 12.51-10.45 6.33-15.54 15.04-15.28 26.13.26 8.7 3.55 15.98 9.87 21.84 6.32 5.86 13.88 9.3 22.68 10.32-2.17 6.42-4.93 12.92-8.28 19.51zM119.22 31.84c0-7.05 2.53-13.86 7.6-20.44 5.07-6.57 11.4-10.87 18.99-12.89.26 1.48.39 2.85.39 4.12 0 7.18-2.67 14.15-8.01 20.91-5.34 6.76-11.78 10.82-19.33 12.18-.32-1.27-.48-2.39-.48-3.88z" />
                   </svg>
                 </button>
@@ -673,11 +673,12 @@ export default function NewPhonesPage({
                 {/* 3. Samsung */}
                 <button
                   onClick={() => setSelectedBrand('Samsung')}
-                  className={`px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap flex items-center flex-shrink-0 border transition-all cursor-pointer ${
+                  className={`h-9 px-3.5 rounded-full text-xs font-semibold whitespace-nowrap flex items-center justify-center flex-shrink-0 border transition-all cursor-pointer ${
                     selectedBrand === 'Samsung'
                       ? 'bg-[#00704A] text-white border-[#00704A]'
                       : 'bg-white border-gray-200 hover:border-gray-400'
                   }`}
+                  title="Samsung"
                 >
                   <span className={`font-black tracking-tight text-[11px] ${selectedBrand === 'Samsung' ? 'text-white' : 'text-[#0034a8]'}`}>
                     SAMSUNG
@@ -687,11 +688,12 @@ export default function NewPhonesPage({
                 {/* 4. OnePlus (1+) */}
                 <button
                   onClick={() => setSelectedBrand('OnePlus')}
-                  className={`px-2.5 py-1 rounded-full text-xs font-semibold whitespace-nowrap flex items-center flex-shrink-0 border transition-all cursor-pointer ${
+                  className={`w-9 h-9 rounded-full text-xs font-semibold whitespace-nowrap flex items-center justify-center flex-shrink-0 border transition-all cursor-pointer ${
                     selectedBrand === 'OnePlus'
                       ? 'bg-[#00704A] text-white border-[#00704A]'
                       : 'bg-white border-gray-200 hover:border-gray-400'
                   }`}
+                  title="OnePlus"
                 >
                   <span className="bg-red-600 text-white font-black px-1.5 py-0.2 rounded text-[10px]">
                     1+
@@ -701,11 +703,12 @@ export default function NewPhonesPage({
                 {/* 5. Xiaomi (mi) */}
                 <button
                   onClick={() => setSelectedBrand('Xiaomi')}
-                  className={`px-2.5 py-1 rounded-full text-xs font-semibold whitespace-nowrap flex items-center flex-shrink-0 border transition-all cursor-pointer ${
+                  className={`w-9 h-9 rounded-full text-xs font-semibold whitespace-nowrap flex items-center justify-center flex-shrink-0 border transition-all cursor-pointer ${
                     selectedBrand === 'Xiaomi'
                       ? 'bg-[#00704A] text-white border-[#00704A]'
                       : 'bg-white border-gray-200 hover:border-gray-400'
                   }`}
+                  title="Xiaomi"
                 >
                   <span className="bg-[#ff6900] text-white font-bold px-1.5 py-0.2 rounded text-[10px]">
                     mi
@@ -715,11 +718,12 @@ export default function NewPhonesPage({
                 {/* 6. Realme (R) */}
                 <button
                   onClick={() => setSelectedBrand('Realme')}
-                  className={`px-2.5 py-1 rounded-full text-xs font-semibold whitespace-nowrap flex items-center flex-shrink-0 border transition-all cursor-pointer ${
+                  className={`w-9 h-9 rounded-full text-xs font-semibold whitespace-nowrap flex items-center justify-center flex-shrink-0 border transition-all cursor-pointer ${
                     selectedBrand === 'Realme'
                       ? 'bg-[#00704A] text-white border-[#00704A]'
                       : 'bg-white border-gray-200 hover:border-gray-400'
                   }`}
+                  title="Realme"
                 >
                   <span className="bg-[#ffc700] text-gray-950 font-black px-1.5 py-0.2 rounded text-[10px]">
                     R
@@ -729,13 +733,14 @@ export default function NewPhonesPage({
                 {/* 7. Vivo */}
                 <button
                   onClick={() => setSelectedBrand('Vivo')}
-                  className={`px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap flex items-center flex-shrink-0 border transition-all cursor-pointer ${
+                  className={`h-9 px-3.5 rounded-full text-xs font-semibold whitespace-nowrap flex items-center justify-center flex-shrink-0 border transition-all cursor-pointer ${
                     selectedBrand === 'Vivo'
                       ? 'bg-[#00704A] text-white border-[#00704A]'
                       : 'bg-white border-gray-200 hover:border-gray-400'
                   }`}
+                  title="Vivo"
                 >
-                  <span className={`font-bold text-[11px] ${selectedBrand === 'Vivo' ? 'text-white' : 'text-[#0051d5]'}`}>
+                  <span className={`font-bold text-[12px] ${selectedBrand === 'Vivo' ? 'text-white' : 'text-[#0051d5]'}`}>
                     vivo
                   </span>
                 </button>
@@ -743,13 +748,14 @@ export default function NewPhonesPage({
                 {/* 8. Oppo */}
                 <button
                   onClick={() => setSelectedBrand('Oppo')}
-                  className={`px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap flex items-center flex-shrink-0 border transition-all cursor-pointer ${
+                  className={`h-9 px-3.5 rounded-full text-xs font-semibold whitespace-nowrap flex items-center justify-center flex-shrink-0 border transition-all cursor-pointer ${
                     selectedBrand === 'Oppo'
                       ? 'bg-[#00704A] text-white border-[#00704A]'
                       : 'bg-white border-gray-200 hover:border-gray-400'
                   }`}
+                  title="Oppo"
                 >
-                  <span className={`font-bold text-[11px] ${selectedBrand === 'Oppo' ? 'text-white' : 'text-[#008751]'}`}>
+                  <span className={`font-bold text-[12px] ${selectedBrand === 'Oppo' ? 'text-white' : 'text-[#008751]'}`}>
                     oppo
                   </span>
                 </button>
@@ -757,14 +763,14 @@ export default function NewPhonesPage({
                 {/* 9. Google */}
                 <button
                   onClick={() => setSelectedBrand('Google')}
-                  className={`px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap flex items-center flex-shrink-0 border transition-all cursor-pointer ${
+                  className={`w-9 h-9 rounded-full text-xs font-semibold whitespace-nowrap flex items-center justify-center flex-shrink-0 border transition-all cursor-pointer ${
                     selectedBrand === 'Google'
                       ? 'bg-[#00704A] text-white border-[#00704A]'
                       : 'bg-white border-gray-200 hover:border-gray-400'
                   }`}
+                  title="Google"
                 >
-                  {/* Google 4-color G icon */}
-                  <svg className="w-3.5 h-3.5" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4" viewBox="0 0 24 24">
                     <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/>
                     <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z"/>
                     <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.97 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/>
@@ -775,11 +781,12 @@ export default function NewPhonesPage({
                 {/* 10. Motorola */}
                 <button
                   onClick={() => setSelectedBrand('Motorola')}
-                  className={`px-2.5 py-1 rounded-full text-xs font-semibold whitespace-nowrap flex items-center flex-shrink-0 border transition-all cursor-pointer ${
+                  className={`w-9 h-9 rounded-full text-xs font-semibold whitespace-nowrap flex items-center justify-center flex-shrink-0 border transition-all cursor-pointer ${
                     selectedBrand === 'Motorola'
                       ? 'bg-[#00704A] text-white border-[#00704A]'
                       : 'bg-white border-gray-200 hover:border-gray-400'
                   }`}
+                  title="Motorola"
                 >
                   <span className="bg-[#001489] text-white font-black rounded-full px-1.5 py-0.2 text-[9px]">
                     M
@@ -789,11 +796,12 @@ export default function NewPhonesPage({
                 {/* 11. Nothing */}
                 <button
                   onClick={() => setSelectedBrand('Nothing')}
-                  className={`px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap flex items-center flex-shrink-0 border transition-all cursor-pointer ${
+                  className={`h-9 px-3.5 rounded-full text-xs font-semibold whitespace-nowrap flex items-center justify-center flex-shrink-0 border transition-all cursor-pointer ${
                     selectedBrand === 'Nothing'
                       ? 'bg-[#00704A] text-white border-[#00704A]'
                       : 'bg-white border-gray-200 hover:border-gray-400'
                   }`}
+                  title="Nothing"
                 >
                   <span className={`font-mono text-[11px] ${selectedBrand === 'Nothing' ? 'text-white' : 'text-gray-900'}`}>
                     Nothing
@@ -803,11 +811,12 @@ export default function NewPhonesPage({
                 {/* 12. Nokia */}
                 <button
                   onClick={() => setSelectedBrand('Nokia')}
-                  className={`px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap flex items-center flex-shrink-0 border transition-all cursor-pointer ${
+                  className={`h-9 px-3.5 rounded-full text-xs font-semibold whitespace-nowrap flex items-center justify-center flex-shrink-0 border transition-all cursor-pointer ${
                     selectedBrand === 'Nokia'
                       ? 'bg-[#00704A] text-white border-[#00704A]'
                       : 'bg-white border-gray-200 hover:border-gray-400'
                   }`}
+                  title="Nokia"
                 >
                   <span className={`font-black tracking-wider text-[10px] ${selectedBrand === 'Nokia' ? 'text-white' : 'text-[#124191]'}`}>
                     NOKIA
@@ -817,10 +826,10 @@ export default function NewPhonesPage({
                 {/* 13. More */}
                 <button
                   onClick={() => showToast?.('Showing all brand options')}
-                  className="px-2.5 py-1 rounded-full text-xs font-medium text-gray-600 hover:text-gray-900 bg-white border border-gray-200 hover:border-gray-400 flex items-center gap-0.5 whitespace-nowrap flex-shrink-0 cursor-pointer"
+                  className="h-9 px-3 rounded-full text-xs font-medium text-gray-600 hover:text-gray-900 bg-white border border-gray-200 hover:border-gray-400 flex items-center gap-1 whitespace-nowrap flex-shrink-0 cursor-pointer"
                 >
                   <span>More</span>
-                  <ChevronDown className="w-3 h-3" />
+                  <ChevronDown className="w-3.5 h-3.5" />
                 </button>
               </div>
 
