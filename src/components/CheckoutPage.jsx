@@ -21,7 +21,8 @@ import {
   Sparkles,
   ShoppingBag,
   Clock,
-  Radio
+  Radio,
+  Zap,
 } from 'lucide-react';
 import { DualPhoneGraphic } from './ProductDetailsPage';
 import { PhoneMockup } from './PhoneGraphics';
@@ -185,17 +186,17 @@ export default function CheckoutPage({
             
             {/* Connecting Track 1-2 */}
             <div className={`absolute top-4 left-[12%] right-[63%] h-0.5 transition-colors duration-300 ${
-              currentStep >= 2 ? 'bg-emerald-600' : 'bg-gray-200'
+              currentStep >= 2 ? 'bg-[#00875a]' : 'bg-gray-200'
             }`} />
             
             {/* Connecting Track 2-3 */}
             <div className={`absolute top-4 left-[37%] right-[38%] h-0.5 transition-colors duration-300 ${
-              currentStep >= 3 ? 'bg-emerald-600' : 'bg-gray-200'
+              currentStep >= 3 ? 'bg-[#00875a]' : 'bg-gray-200'
             }`} />
 
             {/* Connecting Track 3-4 */}
             <div className={`absolute top-4 left-[63%] right-[12%] h-0.5 transition-colors duration-300 ${
-              currentStep >= 4 ? 'bg-emerald-600' : 'bg-gray-200'
+              currentStep >= 4 ? 'bg-[#00875a]' : 'bg-gray-200'
             }`} />
 
             {/* Step 1: Delivery Address */}
@@ -205,7 +206,7 @@ export default function CheckoutPage({
             >
               <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs transition-all ${
                 currentStep >= 1 
-                  ? 'bg-[#0b4d3c] text-white shadow-sm ring-4 ring-emerald-50' 
+                  ? 'bg-[#00875a] text-white shadow-sm ring-4 ring-emerald-50' 
                   : 'bg-white border-2 border-gray-300 text-gray-500'
               }`}>
                 {currentStep > 1 ? <Check className="w-4 h-4 stroke-[3]" /> : '1'}
@@ -224,7 +225,7 @@ export default function CheckoutPage({
             >
               <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs transition-all ${
                 currentStep >= 2 
-                  ? 'bg-[#0b4d3c] text-white shadow-sm ring-4 ring-emerald-50' 
+                  ? 'bg-[#00875a] text-white shadow-sm ring-4 ring-emerald-50' 
                   : 'bg-white border-2 border-gray-300 text-gray-500'
               }`}>
                 {currentStep > 2 ? <Check className="w-4 h-4 stroke-[3]" /> : '2'}
@@ -243,7 +244,7 @@ export default function CheckoutPage({
             >
               <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs transition-all ${
                 currentStep >= 3 
-                  ? 'bg-[#0b4d3c] text-white shadow-sm ring-4 ring-emerald-50' 
+                  ? 'bg-[#00875a] text-white shadow-sm ring-4 ring-emerald-50' 
                   : 'bg-white border-2 border-gray-300 text-gray-500'
               }`}>
                 {currentStep > 3 ? <Check className="w-4 h-4 stroke-[3]" /> : '3'}
@@ -259,7 +260,7 @@ export default function CheckoutPage({
             <div className="flex flex-col items-center relative z-10">
               <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs transition-all ${
                 currentStep >= 4 
-                  ? 'bg-[#0b4d3c] text-white shadow-sm ring-4 ring-emerald-50' 
+                  ? 'bg-[#00875a] text-white shadow-sm ring-4 ring-emerald-50' 
                   : 'bg-white border-2 border-gray-300 text-gray-500'
               }`}>
                 {currentStep >= 4 ? <Check className="w-4 h-4 stroke-[3]" /> : '4'}
@@ -321,7 +322,7 @@ export default function CheckoutPage({
               <div className="flex-1 min-w-0">
                 <h4 className="text-xs font-bold text-gray-900 truncate">{item.name} (Used)</h4>
                 <p className="text-[11px] text-gray-500">{storageName} • {conditionName} Condition • {colorName}</p>
-                <div className="text-xs font-black text-[#0b4d3c] mt-0.5">
+                <div className="text-xs font-black text-[#00875a] mt-0.5">
                   Paid ₹{totalAmount.toLocaleString('en-IN')} (via {paymentMethod.toUpperCase()})
                 </div>
               </div>
@@ -329,7 +330,7 @@ export default function CheckoutPage({
 
             <button
               onClick={onBack}
-              className="mt-8 bg-[#0b4d3c] hover:bg-[#08382c] text-white font-bold py-3 px-8 rounded-xl text-xs transition-all shadow-md active:scale-95"
+              className="mt-8 bg-[#00875a] hover:bg-[#00744d] text-white font-bold py-3 px-8 rounded-xl text-xs transition-all shadow-md active:scale-95 cursor-pointer"
             >
               Continue Shopping
             </button>
@@ -342,347 +343,359 @@ export default function CheckoutPage({
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
             {/* ======================================================================= */}
-            {/* LEFT COLUMN: SECTIONS 1, 2, 3                                           */}
+            {/* LEFT COLUMN: SECTIONS 1, 2, 3 (EXACT SCREENSHOT SPECIFICATION)          */}
             {/* ======================================================================= */}
-            <div className="lg:col-span-7 xl:col-span-8 space-y-6">
-
-              {/* ------------------------------------------------------------------- */}
-              {/* SECTION 1: DELIVERY ADDRESS                                          */}
-              {/* ------------------------------------------------------------------- */}
-              <div className="bg-white rounded-3xl border border-gray-100 p-6 shadow-xs">
+            <div className="lg:col-span-7 xl:col-span-8">
+              
+              {/* Single Unified White Card matching exact screenshot */}
+              <div className="bg-white rounded-2xl border border-gray-200/90 p-6 sm:p-7 shadow-xs">
                 
-                {/* Header: Pin Icon + Title + Add New Address */}
-                <div className="flex items-center justify-between pb-4 border-b border-gray-100">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-2xl bg-teal-50 flex items-center justify-center text-teal-800 flex-shrink-0">
-                      <MapPin className="w-5 h-5 text-teal-700" />
-                    </div>
-                    <div>
-                      <h3 className="text-base font-bold text-gray-900 leading-tight">
-                        Delivery Address
-                      </h3>
-                      <p className="text-xs text-gray-500 mt-0.5">
-                        Where should we deliver your order?
-                      </p>
-                    </div>
-                  </div>
-
-                  <button
-                    onClick={() => setIsAddAddressOpen(true)}
-                    className="flex items-center gap-1.5 text-xs font-bold text-emerald-700 hover:text-emerald-900 transition-colors cursor-pointer"
-                  >
-                    <Plus className="w-4 h-4 stroke-[2.5]" />
-                    <span>Add New Address</span>
-                  </button>
-                </div>
-
-                {/* Address Cards Grid: Home vs Office */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-5">
-                  {addresses.map((addr) => {
-                    const isSelected = selectedAddressId === addr.id;
-                    return (
-                      <div
-                        key={addr.id}
-                        onClick={() => setSelectedAddressId(addr.id)}
-                        className={`rounded-2xl p-4.5 transition-all cursor-pointer relative flex flex-col justify-between ${
-                          isSelected
-                            ? 'border-2 border-emerald-600 bg-emerald-50/20 shadow-xs'
-                            : 'border border-gray-200 bg-white hover:border-gray-300'
-                        }`}
-                      >
-                        {/* Top: Custom Radio + Title + Default Badge */}
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-2.5">
-                            <div className={`w-4 h-4 rounded-full flex items-center justify-center border transition-all ${
-                              isSelected
-                                ? 'border-emerald-600 bg-emerald-600'
-                                : 'border-gray-300 bg-white'
-                            }`}>
-                              {isSelected && <div className="w-1.5 h-1.5 rounded-full bg-white" />}
-                            </div>
-                            <span className="font-bold text-xs text-gray-900">
-                              {addr.type}
-                            </span>
-                            {addr.isDefault && (
-                              <span className="bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-md">
-                                Default
-                              </span>
-                            )}
-                          </div>
-                        </div>
-
-                        {/* Name & Address Details */}
-                        <div className="mt-3 space-y-0.5 text-xs text-gray-600">
-                          <p className="font-bold text-gray-900">{addr.name}</p>
-                          <p>{addr.addressLine1}</p>
-                          <p>{addr.addressLine2}</p>
-                          <p>{addr.state}</p>
-                        </div>
-
-                        {/* Phone Number */}
-                        <div className="mt-3 text-xs text-gray-600 flex items-center gap-1.5">
-                          <Phone className="w-3.5 h-3.5 text-gray-400" />
-                          <span>{addr.phone}</span>
-                        </div>
-
-                        {/* Edit | Remove Action Links */}
-                        <div className="mt-3 pt-2.5 border-t border-gray-100 flex items-center justify-end gap-3 text-xs font-semibold text-sky-700">
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              showToast?.('Editing address...');
-                            }}
-                            className="hover:underline cursor-pointer"
-                          >
-                            Edit
-                          </button>
-                          <span className="text-gray-300">|</span>
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              handleRemoveAddress(addr.id);
-                            }}
-                            className="hover:underline text-rose-600 cursor-pointer"
-                          >
-                            Remove
-                          </button>
-                        </div>
+                {/* ----------------------------------------------------------------- */}
+                {/* SECTION 1: DELIVERY ADDRESS                                        */}
+                {/* ----------------------------------------------------------------- */}
+                <div>
+                  {/* Section 1 Header */}
+                  <div className="flex items-start justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="w-9 h-9 rounded-full bg-[#e8f5f0] flex items-center justify-center flex-shrink-0">
+                        <MapPin className="w-4.5 h-4.5 text-[#00875a] fill-[#00875a]" />
                       </div>
-                    );
-                  })}
-                </div>
-
-              </div>
-
-              {/* ------------------------------------------------------------------- */}
-              {/* SECTION 2: DELIVERY OPTIONS                                          */}
-              {/* ------------------------------------------------------------------- */}
-              <div className="bg-white rounded-3xl border border-gray-100 p-6 shadow-xs">
-                
-                {/* Header: Truck Icon + Title */}
-                <div className="flex items-center gap-3 pb-4 border-b border-gray-100">
-                  <div className="w-10 h-10 rounded-2xl bg-emerald-50 flex items-center justify-center text-emerald-800 flex-shrink-0">
-                    <Truck className="w-5 h-5 text-emerald-700" />
-                  </div>
-                  <div>
-                    <h3 className="text-base font-bold text-gray-900 leading-tight">
-                      Delivery Options
-                    </h3>
-                    <p className="text-xs text-gray-500 mt-0.5">
-                      Choose a delivery option that works for you
-                    </p>
-                  </div>
-                </div>
-
-                {/* 2 Delivery Option Cards: Standard (FREE) vs Express (₹99) */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-5">
-                  
-                  {/* Standard Delivery (FREE) */}
-                  <div
-                    onClick={() => setDeliveryOption('standard')}
-                    className={`rounded-2xl p-4.5 transition-all cursor-pointer relative flex flex-col justify-between ${
-                      deliveryOption === 'standard'
-                        ? 'border-2 border-emerald-600 bg-emerald-50/20 shadow-xs'
-                        : 'border border-gray-200 bg-white hover:border-gray-300'
-                    }`}
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2.5">
-                        <div className={`w-4 h-4 rounded-full flex items-center justify-center border transition-all ${
-                          deliveryOption === 'standard'
-                            ? 'border-emerald-600 bg-emerald-600'
-                            : 'border-gray-300 bg-white'
-                        }`}>
-                          {deliveryOption === 'standard' && <div className="w-1.5 h-1.5 rounded-full bg-white" />}
-                        </div>
-                        <span className="font-bold text-xs text-gray-900">
-                          Standard Delivery
-                        </span>
+                      <div>
+                        <h3 className="text-base font-bold text-gray-950 leading-tight">
+                          Delivery Address
+                        </h3>
+                        <p className="text-xs text-gray-500 font-normal mt-0.5">
+                          Where should we deliver your order?
+                        </p>
                       </div>
-                      <span className="font-black text-xs text-emerald-700">
-                        FREE
-                      </span>
                     </div>
 
-                    <div className="mt-2.5 pl-6.5 text-xs">
-                      <p className="font-semibold text-gray-700">Delivered in 3 - 5 days</p>
-                      <p className="text-[11px] text-gray-500 mt-0.5">Safe and reliable delivery across India</p>
-                    </div>
-                  </div>
-
-                  {/* Express Delivery (₹99) */}
-                  <div
-                    onClick={() => setDeliveryOption('express')}
-                    className={`rounded-2xl p-4.5 transition-all cursor-pointer relative flex flex-col justify-between ${
-                      deliveryOption === 'express'
-                        ? 'border-2 border-emerald-600 bg-emerald-50/20 shadow-xs'
-                        : 'border border-gray-200 bg-white hover:border-gray-300'
-                    }`}
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2.5">
-                        <div className={`w-4 h-4 rounded-full flex items-center justify-center border transition-all ${
-                          deliveryOption === 'express'
-                            ? 'border-emerald-600 bg-emerald-600'
-                            : 'border-gray-300 bg-white'
-                        }`}>
-                          {deliveryOption === 'express' && <div className="w-1.5 h-1.5 rounded-full bg-white" />}
-                        </div>
-                        <span className="font-bold text-xs text-gray-900">
-                          Express Delivery
-                        </span>
-                      </div>
-                      <span className="font-black text-xs text-gray-900">
-                        ₹99
-                      </span>
-                    </div>
-
-                    <div className="mt-2.5 pl-6.5 text-xs">
-                      <p className="font-semibold text-gray-700">Delivered in 1 - 2 days</p>
-                      <p className="text-[11px] text-gray-500 mt-0.5">Faster delivery to select locations</p>
-                    </div>
-                  </div>
-
-                </div>
-
-              </div>
-
-              {/* ------------------------------------------------------------------- */}
-              {/* SECTION 3: ADD PROTECTION (OPTIONAL)                                */}
-              {/* ------------------------------------------------------------------- */}
-              <div className="bg-white rounded-3xl border border-gray-100 p-6 shadow-xs">
-                
-                {/* Header: Shield Icon + Title */}
-                <div className="flex items-center gap-3 pb-4 border-b border-gray-100">
-                  <div className="w-10 h-10 rounded-2xl bg-teal-50 flex items-center justify-center text-teal-800 flex-shrink-0">
-                    <ShieldCheck className="w-5 h-5 text-teal-700" />
-                  </div>
-                  <div>
-                    <h3 className="text-base font-bold text-gray-900 leading-tight">
-                      Add Protection (Optional)
-                    </h3>
-                    <p className="text-xs text-gray-500 mt-0.5">
-                      Extra care for your device
-                    </p>
-                  </div>
-                </div>
-
-                {/* Extended Warranty Card with Checkbox */}
-                <div
-                  onClick={() => setHasExtendedWarranty(!hasExtendedWarranty)}
-                  className={`mt-5 rounded-2xl p-4.5 border transition-all cursor-pointer flex items-start justify-between gap-4 ${
-                    hasExtendedWarranty
-                      ? 'border-2 border-emerald-600 bg-emerald-50/20 shadow-xs'
-                      : 'border-gray-200 bg-white hover:border-gray-300'
-                  }`}
-                >
-                  <div className="flex items-start gap-3">
-                    <div className={`w-5 h-5 rounded-md border flex items-center justify-center mt-0.5 transition-colors ${
-                      hasExtendedWarranty 
-                        ? 'bg-emerald-600 border-emerald-600 text-white' 
-                        : 'border-gray-300 bg-white'
-                    }`}>
-                      {hasExtendedWarranty && <Check className="w-3.5 h-3.5 stroke-[3]" />}
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-xs sm:text-sm text-gray-900">
-                        Extended Warranty (6 Months)
-                      </h4>
-                      <p className="text-xs text-gray-500 mt-0.5 leading-relaxed">
-                        Covers manufacturing defects, gives you peace of mind.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="text-right flex-shrink-0">
-                    <span className="font-black text-sm text-gray-900">
-                      ₹1,499
-                    </span>
                     <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        showToast?.('6 Months Doorstep Service Warranty included.');
-                      }}
-                      className="text-[11px] font-semibold text-sky-700 hover:underline flex items-center gap-1 mt-1 justify-end cursor-pointer"
+                      onClick={() => setIsAddAddressOpen(true)}
+                      className="flex items-center gap-1 text-xs font-semibold text-[#00875a] hover:text-[#00744d] transition-colors cursor-pointer pt-1"
                     >
-                      <span>View Details</span>
-                      <Info className="w-3 h-3 text-sky-600" />
+                      <Plus className="w-3.5 h-3.5 stroke-[2.5]" />
+                      <span>Add New Address</span>
                     </button>
                   </div>
-                </div>
 
-              </div>
-
-              {/* ------------------------------------------------------------------- */}
-              {/* STEP 2: PAYMENT METHOD (ACCORDION / ADVANCE)                         */}
-              {/* ------------------------------------------------------------------- */}
-              {currentStep === 2 && (
-                <div className="bg-white rounded-3xl border border-gray-100 p-6 shadow-xs animate-fadeIn space-y-4">
-                  <h3 className="text-base font-bold text-gray-900">Select Payment Method</h3>
-                  <div className="space-y-3">
-                    {[
-                      { id: 'upi', name: 'Instant UPI (Google Pay, PhonePe, Paytm)', icon: Zap },
-                      { id: 'card', name: 'Credit / Debit Card (Visa, MasterCard, RuPay)', icon: CreditCard },
-                      { id: 'netbanking', name: 'Net Banking (All Major Indian Banks)', icon: Building },
-                      { id: 'cod', name: 'Cash on Delivery (Verified Doorstep Delivery)', icon: Truck },
-                    ].map((p) => {
-                      const isSel = paymentMethod === p.id;
+                  {/* 2 Address Cards: Home (Default) vs Office */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-5">
+                    {addresses.map((addr) => {
+                      const isSelected = selectedAddressId === addr.id;
                       return (
                         <div
-                          key={p.id}
-                          onClick={() => setPaymentMethod(p.id)}
-                          className={`p-4 rounded-2xl border flex items-center justify-between cursor-pointer transition-all ${
-                            isSel ? 'border-2 border-emerald-600 bg-emerald-50/20' : 'border-gray-200 hover:border-gray-300'
+                          key={addr.id}
+                          onClick={() => setSelectedAddressId(addr.id)}
+                          className={`rounded-xl p-4 transition-all cursor-pointer flex flex-col justify-between ${
+                            isSelected
+                              ? 'border-2 border-[#00875a] bg-[#f8fcf9]'
+                              : 'border border-gray-200 bg-white hover:border-gray-300'
                           }`}
                         >
-                          <div className="flex items-center gap-3">
-                            <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${
-                              isSel ? 'border-emerald-600 bg-emerald-600' : 'border-gray-300'
-                            }`}>
-                              {isSel && <div className="w-1.5 h-1.5 rounded-full bg-white" />}
+                          <div>
+                            {/* Top row: Radio + Type + Default badge */}
+                            <div className="flex items-center gap-2">
+                              <div className={`w-4 h-4 rounded-full flex items-center justify-center transition-all ${
+                                isSelected
+                                  ? 'border-2 border-[#00875a]'
+                                  : 'border border-gray-400 bg-white'
+                              }`}>
+                                {isSelected && (
+                                  <div className="w-2 h-2 rounded-full bg-[#00875a]" />
+                                )}
+                              </div>
+                              <span className="font-bold text-xs sm:text-sm text-gray-950">
+                                {addr.type}
+                              </span>
+                              {addr.isDefault && (
+                                <span className="bg-[#00875a] text-white text-[10px] font-semibold px-2 py-0.5 rounded-full ml-1">
+                                  Default
+                                </span>
+                              )}
                             </div>
-                            <span className="text-xs font-bold text-gray-900">{p.name}</span>
+
+                            {/* Address Lines */}
+                            <div className="mt-2.5 text-xs text-gray-600 leading-relaxed">
+                              <p className="font-normal text-gray-800">{addr.name}</p>
+                              <p>{addr.addressLine1}</p>
+                              <p>{addr.addressLine2}</p>
+                              <p>{addr.state}</p>
+                            </div>
+                          </div>
+
+                          {/* Bottom row: Phone + Edit | Remove */}
+                          <div className="mt-3 pt-1 flex items-center justify-between text-xs">
+                            <div className="flex items-center gap-1.5 text-gray-600">
+                              <Phone className="w-3.5 h-3.5 text-gray-500" />
+                              <span>{addr.phone}</span>
+                            </div>
+                            <div className="flex items-center gap-1 text-xs font-semibold text-[#1a73e8]">
+                              <button
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  showToast?.('Editing address...');
+                                }}
+                                className="hover:underline cursor-pointer"
+                              >
+                                Edit
+                              </button>
+                              <span className="text-gray-300 font-normal">|</span>
+                              <button
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handleRemoveAddress(addr.id);
+                                }}
+                                className="hover:underline cursor-pointer"
+                              >
+                                Remove
+                              </button>
+                            </div>
                           </div>
                         </div>
                       );
                     })}
                   </div>
                 </div>
-              )}
 
-              {/* CTA Button: Proceed to Payment or Place Order */}
-              <div className="pt-2">
-                {currentStep === 1 ? (
-                  <button
-                    onClick={() => {
-                      setCurrentStep(2);
-                      window.scrollTo({ top: 300, behavior: 'smooth' });
-                      showToast?.('Address confirmed. Select payment method.');
-                    }}
-                    className="w-full bg-[#0b4d3c] hover:bg-[#07392c] active:scale-[0.99] text-white font-bold py-3.5 px-6 rounded-2xl text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/20 transition-all cursor-pointer"
+                {/* Divider Line */}
+                <hr className="border-t border-gray-100 my-6" />
+
+                {/* ----------------------------------------------------------------- */}
+                {/* SECTION 2: DELIVERY OPTIONS                                       */}
+                {/* ----------------------------------------------------------------- */}
+                <div>
+                  {/* Section 2 Header */}
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-full bg-[#e8f5f0] flex items-center justify-center flex-shrink-0">
+                      <Truck className="w-4.5 h-4.5 text-[#00875a]" />
+                    </div>
+                    <div>
+                      <h3 className="text-base font-bold text-gray-950 leading-tight">
+                        Delivery Options
+                      </h3>
+                      <p className="text-xs text-gray-500 font-normal mt-0.5">
+                        Choose a delivery option that works for you
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* 2 Delivery Options Cards: Standard (FREE) vs Express (₹99) */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-5">
+                    
+                    {/* Standard Delivery (FREE) */}
+                    <div
+                      onClick={() => setDeliveryOption('standard')}
+                      className={`rounded-xl p-4 transition-all cursor-pointer ${
+                        deliveryOption === 'standard'
+                          ? 'border-2 border-[#00875a] bg-[#f8fcf9]'
+                          : 'border border-gray-200 bg-white hover:border-gray-300'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2.5">
+                          <div className={`w-4 h-4 rounded-full flex items-center justify-center transition-all ${
+                            deliveryOption === 'standard'
+                              ? 'border-2 border-[#00875a]'
+                              : 'border border-gray-400 bg-white'
+                          }`}>
+                            {deliveryOption === 'standard' && (
+                              <div className="w-2 h-2 rounded-full bg-[#00875a]" />
+                            )}
+                          </div>
+                          <span className="font-bold text-xs sm:text-sm text-gray-950">
+                            Standard Delivery
+                          </span>
+                        </div>
+                        <span className="font-bold text-xs sm:text-sm text-[#00875a]">
+                          FREE
+                        </span>
+                      </div>
+
+                      <div className="mt-1.5 pl-6.5 text-xs">
+                        <p className="font-normal text-gray-700">Delivered in 3 - 5 days</p>
+                        <p className="text-[11px] text-gray-500 mt-0.5">Safe and reliable delivery across India</p>
+                      </div>
+                    </div>
+
+                    {/* Express Delivery (₹99) */}
+                    <div
+                      onClick={() => setDeliveryOption('express')}
+                      className={`rounded-xl p-4 transition-all cursor-pointer ${
+                        deliveryOption === 'express'
+                          ? 'border-2 border-[#00875a] bg-[#f8fcf9]'
+                          : 'border border-gray-200 bg-white hover:border-gray-300'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2.5">
+                          <div className={`w-4 h-4 rounded-full flex items-center justify-center transition-all ${
+                            deliveryOption === 'express'
+                              ? 'border-2 border-[#00875a]'
+                              : 'border border-gray-400 bg-white'
+                          }`}>
+                            {deliveryOption === 'express' && (
+                              <div className="w-2 h-2 rounded-full bg-[#00875a]" />
+                            )}
+                          </div>
+                          <span className="font-bold text-xs sm:text-sm text-gray-950">
+                            Express Delivery
+                          </span>
+                        </div>
+                        <span className="font-bold text-xs sm:text-sm text-gray-950">
+                          ₹99
+                        </span>
+                      </div>
+
+                      <div className="mt-1.5 pl-6.5 text-xs">
+                        <p className="font-normal text-gray-700">Delivered in 1 - 2 days</p>
+                        <p className="text-[11px] text-gray-500 mt-0.5">Faster delivery to select locations</p>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+                {/* Divider Line */}
+                <hr className="border-t border-gray-100 my-6" />
+
+                {/* ----------------------------------------------------------------- */}
+                {/* SECTION 3: ADD PROTECTION (OPTIONAL)                              */}
+                {/* ----------------------------------------------------------------- */}
+                <div>
+                  {/* Section 3 Header */}
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-full bg-[#e8f5f0] flex items-center justify-center flex-shrink-0">
+                      <ShieldCheck className="w-4.5 h-4.5 text-[#00875a]" />
+                    </div>
+                    <div>
+                      <h3 className="text-base font-bold text-gray-950 leading-tight">
+                        Add Protection (Optional)
+                      </h3>
+                      <p className="text-xs text-gray-500 font-normal mt-0.5">
+                        Extra care for your device
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Single Full-Width Protection Card */}
+                  <div
+                    onClick={() => setHasExtendedWarranty(!hasExtendedWarranty)}
+                    className={`mt-4 rounded-xl p-4 border transition-all cursor-pointer flex items-center justify-between ${
+                      hasExtendedWarranty
+                        ? 'border-2 border-[#00875a] bg-[#f8fcf9]'
+                        : 'border border-gray-200 bg-white hover:border-gray-300'
+                    }`}
                   >
-                    <span>Proceed to Payment</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-                ) : (
-                  <button
-                    onClick={handlePlaceOrder}
-                    className="w-full bg-[#0b4d3c] hover:bg-[#07392c] active:scale-[0.99] text-white font-bold py-3.5 px-6 rounded-2xl text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/20 transition-all cursor-pointer"
-                  >
-                    <span>Pay ₹{totalAmount.toLocaleString('en-IN')} & Place Order</span>
-                    <Lock className="w-4 h-4" />
-                  </button>
+                    <div className="flex items-center gap-3">
+                      <div className={`w-4.5 h-4.5 rounded border flex items-center justify-center transition-colors ${
+                        hasExtendedWarranty
+                          ? 'bg-[#00875a] border-[#00875a] text-white'
+                          : 'border-gray-400 bg-white'
+                      }`}>
+                        {hasExtendedWarranty && <Check className="w-3 h-3 stroke-[3]" />}
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-xs sm:text-sm text-gray-950">
+                          Extended Warranty (6 Months)
+                        </h4>
+                        <p className="text-xs text-gray-500 mt-0.5">
+                          Covers manufacturing defects, gives you peace of mind.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="text-right flex-shrink-0">
+                      <span className="font-bold text-sm text-gray-950">
+                        ₹1,499
+                      </span>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          showToast?.('6 Months Doorstep Service Warranty included.');
+                        }}
+                        className="text-xs font-normal text-gray-500 hover:text-gray-700 flex items-center gap-1 justify-end mt-0.5 cursor-pointer"
+                      >
+                        <span>View Details</span>
+                        <Info className="w-3.5 h-3.5 text-gray-400" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                {/* ----------------------------------------------------------------- */}
+                {/* STEP 2: PAYMENT METHOD (ACCORDION / ADVANCE)                       */}
+                {/* ----------------------------------------------------------------- */}
+                {currentStep === 2 && (
+                  <div className="mt-6 pt-6 border-t border-gray-100 animate-fadeIn space-y-4">
+                    <h3 className="text-base font-bold text-gray-950">Select Payment Method</h3>
+                    <div className="space-y-3">
+                      {[
+                        { id: 'upi', name: 'Instant UPI (Google Pay, PhonePe, Paytm)', icon: Zap },
+                        { id: 'card', name: 'Credit / Debit Card (Visa, MasterCard, RuPay)', icon: CreditCard },
+                        { id: 'netbanking', name: 'Net Banking (All Major Indian Banks)', icon: Building },
+                        { id: 'cod', name: 'Cash on Delivery (Verified Doorstep Delivery)', icon: Truck },
+                      ].map((p) => {
+                        const isSel = paymentMethod === p.id;
+                        return (
+                          <div
+                            key={p.id}
+                            onClick={() => setPaymentMethod(p.id)}
+                            className={`p-4 rounded-xl border flex items-center justify-between cursor-pointer transition-all ${
+                              isSel ? 'border-2 border-[#00875a] bg-[#f8fcf9]' : 'border border-gray-200 hover:border-gray-300'
+                            }`}
+                          >
+                            <div className="flex items-center gap-3">
+                              <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${
+                                isSel ? 'border-2 border-[#00875a]' : 'border border-gray-400 bg-white'
+                              }`}>
+                                {isSel && <div className="w-2 h-2 rounded-full bg-[#00875a]" />}
+                              </div>
+                              <span className="text-xs font-bold text-gray-900">{p.name}</span>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
                 )}
 
-                {/* Trust Seal */}
-                <div className="flex items-center justify-center gap-2 text-xs text-gray-500 font-medium mt-3.5">
-                  <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                  <span>100% Secure Payment</span>
-                  <span className="text-gray-300">|</span>
-                  <span>Your information is safe with us</span>
-                </div>
-              </div>
+                {/* ----------------------------------------------------------------- */}
+                {/* CTA BUTTON & 100% SECURE TRUST SEAL                                */}
+                {/* ----------------------------------------------------------------- */}
+                <div className="mt-6">
+                  {currentStep === 1 ? (
+                    <button
+                      onClick={() => {
+                        setCurrentStep(2);
+                        window.scrollTo({ top: 300, behavior: 'smooth' });
+                        showToast?.('Address confirmed. Select payment method.');
+                      }}
+                      className="w-full bg-[#00875a] hover:bg-[#00744d] active:scale-[0.99] text-white font-bold py-3.5 px-6 rounded-xl text-sm sm:text-base flex items-center justify-center gap-2 shadow-xs transition-all cursor-pointer"
+                    >
+                      <span>Proceed to Payment</span>
+                      <span className="text-lg leading-none">→</span>
+                    </button>
+                  ) : (
+                    <button
+                      onClick={handlePlaceOrder}
+                      className="w-full bg-[#00875a] hover:bg-[#00744d] active:scale-[0.99] text-white font-bold py-3.5 px-6 rounded-xl text-sm sm:text-base flex items-center justify-center gap-2 shadow-xs transition-all cursor-pointer"
+                    >
+                      <span>Pay ₹{totalAmount.toLocaleString('en-IN')} & Place Order</span>
+                      <Lock className="w-4 h-4 ml-1" />
+                    </button>
+                  )}
 
+                  {/* Trust Seal */}
+                  <div className="flex items-center justify-center gap-2 text-xs text-gray-600 font-medium mt-3.5">
+                    <ShieldCheck className="w-4 h-4 text-[#00875a] fill-[#00875a]/15" />
+                    <span>100% Secure Payment</span>
+                    <span className="text-gray-300">|</span>
+                    <span>Your information is safe with us</span>
+                  </div>
+                </div>
+
+              </div>
             </div>
 
             {/* ======================================================================= */}
@@ -695,7 +708,7 @@ export default function CheckoutPage({
                 <div className="flex items-center justify-between pb-4 border-b border-gray-100">
                   <div className="flex items-center gap-2.5">
                     <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-800 flex items-center justify-center">
-                      <ShoppingBag className="w-4 h-4 text-[#0b4d3c]" />
+                      <ShoppingBag className="w-4 h-4 text-[#00875a]" />
                     </div>
                     <div>
                       <h3 className="font-extrabold text-sm text-gray-900 leading-tight">
@@ -809,7 +822,7 @@ export default function CheckoutPage({
                       <span className="font-bold text-sm text-gray-900 block leading-tight">Total Amount</span>
                       <span className="text-[10px] text-gray-400">Inclusive of all taxes</span>
                     </div>
-                    <span className="text-xl font-black text-[#0b4d3c]">
+                    <span className="text-xl font-black text-[#00875a]">
                       ₹{totalAmount.toLocaleString('en-IN')}
                     </span>
                   </div>
@@ -817,12 +830,12 @@ export default function CheckoutPage({
 
                 {/* Savings Banner */}
                 <div className="bg-emerald-50/70 border border-emerald-100 rounded-2xl p-3.5 flex items-start gap-3">
-                  <Tag className="w-4 h-4 text-emerald-700 flex-shrink-0 mt-0.5" />
+                  <Tag className="w-4 h-4 text-[#00875a] flex-shrink-0 mt-0.5" />
                   <div>
                     <h5 className="font-bold text-xs text-emerald-950 leading-tight">
                       You are saving ₹{totalSavings.toLocaleString('en-IN')} ({savingsPercent}%)
                     </h5>
-                    <p className="text-[11px] text-emerald-700 mt-0.5">
+                    <p className="text-[11px] text-[#00875a] mt-0.5">
                       Great choice! Get more for less.
                     </p>
                   </div>
@@ -838,7 +851,7 @@ export default function CheckoutPage({
                     const Icon = tb.icon;
                     return (
                       <div key={idx} className="bg-gray-50/80 rounded-xl p-2 text-center border border-gray-100 flex flex-col items-center">
-                        <Icon className="w-4 h-4 text-emerald-700 mb-1" />
+                        <Icon className="w-4 h-4 text-[#00875a] mb-1" />
                         <span className="text-[10px] font-bold text-gray-900 leading-tight truncate w-full">{tb.title}</span>
                         <span className="text-[9px] text-gray-400 mt-0.5 leading-tight truncate w-full">{tb.sub}</span>
                       </div>
@@ -864,7 +877,7 @@ export default function CheckoutPage({
 
                   <button
                     onClick={() => setIsCouponModalOpen(true)}
-                    className="text-xs font-bold text-[#0b4d3c] hover:underline flex-shrink-0 cursor-pointer"
+                    className="text-xs font-bold text-[#00875a] hover:underline flex-shrink-0 cursor-pointer"
                   >
                     {appliedCoupon ? 'Change' : 'Apply Coupon'}
                   </button>
@@ -949,7 +962,7 @@ export default function CheckoutPage({
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 py-2.5 rounded-xl bg-[#0b4d3c] text-white font-bold hover:bg-[#07362a] cursor-pointer"
+                  className="flex-1 py-2.5 rounded-xl bg-[#00875a] text-white font-bold hover:bg-[#00744d] cursor-pointer"
                 >
                   Save Address
                 </button>
@@ -983,7 +996,7 @@ export default function CheckoutPage({
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 py-2.5 rounded-xl bg-[#0b4d3c] text-white font-bold hover:bg-[#07362a] cursor-pointer"
+                  className="flex-1 py-2.5 rounded-xl bg-[#00875a] text-white font-bold hover:bg-[#00744d] cursor-pointer"
                 >
                   Apply
                 </button>
