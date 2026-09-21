@@ -508,6 +508,72 @@ export function BrandIcon({ name, className = "h-5 w-5" }) {
           TECNO
         </span>
       );
+    case 'sony':
+      return (
+        <span className="font-black text-[10px] tracking-wider uppercase text-gray-900">
+          SONY
+        </span>
+      );
+    case 'boat':
+      return (
+        <span className="font-extrabold text-[10px] text-red-600 tracking-tight">
+          bo<span className="text-gray-900">A</span>t
+        </span>
+      );
+    case 'jbl':
+      return (
+        <span className="font-black text-[10px] bg-orange-600 text-white px-1 py-0.2 rounded">
+          JBL
+        </span>
+      );
+    case 'bose':
+      return (
+        <span className="font-black italic text-[9px] tracking-widest text-gray-900 uppercase">
+          BOSE
+        </span>
+      );
+    case 'noise':
+      return (
+        <span className="font-bold text-[10px] text-emerald-700 uppercase tracking-tight">
+          NOISE
+        </span>
+      );
+    case 'amazfit':
+      return (
+        <span className="font-bold text-[10px] text-rose-600 tracking-tight">
+          amazfit
+        </span>
+      );
+    case 'anker':
+      return (
+        <span className="font-black text-[10px] text-sky-600 tracking-tight">
+          ANKER
+        </span>
+      );
+    case 'spigen':
+      return (
+        <span className="font-bold text-[10px] text-orange-500 tracking-tight uppercase">
+          spigen
+        </span>
+      );
+    case 'lenovo':
+      return (
+        <span className="font-bold text-[9.5px] bg-red-600 text-white px-1 py-0.2 rounded tracking-tight">
+          Lenovo
+        </span>
+      );
+    case 'garmin':
+      return (
+        <span className="font-black text-[10px] text-blue-700 tracking-wider uppercase">
+          GARMIN
+        </span>
+      );
+    case 'sennheiser':
+      return (
+        <span className="font-semibold text-[9px] text-gray-800 tracking-tighter uppercase">
+          SENNHEISER
+        </span>
+      );
     default:
       return null;
   }
