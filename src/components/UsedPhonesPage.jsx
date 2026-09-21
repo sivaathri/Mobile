@@ -687,7 +687,7 @@ export default function UsedPhonesPage({
                     />
                   </div>
 
-                  <div className="max-h-48 overflow-y-auto space-y-2 pr-1 custom-scrollbar">
+                  <div className="max-h-48 overflow-y-auto space-y-2 pr-1 no-scrollbar">
                     {brandsList
                       .filter((b) => b.name.toLowerCase().includes(brandSearch.toLowerCase()))
                       .map((brand) => {
@@ -852,7 +852,7 @@ export default function UsedPhonesPage({
             <div className="bg-white rounded-xl border border-gray-200/80 p-2.5 sm:p-3 mb-4 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 shadow-2xs animate-fadeInUp" style={{ animationDelay: '120ms' }}>
               
               {/* Left: Count + Brand Quick-Pills */}
-              <div className="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0 custom-scrollbar flex-1 min-w-0">
+              <div className="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0 no-scrollbar flex-1 min-w-0">
                 
                 {/* Count */}
                 <div className="text-xs sm:text-sm font-extrabold text-gray-900 whitespace-nowrap mr-2 flex-shrink-0">

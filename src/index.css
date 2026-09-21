@@ -3,8 +3,11 @@
 @tailwind utilities;
 
 @layer base {
+  html,
   body {
     @apply font-sans bg-[#fbfcfb] text-gray-800;
+    overflow-x: hidden;
+    max-width: 100%;
   }
 
   /* Remove default browser button focus outline ring */
@@ -14,13 +17,24 @@
   }
 }
 
-/* Custom scrollbars for clean horizontal sliding */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
+/* Eliminate all horizontal scrollbars cleanly across all browsers */
+::-webkit-scrollbar:horizontal {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
 }
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+
+.no-scrollbar::-webkit-scrollbar,
+.custom-scrollbar::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.no-scrollbar,
+.custom-scrollbar {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
 }
 
 /* Smooth transitions */
