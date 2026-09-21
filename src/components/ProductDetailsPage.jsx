@@ -122,6 +122,13 @@ export default function ProductDetailsPage({
     }
   }, [isZoomOpen]);
 
+  // Ensure activeTab is valid for used phones
+  useEffect(() => {
+    if (!isNew && activeTab === 'Ratings & Reviews') {
+      setActiveTab('Overview');
+    }
+  }, [isNew, activeTab]);
+
   // Price calculations based on storage and condition
   const basePrice = currentProduct.price || 34999;
   const baseOriginal = currentProduct.originalPrice || 59000;
@@ -714,14 +721,19 @@ export default function ProductDetailsPage({
             
             {/* Tab Navigation */}
             <div className="flex items-center gap-6 border-b border-gray-200 overflow-x-auto no-scrollbar">
-              {[
+              {(isNew ? [
+                'Overview',
+                'Specifications',
+                "What's in the Box",
+                'Ratings & Reviews',
+                'FAQs',
+              ] : [
                 'Overview',
                 'Specifications',
                 'Condition Details',
                 "What's in the Box",
-                'Ratings & Reviews',
                 'FAQs',
-              ].map((tab) => {
+              ]).map((tab) => {
                 const isActive = activeTab === tab;
                 return (
                   <button
